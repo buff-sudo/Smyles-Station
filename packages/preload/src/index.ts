@@ -6,4 +6,8 @@ function send(channel: string, message: string) {
   return ipcRenderer.invoke(channel, message);
 }
 
-export {sha256sum, versions, send};
+function openNewWindow(url: string) {
+  return ipcRenderer.invoke('open-new-window', url);
+}
+
+export {sha256sum, versions, send, openNewWindow};

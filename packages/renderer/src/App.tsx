@@ -1,35 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import type { FC } from 'react'
 
-function App() {
-  const [count, setCount] = useState(0)
+const App: FC = () => {
+  const handleOpenWindow = async (url: string, siteName: string) => {
+    if (window.openNewWindow) {
+      try {
+        const windowId = await window.openNewWindow(url);
+        console.log(`Opened ${siteName} in window ID: ${windowId}`);
+      } catch (error) {
+        console.error(`Failed to open ${siteName}:`, error);
+      }
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="app-container">
+      <h1>Electron App</h1>
+      <p>Choose a site to open:</p>
+      
+      <button onClick={() => handleOpenWindow('https://pbskids.org/games', 'PBS Kids')}>
+        Open PBS Kids Games
+      </button>
+      
+      <button onClick={() => handleOpenWindow('https://www.abcmouse.com/library_account', 'ABC Mouse')}>
+        Open ABC Mouse
+      </button>
+    </div>
+  );
+};
 
 export default App
