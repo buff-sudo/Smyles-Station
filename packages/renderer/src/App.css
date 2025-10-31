@@ -16,3 +16,31 @@ html, body, #root {
   box-sizing: border-box; /* Include padding in width/height calculation */
   overflow: hidden; /* Prevent scroll bars */
 }
+
+/* App header with admin button */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.app-header h1 {
+  margin: 0;
+}
+
+.admin-access-button {
+  padding: 8px 16px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.admin-access-button:hover {
+  background: #5568d3;
+}

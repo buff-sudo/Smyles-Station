@@ -11,11 +11,15 @@ import {URL} from 'node:url';
  * @see https://www.electronjs.org/docs/latest/tutorial/security#13-disable-or-limit-navigation
  */
 export class BlockNotAllowedOrigins extends AbstractSecurityRule {
-  readonly #allowedOrigins: Set<string>;
+  #allowedOrigins: Set<string>;
 
   constructor(allowedOrigins: Set<string> = new Set) {
     super();
     this.#allowedOrigins = structuredClone(allowedOrigins)
+  }
+
+  updateAllowedOrigins(allowedOrigins: Set<string>): void {
+    this.#allowedOrigins = structuredClone(allowedOrigins);
   }
 
   applyRule(contents: Electron.WebContents): Promise<void> | void {
