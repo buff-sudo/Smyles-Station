@@ -11,6 +11,7 @@ declare global {
     };
     send: (channel: string, message: string) => Promise<unknown>;
     openNewWindow: (url: string) => Promise<number>;
+    closeCurrentWindow: () => Promise<void>;
 
     // Admin functions
     adminLogin: (password: string) => Promise<boolean>;

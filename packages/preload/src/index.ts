@@ -10,6 +10,10 @@ function openNewWindow(url: string) {
   return ipcRenderer.invoke('open-new-window', url);
 }
 
+function closeCurrentWindow() {
+  return ipcRenderer.invoke('close-current-window');
+}
+
 // Admin functions
 function adminLogin(password: string): Promise<boolean> {
   return ipcRenderer.invoke('admin:login', password);
@@ -53,6 +57,7 @@ export {
   versions,
   send,
   openNewWindow,
+  closeCurrentWindow,
   adminLogin,
   adminGetSettings,
   adminUpdateWhitelist,

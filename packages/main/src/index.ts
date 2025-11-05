@@ -8,7 +8,7 @@ import {hardwareAccelerationMode} from './modules/HardwareAccelerationModule.js'
 import {autoUpdater} from './modules/AutoUpdater.js';
 import {allowInternalOrigins} from './modules/BlockNotAllowdOrigins.js';
 import {allowExternalUrls} from './modules/ExternalUrls.js';
-import {createAdminModule} from './modules/AdminModule.js';
+import {createAdminModule, AdminModule} from './modules/AdminModule.js';
 
 
 export async function initApp(initConfig: AppInitConfig) {
@@ -21,7 +21,6 @@ export async function initApp(initConfig: AppInitConfig) {
 
   // Read hardware acceleration setting from admin config early
   // Must be done before app.whenReady()
-  const {AdminModule} = await import('./modules/AdminModule.js');
   const enableHardwareAcceleration = await AdminModule.getHardwareAccelerationSetting();
 
   const moduleRunner = createModuleRunner()
