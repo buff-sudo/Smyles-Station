@@ -1,0 +1,68 @@
+.session-expired-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.session-expired-card {
+  background: white;
+  padding: 50px 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.session-expired-icon {
+  font-size: 72px;
+  margin-bottom: 20px;
+  animation: rotate 2s ease-in-out infinite;
+}
+
+@keyframes rotate {
+  0%, 100% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+}
+
+.session-expired-card h1 {
+  margin: 0 0 12px 0;
+  color: #333;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.session-expired-description {
+  color: #666;
+  margin: 0 0 25px 0;
+  font-size: 18px;
+}
+
+.session-expired-info {
+  background: #f0f4ff;
+  border-left: 4px solid #667eea;
+  padding: 16px;
+  border-radius: 6px;
+  color: #555;
+  font-size: 15px;
+  line-height: 1.6;
+}

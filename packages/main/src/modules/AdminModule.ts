@@ -15,16 +15,9 @@ export interface AdminConfig {
   enableHardwareAcceleration: boolean;
 }
 
-export interface SessionInfo {
-  startTime: number;
-  timeLimit: number;
-}
-
 export class AdminModule implements AppModule {
   #configPath: string;
   #config: AdminConfig | null = null;
-  #sessions: Map<number, SessionInfo> = new Map(); // windowId -> SessionInfo
-  #sessionTimers: Map<number, NodeJS.Timeout> = new Map();
   #navigationBlocker: BlockNotAllowedOrigins | null = null;
   #rendererOrigin: string | null = null;
 
@@ -198,10 +191,21 @@ export class AdminModule implements AppModule {
     });
   }
 
+  // Public method for other modules to access settings
+  getSettings() {
+    if (!this.#config) return null;
+    return {
+      whitelistedUrls: this.#config.whitelistedUrls,
+      sessionTimeLimit: this.#config.sessionTimeLimit,
+      blockDevTools: this.#config.blockDevTools,
+      blockTaskManager: this.#config.blockTaskManager,
+      enableHardwareAcceleration: this.#config.enableHardwareAcceleration,
+    };
+  }
+
   #setupWindowHooks(): void {
     app.on('browser-window-created', (_event, window) => {
       this.#applySecuritySettings(window);
-      this.#startSessionTimer(window);
     });
 
     app.on('browser-window-focus', (_event, window) => {
@@ -267,41 +271,6 @@ export class AdminModule implements AppModule {
         event.preventDefault();
       });
     }
-  }
-
-  #startSessionTimer(window: BrowserWindow): void {
-    if (!this.#config || this.#config.sessionTimeLimit === 0) return;
-
-    const windowId = window.id;
-    const timeLimit = this.#config.sessionTimeLimit * 60 * 1000; // convert to milliseconds
-
-    const sessionInfo: SessionInfo = {
-      startTime: Date.now(),
-      timeLimit: this.#config.sessionTimeLimit,
-    };
-
-    this.#sessions.set(windowId, sessionInfo);
-
-    // Set timer to close window when time limit is reached
-    const timer = setTimeout(() => {
-      if (!window.isDestroyed()) {
-        window.close();
-      }
-      this.#sessions.delete(windowId);
-      this.#sessionTimers.delete(windowId);
-    }, timeLimit);
-
-    this.#sessionTimers.set(windowId, timer);
-
-    // Clean up when window is closed
-    window.on('closed', () => {
-      const existingTimer = this.#sessionTimers.get(windowId);
-      if (existingTimer) {
-        clearTimeout(existingTimer);
-      }
-      this.#sessions.delete(windowId);
-      this.#sessionTimers.delete(windowId);
-    });
   }
 }
 

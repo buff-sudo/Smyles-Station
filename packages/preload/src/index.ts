@@ -52,6 +52,46 @@ function adminIsUrlWhitelisted(url: string): Promise<boolean> {
   return ipcRenderer.invoke('admin:is-url-whitelisted', url);
 }
 
+// Session functions
+function sessionStart(): Promise<boolean> {
+  return ipcRenderer.invoke('session:start');
+}
+
+function sessionEnd(): Promise<boolean> {
+  return ipcRenderer.invoke('session:end');
+}
+
+function sessionGetStatus(): Promise<{
+  isActive: boolean;
+  timeRemaining: number;
+  timeLimit: number;
+  startTime: number | null;
+}> {
+  return ipcRenderer.invoke('session:get-status');
+}
+
+function sessionIsActive(): Promise<boolean> {
+  return ipcRenderer.invoke('session:is-active');
+}
+
+// Session event listeners
+function sessionOnStatus(callback: (status: {
+  isActive: boolean;
+  timeRemaining: number;
+  timeLimit: number;
+  startTime: number | null;
+}) => void) {
+  ipcRenderer.on('session:status-update', (_event, status) => callback(status));
+}
+
+function sessionOnWarning(callback: () => void) {
+  ipcRenderer.on('session:warning', () => callback());
+}
+
+function sessionOnExpired(callback: () => void) {
+  ipcRenderer.on('session:expired', () => callback());
+}
+
 export {
   sha256sum,
   versions,
@@ -66,4 +106,11 @@ export {
   adminUpdateHardwareAcceleration,
   adminChangePassword,
   adminIsUrlWhitelisted,
+  sessionStart,
+  sessionEnd,
+  sessionGetStatus,
+  sessionIsActive,
+  sessionOnStatus,
+  sessionOnWarning,
+  sessionOnExpired,
 };

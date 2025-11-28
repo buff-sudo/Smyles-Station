@@ -1,5 +1,12 @@
 // Type definitions for Electron APIs exposed through contextBridge
 
+export interface SessionStatus {
+  isActive: boolean;
+  timeRemaining: number; // milliseconds
+  timeLimit: number; // minutes
+  startTime: number | null;
+}
+
 declare global {
   interface Window {
     // Exposed functions from preload
@@ -28,6 +35,15 @@ declare global {
     adminUpdateHardwareAcceleration: (enable: boolean) => Promise<boolean>;
     adminChangePassword: (oldPassword: string, newPassword: string) => Promise<boolean>;
     adminIsUrlWhitelisted: (url: string) => Promise<boolean>;
+
+    // Session functions
+    sessionStart: () => Promise<boolean>;
+    sessionEnd: () => Promise<boolean>;
+    sessionGetStatus: () => Promise<SessionStatus>;
+    sessionIsActive: () => Promise<boolean>;
+    sessionOnStatus: (callback: (status: SessionStatus) => void) => void;
+    sessionOnWarning: (callback: () => void) => void;
+    sessionOnExpired: (callback: () => void) => void;
   }
 }
 
