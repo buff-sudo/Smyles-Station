@@ -22,7 +22,7 @@
 }
 
 .session-warning-card {
-  background: white;
+  background: var(--surface-1);
   padding: 40px;
   border-radius: 16px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
@@ -30,7 +30,7 @@
   width: 90%;
   text-align: center;
   animation: pulse 1.5s infinite, slideUp 0.3s ease-out;
-  border: 4px solid #dc2626;
+  border: 4px solid var(--danger);
 }
 
 @keyframes slideUp {
@@ -47,11 +47,11 @@
 @keyframes pulse {
   0%, 100% {
     transform: scale(1);
-    box-shadow: 0 20px 60px rgba(220, 38, 38, 0.3);
+    box-shadow: 0 20px 60px rgba(230, 126, 128, 0.3);
   }
   50% {
     transform: scale(1.02);
-    box-shadow: 0 25px 70px rgba(220, 38, 38, 0.5);
+    box-shadow: 0 25px 70px rgba(230, 126, 128, 0.5);
   }
 }
 
@@ -71,26 +71,26 @@
 }
 
 .session-warning-title {
-  color: #dc2626;
+  color: var(--danger);
   font-size: 28px;
   font-weight: 700;
   margin: 0 0 16px 0;
 }
 
 .session-warning-message {
-  color: #333;
+  color: var(--text-primary);
   font-size: 18px;
   margin: 0 0 12px 0;
   line-height: 1.5;
 }
 
 .session-warning-message strong {
-  color: #dc2626;
+  color: var(--danger);
   font-weight: 700;
 }
 
 .session-warning-note {
-  color: #666;
+  color: var(--text-secondary);
   font-size: 14px;
   margin: 0;
   line-height: 1.5;

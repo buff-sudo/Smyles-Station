@@ -4,74 +4,116 @@
   align-items: center;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #7fbbb3 0%, #a7c080 50%, #d699b6 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 .session-prompt-card {
-  background: white;
-  padding: 50px 40px;
-  border-radius: 12px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-  max-width: 450px;
+  background: var(--surface-1);
+  padding: 0;
+  border-radius: 32px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-width: 550px;
   width: 90%;
+  height: 550px;
   text-align: center;
   position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .session-prompt-card h1 {
-  margin: 0 0 15px 0;
-  color: #333;
-  font-size: 36px;
-  font-weight: 700;
+  margin: 50px 40px 20px 40px;
+  color: var(--text-primary);
+  font-size: 56px;
+  font-weight: 800;
+  letter-spacing: 1px;
 }
 
 .session-prompt-description {
-  color: #666;
-  margin: 0 0 30px 0;
-  font-size: 16px;
-}
-
-.session-info {
-  background: #f0f4ff;
-  border-left: 4px solid #667eea;
-  padding: 16px;
-  border-radius: 6px;
-  margin-bottom: 30px;
-  text-align: left;
-}
-
-.session-info-label {
-  color: #555;
-  font-size: 13px;
-  font-weight: 600;
-  margin-bottom: 6px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.session-info-value {
-  color: #667eea;
-  font-size: 24px;
+  color: var(--text-primary);
+  margin: 0 40px 40px 40px;
+  font-size: 26px;
   font-weight: 700;
 }
 
+.session-info {
+  background: transparent;
+  padding: 0;
+  margin: 0 40px 40px 40px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.session-info-icon {
+  font-size: 36px;
+}
+
+.session-info-value {
+  color: var(--text-primary);
+  font-size: 32px;
+  font-weight: 800;
+}
+
 .start-session-button {
-  width: 100%;
-  padding: 16px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  width: 280px;
+  height: 280px;
+  padding: 0;
+  background: linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%);
   color: white;
   border: none;
-  border-radius: 8px;
-  font-size: 18px;
-  font-weight: 600;
+  border-radius: 50%;
+  font-size: 120px;
+  font-weight: 900;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  margin-bottom: 16px;
+  transition: all 0.15s ease-out;
+  box-shadow: 0 10px 0 #D85A2A, 0 15px 30px rgba(255, 107, 53, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+.button-icon {
+  font-size: 120px;
+  display: inline-block;
+  line-height: 1;
 }
 
 .start-session-button:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  background: linear-gradient(135deg, #FF8C42 0%, #FFA45C 100%);
+  transform: scale(1.05);
+  box-shadow: 0 12px 0 #D85A2A, 0 18px 40px rgba(255, 107, 53, 0.6);
+}
+
+.start-session-button:active:not(:disabled) {
+  transform: scale(0.95);
+  box-shadow: 0 5px 0 #D85A2A, 0 8px 15px rgba(255, 107, 53, 0.4);
 }
 
 .start-session-button:disabled {
@@ -80,22 +122,226 @@
   transform: none;
 }
 
-.admin-access-button {
+/* Settings button - fixed at top-right corner */
+.settings-button {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  border: 2px solid var(--border);
+  color: var(--text-muted);
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+  opacity: 0.6;
+}
+
+.settings-button:hover {
+  background: var(--surface-3);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-md);
+  opacity: 1;
+}
+
+/* Settings menu dropdown */
+.settings-menu {
+  position: fixed;
+  top: 65px;
+  right: 16px;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  z-index: 101;
+  min-width: 200px;
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.settings-menu-item {
+  width: 100%;
+  padding: 14px 20px;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.15s;
+  border-bottom: 1px solid var(--border);
+}
+
+.settings-menu-item:last-child {
+  border-bottom: none;
+}
+
+.settings-menu-item:hover {
+  background: var(--surface-2);
+}
+
+.settings-menu-item:active {
+  background: var(--surface-3);
+}
+
+/* Password dialog overlay */
+.password-dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.password-dialog {
+  background: var(--surface-1);
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  max-width: 400px;
+  width: 90%;
+  animation: scaleIn 0.2s ease-out;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.password-dialog h2 {
+  margin: 0 0 8px 0;
+  color: var(--text-primary);
+  font-size: 24px;
+}
+
+.password-dialog p {
+  margin: 0 0 24px 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.password-input-group {
+  margin-bottom: 16px;
+}
+
+.password-input-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.password-input-group input {
   width: 100%;
   padding: 12px;
-  background: transparent;
-  color: #667eea;
-  border: 2px solid #667eea;
-  border-radius: 8px;
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  font-size: 16px;
+  background: var(--surface-2);
+  color: var(--text-primary);
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.password-input-group input:focus {
+  outline: none;
+  border-color: var(--border-focus);
+}
+
+.password-input-group input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.password-error {
+  background: rgba(230, 126, 128, 0.15);
+  color: var(--danger);
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 16px;
   font-size: 14px;
+}
+
+.password-dialog-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.password-dialog-buttons button {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
 }
 
-.admin-access-button:hover {
-  background: #667eea;
-  color: white;
+.password-dialog-buttons .cancel-button {
+  background: var(--surface-2);
+  color: var(--text-primary);
+  border: 2px solid var(--border);
+}
+
+.password-dialog-buttons .cancel-button:hover:not(:disabled) {
+  background: var(--surface-3);
+}
+
+.password-dialog-buttons .close-app-button {
+  background: var(--danger);
+  color: var(--surface-0);
+}
+
+.password-dialog-buttons .close-app-button:hover:not(:disabled) {
+  background: var(--danger-hover);
   transform: translateY(-1px);
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 12px rgba(230, 126, 128, 0.3);
+}
+
+.password-dialog-buttons button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
 }

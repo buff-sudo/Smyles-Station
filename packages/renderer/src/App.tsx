@@ -130,7 +130,12 @@ const App: FC = () => {
 
   // Admin Login View
   if (currentView === 'admin-login') {
-    return <AdminLogin onLoginSuccess={handleAdminLogin} />
+    return (
+      <AdminLogin
+        onLoginSuccess={handleAdminLogin}
+        onCancel={() => setCurrentView('session-prompt')}
+      />
+    )
   }
 
   // Admin Dashboard View

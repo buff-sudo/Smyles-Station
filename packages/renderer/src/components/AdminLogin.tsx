@@ -3,9 +3,10 @@ import './AdminLogin.css';
 
 interface AdminLoginProps {
   onLoginSuccess: () => void;
+  onCancel: () => void;
 }
 
-export const AdminLogin: FC<AdminLoginProps> = ({ onLoginSuccess }) => {
+export const AdminLogin: FC<AdminLoginProps> = ({ onLoginSuccess, onCancel }) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -55,9 +56,19 @@ export const AdminLogin: FC<AdminLoginProps> = ({ onLoginSuccess }) => {
 
           {error && <div className="error-message">{error}</div>}
 
-          <button type="submit" disabled={loading || !password}>
-            {loading ? 'Logging in...' : 'Login'}
-          </button>
+          <div className="button-group">
+            <button type="submit" disabled={loading || !password}>
+              {loading ? 'Logging in...' : 'Login'}
+            </button>
+            <button
+              type="button"
+              className="back-button"
+              onClick={onCancel}
+              disabled={loading}
+            >
+              ← Back
+            </button>
+          </div>
         </form>
 
         <div className="admin-login-note">

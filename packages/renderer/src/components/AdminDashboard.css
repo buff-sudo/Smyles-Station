@@ -1,7 +1,7 @@
 .admin-dashboard {
   width: 100%;
   height: 100%;
-  background: #f5f7fa;
+  background: var(--bg-dim);
   overflow-y: auto;
 }
 
@@ -12,7 +12,7 @@
   width: 100%;
   height: 100%;
   font-size: 18px;
-  color: #666;
+  color: var(--text-secondary);
 }
 
 .admin-dashboard-header {
@@ -20,8 +20,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px 30px;
-  background: white;
-  border-bottom: 1px solid #e0e0e0;
+  background: var(--surface-1);
+  border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -29,15 +29,15 @@
 
 .admin-dashboard-header h1 {
   margin: 0;
-  color: #333;
+  color: var(--text-primary);
   font-size: 28px;
 }
 
 .logout-button {
   padding: 10px 20px;
-  background: white;
-  color: #667eea;
-  border: 2px solid #667eea;
+  background: var(--surface-1);
+  color: var(--primary);
+  border: 2px solid var(--primary);
   border-radius: 6px;
   font-size: 14px;
   cursor: pointer;
@@ -46,8 +46,8 @@
 }
 
 .logout-button:hover {
-  background: #667eea;
-  color: white;
+  background: var(--primary);
+  color: var(--surface-0);
 }
 
 .message {
@@ -59,15 +59,15 @@
 }
 
 .message.success {
-  background: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
+  background: rgba(167, 192, 128, 0.15);
+  color: var(--success);
+  border: 1px solid var(--success);
 }
 
 .message.error {
-  background: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
+  background: rgba(230, 126, 128, 0.15);
+  color: var(--danger);
+  border: 1px solid var(--danger);
 }
 
 @keyframes slideIn {
@@ -88,22 +88,22 @@
 }
 
 .dashboard-section {
-  background: white;
+  background: var(--surface-1);
   padding: 25px;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
   margin-bottom: 25px;
 }
 
 .dashboard-section h2 {
   margin: 0 0 8px 0;
-  color: #333;
+  color: var(--text-primary);
   font-size: 22px;
 }
 
 .section-description {
   margin: 0 0 20px 0;
-  color: #666;
+  color: var(--text-secondary);
   font-size: 14px;
 }
 
@@ -117,14 +117,16 @@
 .url-add-form input {
   flex: 1;
   padding: 10px;
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--border);
   border-radius: 6px;
   font-size: 14px;
+  background: var(--surface-2);
+  color: var(--text-primary);
 }
 
 .url-add-form input:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: var(--border-focus);
 }
 
 .url-add-form button {
@@ -143,15 +145,15 @@
   justify-content: space-between;
   align-items: center;
   padding: 18px 20px;
-  background: #f8f9fa;
+  background: var(--surface-2);
   border-radius: 8px;
-  border: 1px solid #e9ecef;
+  border: 1px solid var(--border);
   min-height: 56px;
 }
 
 .url-item span {
   flex: 1;
-  color: #333;
+  color: var(--text-primary);
   font-size: 15px;
   text-overflow: ellipsis;
   line-height: 1.5;
@@ -160,8 +162,8 @@
 
 .remove-button {
   padding: 6px 12px;
-  background: #dc3545;
-  color: white;
+  background: var(--danger);
+  color: var(--surface-0);
   border: none;
   border-radius: 4px;
   font-size: 13px;
@@ -171,13 +173,13 @@
 }
 
 .remove-button:hover {
-  background: #c82333;
+  background: var(--danger-hover);
 }
 
 .empty-state {
   padding: 20px;
   text-align: center;
-  color: #999;
+  color: var(--text-muted);
   font-style: italic;
 }
 
@@ -192,18 +194,20 @@
 .time-limit-form input {
   width: 100px;
   padding: 10px;
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--border);
   border-radius: 6px;
   font-size: 14px;
+  background: var(--surface-2);
+  color: var(--text-primary);
 }
 
 .time-limit-form input:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: var(--border-focus);
 }
 
 .time-limit-form .unit {
-  color: #666;
+  color: var(--text-secondary);
   font-size: 14px;
 }
 
@@ -215,20 +219,20 @@
 
 .info-box {
   padding: 12px;
-  background: #e7f3ff;
-  border-left: 4px solid #2196f3;
+  background: rgba(127, 187, 179, 0.15);
+  border-left: 4px solid var(--info);
   border-radius: 4px;
-  color: #1976d2;
+  color: var(--info);
   font-size: 14px;
   margin-bottom: 15px;
 }
 
 .warning-box {
   padding: 12px;
-  background: #fff3cd;
-  border-left: 4px solid #ffc107;
+  background: rgba(219, 188, 127, 0.15);
+  border-left: 4px solid var(--warning);
   border-radius: 4px;
-  color: #856404;
+  color: var(--warning);
   font-size: 14px;
   margin-bottom: 15px;
 }
@@ -246,7 +250,7 @@
   align-items: center;
   cursor: pointer;
   font-size: 14px;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .checkbox-group input[type="checkbox"] {
@@ -269,14 +273,16 @@
 
 .password-change-form input {
   padding: 10px;
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--border);
   border-radius: 6px;
   font-size: 14px;
+  background: var(--surface-2);
+  color: var(--text-primary);
 }
 
 .password-change-form input:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: var(--border-focus);
 }
 
 .button-group {
@@ -290,18 +296,18 @@
 }
 
 .cancel-button {
-  background: #6c757d !important;
+  background: var(--grey-1) !important;
 }
 
 .cancel-button:hover {
-  background: #5a6268 !important;
+  background: var(--grey-0) !important;
 }
 
 /* Button defaults from parent */
 .dashboard-section button {
   padding: 12px 24px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: var(--primary);
+  color: var(--surface-0);
   border: none;
   border-radius: 6px;
   font-size: 14px;
@@ -313,7 +319,7 @@
 
 .dashboard-section button:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 5px 15px rgba(167, 192, 128, 0.3);
 }
 
 .dashboard-section button:disabled {

@@ -1,5 +1,5 @@
-import type {AppModule} from '../AppModule.js';
 import type {ModuleContext} from '../ModuleContext.js';
+import type {AdminFeature} from '../AdminFeature.js';
 import {ipcMain, BrowserWindow} from 'electron';
 import type {AdminModule} from './AdminModule.js';
 
@@ -20,7 +20,10 @@ interface GlobalSessionState {
   statusBroadcastInterval: NodeJS.Timeout | null;
 }
 
-export class SessionModule implements AppModule {
+export class SessionModule implements AdminFeature {
+  readonly featureName = 'session-manager';
+  readonly description = 'Manages timed sessions with automatic expiration and warnings';
+
   #adminModule: AdminModule;
   #mainWindowId: number | null = null;
   #state: GlobalSessionState = {
@@ -40,12 +43,13 @@ export class SessionModule implements AppModule {
   async enable(context: ModuleContext): Promise<void> {
     this.#setupIPCHandlers();
 
-    // Store the main window ID (first window created)
-    const mainWindow = BrowserWindow.getAllWindows()[0];
-    if (mainWindow) {
-      this.#mainWindowId = mainWindow.id;
-      console.log(`Main window ID set to: ${this.#mainWindowId}`);
-    }
+    // Track the first window created (this is the main window)
+    context.app.on('browser-window-created', (_event, window) => {
+      if (this.#mainWindowId === null) {
+        this.#mainWindowId = window.id;
+        console.log(`Main window ID set to: ${this.#mainWindowId}`);
+      }
+    });
   }
 
   #setupIPCHandlers(): void {
@@ -185,34 +189,59 @@ export class SessionModule implements AppModule {
     console.log('Session warning: 1 minute remaining');
   }
 
-  #handleSessionExpiry(): void {
+  async #handleSessionExpiry(): Promise<void> {
     console.log('Session expired');
 
     // Broadcast expiry event to all windows BEFORE closing them
     this.#broadcastToAllWindows('session:expired');
 
     // Give a brief moment for the event to be received
-    setTimeout(() => {
-      // Close all windows except the main window
+    setTimeout(async () => {
       const allWindows = BrowserWindow.getAllWindows();
+      const mainWindow = allWindows.find(win => win.id === this.#mainWindowId && !win.isDestroyed());
+
       console.log(`Session expired - Total windows: ${allWindows.length}, Main window ID: ${this.#mainWindowId}`);
 
+      if (!mainWindow) {
+        console.error('Main window not found during session expiry!');
+        return;
+      }
+
+      // Step 1: Close all child windows
       allWindows.forEach(win => {
-        // Only close child windows, not the main window
-        // Main window is identified by its stored ID
         if (win.id !== this.#mainWindowId && !win.isDestroyed()) {
           console.log(`Closing child window ${win.id}`);
           win.close();
-        } else {
-          console.log(`Keeping main window ${win.id}`);
         }
       });
 
-      // Clear timers and reset state
+      // Step 2: Clear all browser data from the main window
+      console.log('Clearing browser data (cookies, cache, storage)...');
+      try {
+        const session = mainWindow.webContents.session;
+
+        // Clear cache
+        await session.clearCache();
+
+        // Clear storage data (cookies, localStorage, etc.)
+        await session.clearStorageData({
+          storages: ['cookies', 'localstorage', 'indexdb', 'websql', 'serviceworkers', 'cachestorage'],
+        });
+
+        console.log('Browser data cleared successfully');
+      } catch (error) {
+        console.error('Error clearing browser data:', error);
+      }
+
+      // Step 3: Clear timers and reset state
       this.#clearTimers();
       this.#state.isActive = false;
       this.#state.startTime = null;
       this.#state.warningShown = false;
+
+      // Step 4: Reload the main window to return to initial screen
+      console.log('Reloading main window to return to initial screen...');
+      mainWindow.reload();
     }, 100);
   }
 
