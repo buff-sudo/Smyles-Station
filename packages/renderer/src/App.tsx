@@ -8,6 +8,8 @@ import { SessionTimer } from './components/SessionTimer'
 import { SessionWarning } from './components/SessionWarning'
 import { SessionExpired } from './components/SessionExpired'
 import type { SessionStatus } from './electron'
+import pbsKidsIcon from './assets/pbs_kids_icon.png'
+import abcMouseIcon from './assets/abcmouse_icon.png'
 
 type View = 'session-prompt' | 'session-expired' | 'main' | 'admin-login' | 'admin-dashboard'
 
@@ -160,25 +162,37 @@ const App: FC = () => {
       )}
 
       <div className="app-container">
-        <div className="app-header">
-          <h1>Electron App</h1>
+        <div className="website-grid">
           <button
-            className="admin-access-button"
-            onClick={() => setCurrentView('admin-login')}
+            className="website-card"
+            onClick={() => handleOpenWindow('https://pbskids.org/games', 'PBS Kids')}
+            aria-label="Open PBS Kids Games"
           >
-            Admin
+            <div className="website-icon-wrapper">
+              <img
+                src={pbsKidsIcon}
+                alt="PBS Kids"
+                className="website-icon"
+              />
+            </div>
+            <h2 className="website-name">PBS Kids</h2>
+          </button>
+
+          <button
+            className="website-card"
+            onClick={() => handleOpenWindow('https://www.abcmouse.com/library_account', 'ABC Mouse')}
+            aria-label="Open ABC Mouse"
+          >
+            <div className="website-icon-wrapper">
+              <img
+                src={abcMouseIcon}
+                alt="ABC Mouse"
+                className="website-icon"
+              />
+            </div>
+            <h2 className="website-name">ABC Mouse</h2>
           </button>
         </div>
-
-        <p>Choose a site to open:</p>
-
-        <button onClick={() => handleOpenWindow('https://pbskids.org/games', 'PBS Kids')}>
-          Open PBS Kids Games
-        </button>
-
-        <button onClick={() => handleOpenWindow('https://www.abcmouse.com/library_account', 'ABC Mouse')}>
-          Open ABC Mouse
-        </button>
       </div>
     </>
   );
