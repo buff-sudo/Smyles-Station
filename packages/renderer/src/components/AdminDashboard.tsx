@@ -1,5 +1,6 @@
 import { type FC, useState, useEffect } from 'react';
 import './AdminDashboard.css';
+import { SiteManagement } from './SiteManagement';
 
 interface AdminSettings {
   whitelistedUrls: string[];
@@ -210,42 +211,9 @@ export const AdminDashboard: FC<AdminDashboardProps> = ({ onLogout }) => {
       )}
 
       <div className="dashboard-content">
-        {/* Whitelist Management */}
+        {/* Site Management - New comprehensive site management UI */}
         <section className="dashboard-section">
-          <h2>Whitelisted Websites</h2>
-          <p className="section-description">
-            Manage which websites are allowed to be accessed
-          </p>
-
-          <div className="url-add-form">
-            <input
-              type="text"
-              value={newUrl}
-              onChange={(e) => setNewUrl(e.target.value)}
-              placeholder="https://example.com"
-              onKeyPress={(e) => e.key === 'Enter' && handleAddUrl()}
-            />
-            <button onClick={handleAddUrl} disabled={!newUrl}>
-              Add URL
-            </button>
-          </div>
-
-          <div className="url-list">
-            {settings?.whitelistedUrls.map((url) => (
-              <div key={url} className="url-item">
-                <span>{url}</span>
-                <button
-                  className="remove-button"
-                  onClick={() => handleRemoveUrl(url)}
-                >
-                  Remove
-                </button>
-              </div>
-            ))}
-            {settings?.whitelistedUrls.length === 0 && (
-              <div className="empty-state">No URLs whitelisted</div>
-            )}
-          </div>
+          <SiteManagement />
         </section>
 
         {/* Session Time Limit */}

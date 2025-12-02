@@ -103,6 +103,31 @@ function adminOnSettingsChanged(callback: (settings: {
   ipcRenderer.on('admin:settings-changed', (_event, settings) => callback(settings));
 }
 
+// New Site Management Functions
+function adminGetSites(): Promise<any[]> {
+  return ipcRenderer.invoke('admin:get-sites');
+}
+
+function adminAddSite(url: string): Promise<any | null> {
+  return ipcRenderer.invoke('admin:add-site', url);
+}
+
+function adminUpdateSite(siteId: string, updates: any): Promise<boolean> {
+  return ipcRenderer.invoke('admin:update-site', siteId, updates);
+}
+
+function adminDeleteSite(siteId: string): Promise<boolean> {
+  return ipcRenderer.invoke('admin:delete-site', siteId);
+}
+
+function adminReorderSites(siteIds: string[]): Promise<boolean> {
+  return ipcRenderer.invoke('admin:reorder-sites', siteIds);
+}
+
+function adminRefreshSiteMetadata(siteId: string): Promise<boolean> {
+  return ipcRenderer.invoke('admin:refresh-site-metadata', siteId);
+}
+
 export {
   sha256sum,
   versions,
@@ -125,4 +150,10 @@ export {
   sessionOnWarning,
   sessionOnExpired,
   adminOnSettingsChanged,
+  adminGetSites,
+  adminAddSite,
+  adminUpdateSite,
+  adminDeleteSite,
+  adminReorderSites,
+  adminRefreshSiteMetadata,
 };

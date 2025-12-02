@@ -5,10 +5,13 @@ import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
 import * as crypto from 'node:crypto';
 import type {BlockNotAllowedOrigins} from './BlockNotAllowdOrigins.js';
+import type {WhitelistedSite} from '../types/WhitelistedSite.js';
+import {DefaultIcons} from '../utils/DefaultIcons.js';
+import {UrlNormalizer} from '../utils/UrlNormalizer.js';
 
 export interface AdminConfig {
   passwordHash: string;
-  whitelistedUrls: string[];
+  whitelistedSites: WhitelistedSite[]; // Changed from whitelistedUrls: string[]
   sessionTimeLimit: number; // in minutes, 0 = unlimited
   blockDevTools: boolean;
   blockTaskManager: boolean;
@@ -54,16 +57,17 @@ export class AdminModule implements AppModule {
     try {
       const data = await fs.readFile(this.#configPath, 'utf-8');
       this.#config = JSON.parse(data);
+
+      // Validate structure - if old format, ignore it and use default
+      if (!this.#config.whitelistedSites) {
+        console.log('Old config format detected, creating new default config');
+        this.#config = this.#createDefaultConfig();
+        await this.#saveConfig();
+      }
     } catch (error) {
-      // If config doesn't exist, create default with password "admin"
-      this.#config = {
-        passwordHash: this.#hashPassword('admin'),
-        whitelistedUrls: ['https://pbskids.org', 'https://abcmouse.com'],
-        sessionTimeLimit: 0, // unlimited by default
-        blockDevTools: true,
-        blockTaskManager: true,
-        enableHardwareAcceleration: true, // enabled by default for best performance
-      };
+      // If config doesn't exist, create default
+      console.log('No config found, creating default config');
+      this.#config = this.#createDefaultConfig();
       await this.#saveConfig();
     }
 
@@ -71,9 +75,61 @@ export class AdminModule implements AppModule {
     this.#updateNavigationBlocker();
   }
 
+  #createDefaultConfig(): AdminConfig {
+    return {
+      passwordHash: this.#hashPassword('admin'),
+      whitelistedSites: [
+        {
+          id: crypto.randomUUID(),
+          url: 'https://pbskids.org/games',
+          displayName: 'PBS Kids',
+          iconUrl: DefaultIcons.getIconDataUrl('pbs_kids'),
+          showOnSelectionScreen: true,
+          displayOrder: 0,
+          autoFetchedTitle: null,
+          autoFetchedIconUrl: null,
+          lastUpdated: Date.now(),
+          createdAt: Date.now(),
+        },
+        {
+          id: crypto.randomUUID(),
+          url: 'https://www.abcmouse.com/library_account',
+          displayName: 'ABC Mouse',
+          iconUrl: DefaultIcons.getIconDataUrl('abcmouse'),
+          showOnSelectionScreen: true,
+          displayOrder: 1,
+          autoFetchedTitle: null,
+          autoFetchedIconUrl: null,
+          lastUpdated: Date.now(),
+          createdAt: Date.now(),
+        }
+      ],
+      sessionTimeLimit: 0, // unlimited by default
+      blockDevTools: true,
+      blockTaskManager: true,
+      enableHardwareAcceleration: true, // enabled by default for best performance
+    };
+  }
+
   #updateNavigationBlocker(): void {
     if (this.#navigationBlocker && this.#config) {
-      const allowedOrigins = new Set(this.#config.whitelistedUrls);
+      const allowedOrigins = new Set(
+        this.#config.whitelistedSites.map(site => {
+          try {
+            // Use normalized origin to allow both www and non-www
+            return UrlNormalizer.normalizedOrigin(site.url);
+          } catch {
+            return site.url;
+          }
+        })
+      );
+
+      // Also add non-normalized origins to be safe
+      this.#config.whitelistedSites.forEach(site => {
+        try {
+          allowedOrigins.add(new URL(site.url).origin);
+        } catch {}
+      });
 
       // Always include renderer origin if provided
       if (this.#rendererOrigin) {
@@ -109,7 +165,7 @@ export class AdminModule implements AppModule {
     ipcMain.handle('admin:get-settings', async () => {
       if (!this.#config) return null;
       return {
-        whitelistedUrls: this.#config.whitelistedUrls,
+        whitelistedUrls: this.#config.whitelistedSites.map(s => s.url), // For backward compatibility
         sessionTimeLimit: this.#config.sessionTimeLimit,
         blockDevTools: this.#config.blockDevTools,
         blockTaskManager: this.#config.blockTaskManager,
@@ -117,10 +173,24 @@ export class AdminModule implements AppModule {
       };
     });
 
-    // Update whitelist
+    // Update whitelist (deprecated - kept for backward compatibility)
+    // Note: This creates basic WhitelistedSite objects without metadata
+    // New code should use admin:add-site, admin:update-site, admin:delete-site instead
     ipcMain.handle('admin:update-whitelist', async (_event, urls: string[]) => {
       if (this.#config) {
-        this.#config.whitelistedUrls = urls;
+        // Convert URLs to WhitelistedSite objects
+        this.#config.whitelistedSites = urls.map((url, index) => ({
+          id: crypto.randomUUID(),
+          url,
+          displayName: null,
+          iconUrl: null,
+          showOnSelectionScreen: true,
+          displayOrder: index,
+          autoFetchedTitle: null,
+          autoFetchedIconUrl: null,
+          lastUpdated: Date.now(),
+          createdAt: Date.now(),
+        }));
         await this.#saveConfig();
         this.#updateNavigationBlocker();
         this.#broadcastSettingsChange();
@@ -184,12 +254,148 @@ export class AdminModule implements AppModule {
     ipcMain.handle('admin:is-url-whitelisted', async (_event, url: string) => {
       if (!this.#config) return false;
       try {
-        const urlObj = new URL(url);
-        return this.#config.whitelistedUrls.some(whitelisted => {
-          const whitelistedObj = new URL(whitelisted);
-          return urlObj.origin === whitelistedObj.origin || url.startsWith(whitelisted);
+        // Use normalized origin comparison to handle www/non-www variants
+        const normalizedOrigin = UrlNormalizer.normalizedOrigin(url);
+
+        return this.#config.whitelistedSites.some(site => {
+          const siteOrigin = UrlNormalizer.normalizedOrigin(site.url);
+          return normalizedOrigin === siteOrigin || url.startsWith(site.url);
         });
       } catch {
+        return false;
+      }
+    });
+
+    // === New Site Management Handlers ===
+
+    // Get all sites with metadata
+    ipcMain.handle('admin:get-sites', async () => {
+      if (!this.#config) return [];
+      return this.#config.whitelistedSites;
+    });
+
+    // Add new site (auto-fetches metadata)
+    ipcMain.handle('admin:add-site', async (_event, url: string) => {
+      if (!this.#config) return null;
+
+      try {
+        // Normalize URL (remove www. subdomain if present)
+        const normalizedUrl = UrlNormalizer.normalize(url);
+
+        // Check for duplicates (including www/non-www variants)
+        const isDuplicate = this.#config.whitelistedSites.some(site =>
+          UrlNormalizer.areEquivalent(site.url, normalizedUrl)
+        );
+
+        if (isDuplicate) {
+          console.warn(`Site already exists: ${normalizedUrl}`);
+          return null;
+        }
+
+        // Import FaviconFetcher dynamically
+        const {FaviconFetcher} = await import('../utils/FaviconFetcher.js');
+        const metadata = await FaviconFetcher.fetchSiteMetadata(normalizedUrl);
+
+        const newSite: WhitelistedSite = {
+          id: crypto.randomUUID(),
+          url: normalizedUrl, // Store normalized URL
+          displayName: null,
+          iconUrl: null,
+          showOnSelectionScreen: true,
+          displayOrder: this.#config.whitelistedSites.length,
+          autoFetchedTitle: metadata.title,
+          autoFetchedIconUrl: metadata.iconUrl,
+          lastUpdated: Date.now(),
+          createdAt: Date.now(),
+        };
+
+        this.#config.whitelistedSites.push(newSite);
+        await this.#saveConfig();
+        this.#updateNavigationBlocker();
+        this.#broadcastSettingsChange();
+
+        return newSite;
+      } catch (error) {
+        console.error('Failed to add site:', error);
+        return null;
+      }
+    });
+
+    // Update site (for custom name, icon, visibility)
+    ipcMain.handle('admin:update-site', async (_event, siteId: string, updates: Partial<WhitelistedSite>) => {
+      if (!this.#config) return false;
+
+      const site = this.#config.whitelistedSites.find(s => s.id === siteId);
+      if (!site) return false;
+
+      Object.assign(site, updates, {lastUpdated: Date.now()});
+      await this.#saveConfig();
+      this.#updateNavigationBlocker();
+      this.#broadcastSettingsChange();
+
+      return true;
+    });
+
+    // Delete site
+    ipcMain.handle('admin:delete-site', async (_event, siteId: string) => {
+      if (!this.#config) return false;
+
+      this.#config.whitelistedSites = this.#config.whitelistedSites.filter(s => s.id !== siteId);
+
+      // Reorder remaining sites
+      this.#config.whitelistedSites.forEach((site, index) => {
+        site.displayOrder = index;
+      });
+
+      await this.#saveConfig();
+      this.#updateNavigationBlocker();
+      this.#broadcastSettingsChange();
+
+      return true;
+    });
+
+    // Reorder sites (accepts array of IDs in new order)
+    ipcMain.handle('admin:reorder-sites', async (_event, siteIds: string[]) => {
+      if (!this.#config) return false;
+
+      const reordered: WhitelistedSite[] = [];
+
+      for (let i = 0; i < siteIds.length; i++) {
+        const site = this.#config.whitelistedSites.find(s => s.id === siteIds[i]);
+        if (site) {
+          site.displayOrder = i;
+          reordered.push(site);
+        }
+      }
+
+      this.#config.whitelistedSites = reordered;
+      await this.#saveConfig();
+      this.#broadcastSettingsChange();
+
+      return true;
+    });
+
+    // Refresh metadata (re-fetch title and icon)
+    ipcMain.handle('admin:refresh-site-metadata', async (_event, siteId: string) => {
+      if (!this.#config) return false;
+
+      const site = this.#config.whitelistedSites.find(s => s.id === siteId);
+      if (!site) return false;
+
+      try {
+        const {FaviconFetcher} = await import('../utils/FaviconFetcher.js');
+        const metadata = await FaviconFetcher.fetchSiteMetadata(site.url);
+
+        site.autoFetchedTitle = metadata.title;
+        site.autoFetchedIconUrl = metadata.iconUrl;
+        site.lastUpdated = Date.now();
+
+        await this.#saveConfig();
+        this.#broadcastSettingsChange();
+
+        return true;
+      } catch (error) {
+        console.error('Failed to refresh metadata:', error);
         return false;
       }
     });
@@ -199,7 +405,7 @@ export class AdminModule implements AppModule {
   getSettings() {
     if (!this.#config) return null;
     return {
-      whitelistedUrls: this.#config.whitelistedUrls,
+      whitelistedUrls: this.#config.whitelistedSites.map(s => s.url), // For backward compatibility
       sessionTimeLimit: this.#config.sessionTimeLimit,
       blockDevTools: this.#config.blockDevTools,
       blockTaskManager: this.#config.blockTaskManager,

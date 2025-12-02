@@ -7,6 +7,19 @@ export interface SessionStatus {
   startTime: number | null;
 }
 
+export interface WhitelistedSite {
+  id: string;
+  url: string;
+  displayName: string | null;
+  iconUrl: string | null;
+  showOnSelectionScreen: boolean;
+  displayOrder: number;
+  autoFetchedTitle?: string;
+  autoFetchedIconUrl?: string;
+  lastUpdated: number;
+  createdAt: number;
+}
+
 declare global {
   interface Window {
     // Exposed functions from preload
@@ -53,6 +66,14 @@ declare global {
       blockTaskManager: boolean;
       enableHardwareAcceleration: boolean;
     }) => void) => void;
+
+    // New site management functions
+    adminGetSites: () => Promise<WhitelistedSite[]>;
+    adminAddSite: (url: string) => Promise<WhitelistedSite | null>;
+    adminUpdateSite: (siteId: string, updates: Partial<WhitelistedSite>) => Promise<boolean>;
+    adminDeleteSite: (siteId: string) => Promise<boolean>;
+    adminReorderSites: (siteIds: string[]) => Promise<boolean>;
+    adminRefreshSiteMetadata: (siteId: string) => Promise<boolean>;
   }
 }
 

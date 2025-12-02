@@ -1,0 +1,363 @@
+.site-management {
+  width: 100%;
+}
+
+.site-management h2 {
+  color: var(--text-primary);
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+}
+
+.site-management-description {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin: 0 0 20px 0;
+}
+
+/* Message */
+.site-message {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: 500;
+  animation: slideIn 0.3s ease;
+}
+
+.site-message-success {
+  background: rgba(167, 192, 128, 0.2);
+  border: 1px solid var(--primary);
+  color: var(--primary);
+}
+
+.site-message-error {
+  background: rgba(231, 130, 132, 0.2);
+  border: 1px solid var(--danger);
+  color: var(--danger);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Add Site Form */
+.add-site-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.add-site-input {
+  flex: 1;
+  padding: 12px 16px;
+  font-size: 14px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-dim);
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.add-site-input:focus {
+  border-color: var(--border-focus);
+}
+
+.add-site-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.add-site-button {
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.add-site-button:hover:not(:disabled) {
+  background: var(--primary-dark, #87a070);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.add-site-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Sites List */
+.sites-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.site-item {
+  background: var(--surface-1);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  transition: border-color 0.2s;
+}
+
+.site-item:hover {
+  border-color: var(--border-focus);
+}
+
+/* Site Info */
+.site-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.site-order {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  min-width: 30px;
+}
+
+.site-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.site-visibility {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.site-visibility.visible {
+  background: rgba(167, 192, 128, 0.2);
+  color: var(--primary);
+}
+
+.site-visibility.hidden {
+  background: rgba(127, 187, 179, 0.2);
+  color: var(--secondary);
+}
+
+.site-url {
+  font-size: 13px;
+  color: var(--text-secondary);
+  word-break: break-all;
+}
+
+.site-meta {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Site Actions */
+.site-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.action-button,
+.edit-button,
+.delete-button {
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.action-button {
+  background: var(--surface-2);
+  color: var(--text-primary);
+  min-width: 36px;
+}
+
+.action-button:hover:not(:disabled) {
+  background: var(--border);
+  transform: translateY(-2px);
+}
+
+.action-button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.edit-button {
+  background: var(--secondary);
+  color: white;
+}
+
+.edit-button:hover {
+  background: var(--secondary-dark, #6fa39d);
+  transform: translateY(-2px);
+}
+
+.delete-button {
+  background: var(--danger);
+  color: white;
+}
+
+.delete-button:hover {
+  background: var(--danger-dark, #d65b5d);
+  transform: translateY(-2px);
+}
+
+/* Edit Form */
+.site-edit-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.site-edit-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.site-edit-field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.site-edit-field input {
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-dim);
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.site-edit-field input:focus {
+  border-color: var(--border-focus);
+}
+
+.site-edit-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.site-edit-checkbox label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.site-edit-checkbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.site-edit-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.save-button,
+.cancel-button {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.save-button {
+  background: var(--primary);
+  color: white;
+}
+
+.save-button:hover {
+  background: var(--primary-dark, #87a070);
+  transform: translateY(-2px);
+}
+
+.cancel-button {
+  background: var(--surface-2);
+  color: var(--text-primary);
+}
+
+.cancel-button:hover {
+  background: var(--border);
+  transform: translateY(-2px);
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-secondary);
+  font-size: 16px;
+}
+
+.empty-state p {
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .site-item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .site-actions {
+    justify-content: flex-start;
+  }
+
+  .add-site-form {
+    flex-direction: column;
+  }
+
+  .add-site-button {
+    width: 100%;
+  }
+}
