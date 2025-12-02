@@ -18,7 +18,6 @@ const App: FC = () => {
   const [sessionActive, setSessionActive] = useState(false)
   const [timeRemaining, setTimeRemaining] = useState<number>(0)
   const [showWarning, setShowWarning] = useState(false)
-  const [sessionTimeLimit, setSessionTimeLimit] = useState<number>(0)
 
   const handleOpenWindow = async (url: string, siteName: string) => {
     if (window.openNewWindow) {
@@ -75,25 +74,6 @@ const App: FC = () => {
     }, 3000)
   }
 
-  // Check if unlimited mode (sessionTimeLimit = 0) on mount
-  useEffect(() => {
-    const checkSessionMode = async () => {
-      try {
-        const settings = await window.adminGetSettings()
-        if (settings) {
-          setSessionTimeLimit(settings.sessionTimeLimit)
-          // If unlimited mode, skip session prompt and go directly to main
-          if (settings.sessionTimeLimit === 0) {
-            setCurrentView('main')
-          }
-        }
-      } catch (error) {
-        console.error('Failed to load session settings:', error)
-      }
-    }
-
-    checkSessionMode()
-  }, [])
 
   // Setup session event listeners
   useEffect(() => {
@@ -149,7 +129,7 @@ const App: FC = () => {
   return (
     <>
       {/* Session Timer (visible when session is active) */}
-      {sessionActive && sessionTimeLimit > 0 && (
+      {sessionActive && (
         <SessionTimer
           timeRemaining={timeRemaining}
           onEndSession={handleEndSession}

@@ -92,6 +92,17 @@ function sessionOnExpired(callback: () => void) {
   ipcRenderer.on('session:expired', () => callback());
 }
 
+// Admin event listeners
+function adminOnSettingsChanged(callback: (settings: {
+  whitelistedUrls: string[];
+  sessionTimeLimit: number;
+  blockDevTools: boolean;
+  blockTaskManager: boolean;
+  enableHardwareAcceleration: boolean;
+}) => void) {
+  ipcRenderer.on('admin:settings-changed', (_event, settings) => callback(settings));
+}
+
 export {
   sha256sum,
   versions,
@@ -113,4 +124,5 @@ export {
   sessionOnStatus,
   sessionOnWarning,
   sessionOnExpired,
+  adminOnSettingsChanged,
 };

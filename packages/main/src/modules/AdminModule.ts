@@ -123,6 +123,7 @@ export class AdminModule implements AppModule {
         this.#config.whitelistedUrls = urls;
         await this.#saveConfig();
         this.#updateNavigationBlocker();
+        this.#broadcastSettingsChange();
         return true;
       }
       return false;
@@ -133,6 +134,7 @@ export class AdminModule implements AppModule {
       if (this.#config) {
         this.#config.sessionTimeLimit = minutes;
         await this.#saveConfig();
+        this.#broadcastSettingsChange();
         return true;
       }
       return false;
@@ -150,6 +152,7 @@ export class AdminModule implements AppModule {
           this.#applySecuritySettings(win);
         });
 
+        this.#broadcastSettingsChange();
         return true;
       }
       return false;
@@ -160,6 +163,7 @@ export class AdminModule implements AppModule {
       if (this.#config) {
         this.#config.enableHardwareAcceleration = enable;
         await this.#saveConfig();
+        this.#broadcastSettingsChange();
         // Note: Hardware acceleration change requires app restart to take effect
         return true;
       }
@@ -211,6 +215,15 @@ export class AdminModule implements AppModule {
     app.on('browser-window-focus', (_event, window) => {
       // Reapply security settings when window gains focus
       this.#applySecuritySettings(window);
+    });
+  }
+
+  #broadcastSettingsChange(): void {
+    const settings = this.getSettings();
+    BrowserWindow.getAllWindows().forEach(win => {
+      if (!win.isDestroyed()) {
+        win.webContents.send('admin:settings-changed', settings);
+      }
     });
   }
 

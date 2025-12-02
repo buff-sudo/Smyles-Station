@@ -14,14 +14,17 @@ export const SessionTimer: FC<SessionTimerProps> = ({ timeRemaining, onEndSessio
     return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   };
 
-  const isWarning = timeRemaining < 60000; // Less than 1 minute
+  const isUnlimited = timeRemaining <= 0;
+  const isWarning = !isUnlimited && timeRemaining < 60000; // Less than 1 minute
 
   return (
     <div className={`session-timer ${isWarning ? 'session-timer-warning' : ''}`}>
-      <div className="session-timer-content">
-        <div className="session-timer-label">Time Remaining</div>
-        <div className="session-timer-value">{formatTime(timeRemaining)}</div>
-      </div>
+      {!isUnlimited && (
+        <div className="session-timer-content">
+          <div className="session-timer-label">Time Remaining</div>
+          <div className="session-timer-value">{formatTime(timeRemaining)}</div>
+        </div>
+      )}
       <button
         className="session-timer-end-button"
         onClick={onEndSession}

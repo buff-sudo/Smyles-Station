@@ -80,18 +80,22 @@ export class SessionModule implements AdminFeature {
   }
 
   startSession(timeLimit: number): void {
-    // Don't start if timeLimit is 0 (unlimited) or session already active
-    if (timeLimit === 0 || this.#state.isActive) return;
+    // Don't start if session already active
+    if (this.#state.isActive) return;
 
     this.#state.isActive = true;
     this.#state.startTime = Date.now();
     this.#state.timeLimit = timeLimit;
     this.#state.warningShown = false;
 
-    this.#setupTimers();
+    // Only setup timers if not unlimited (timeLimit > 0)
+    if (timeLimit > 0) {
+      this.#setupTimers();
+    }
     this.#startStatusBroadcast();
 
-    console.log(`Session started: ${timeLimit} minutes`);
+    const timeDescription = timeLimit === 0 ? 'unlimited' : `${timeLimit} minutes`;
+    console.log(`Session started: ${timeDescription}`);
   }
 
   endSession(): void {

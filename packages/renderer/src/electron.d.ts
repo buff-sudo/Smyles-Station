@@ -44,6 +44,15 @@ declare global {
     sessionOnStatus: (callback: (status: SessionStatus) => void) => void;
     sessionOnWarning: (callback: () => void) => void;
     sessionOnExpired: (callback: () => void) => void;
+
+    // Admin event listeners
+    adminOnSettingsChanged: (callback: (settings: {
+      whitelistedUrls: string[];
+      sessionTimeLimit: number;
+      blockDevTools: boolean;
+      blockTaskManager: boolean;
+      enableHardwareAcceleration: boolean;
+    }) => void) => void;
   }
 }
 
