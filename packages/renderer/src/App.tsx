@@ -9,10 +9,9 @@ import { SessionWarning } from './components/SessionWarning'
 import { SessionExpired } from './components/SessionExpired'
 import { WebsiteGrid } from './components/WebsiteGrid'
 import { EmergencyExit } from './components/EmergencyExit'
-import { HeaderWindow } from './components/HeaderWindow'
 import type { SessionStatus } from './electron'
 
-type View = 'session-prompt' | 'session-expired' | 'main' | 'admin-login' | 'admin-dashboard'
+type View = 'session-prompt' | 'session-expired' | 'main' | 'admin-login' | 'admin-dashboard' | 'game-open'
 
 const App: FC = () => {
   const [currentView, setCurrentView] = useState<View>('session-prompt')
@@ -46,26 +45,26 @@ const App: FC = () => {
     })
   }, [])
 
-  // Check if this is header mode
-  const params = new URLSearchParams(window.location.search);
-  const isHeaderMode = params.has('header');
-
-  // If header mode, render HeaderWindow instead of main app
-  if (isHeaderMode) {
-    return <HeaderWindow />;
-  }
-
-  // Regular app logic below
-
-
   const handleOpenWindow = async (url: string, siteName: string) => {
     if (window.openNewWindow) {
       try {
-        const windowId = await window.openNewWindow(url);
+        const windowId = await window.openNewWindow(url, siteName);
         console.log(`Opened ${siteName} in window ID: ${windowId}`);
+        // Switch to game-open view to show minimal header
+        setCurrentView('game-open');
       } catch (error) {
         console.error(`Failed to open ${siteName}:`, error);
       }
+    }
+  };
+
+  const handleExitGame = async () => {
+    try {
+      await window.closeCurrentWindow();
+      // Switch back to main view
+      setCurrentView('main');
+    } catch (error) {
+      console.error('Failed to exit game:', error);
     }
   };
 
@@ -139,6 +138,40 @@ const App: FC = () => {
   // Admin Dashboard View
   if (currentView === 'admin-dashboard') {
     return <AdminDashboard onLogout={handleAdminLogout} />
+  }
+
+  // Game Open View (minimal header while game plays)
+  if (currentView === 'game-open') {
+    return (
+      <>
+        {/* Emergency Exit Dialog - highest priority overlay */}
+        {showEmergencyExit && (
+          <EmergencyExit onClose={() => setShowEmergencyExit(false)} />
+        )}
+
+        {/* Session Timer (visible when session is active) */}
+        {sessionActive && (
+          <SessionTimer
+            timeRemaining={timeRemaining}
+            onEndSession={handleEndSession}
+          />
+        )}
+
+        {/* Session Warning Modal */}
+        {showWarning && (
+          <SessionWarning timeRemaining={timeRemaining} />
+        )}
+
+        {/* Exit Game Button */}
+        <button
+          className="exit-game-button"
+          onClick={handleExitGame}
+          title="Exit game and return to selection"
+        >
+          ✕ Exit Game
+        </button>
+      </>
+    );
   }
 
   // Main View (website selection)

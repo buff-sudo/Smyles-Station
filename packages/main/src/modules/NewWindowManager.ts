@@ -5,13 +5,10 @@ import type {AppInitConfig} from '../AppInitConfig.js';
 
 class NewWindowManager implements AppModule {
   readonly #preload: {path: string};
-  readonly #renderer: {path: string} | URL;
-  #currentHeader: BrowserWindow | null = null;
   #currentContent: BrowserWindow | null = null;
 
   constructor({initConfig}: {initConfig: AppInitConfig}) {
     this.#preload = initConfig.preload;
-    this.#renderer = initConfig.renderer;
   }
 
   async enable({app}: ModuleContext): Promise<void> {
@@ -19,9 +16,6 @@ class NewWindowManager implements AppModule {
 
     ipcMain.handle('open-new-window', async (event, url: string, siteName?: string) => {
       // Close any existing game first (single-game enforcement)
-      if (this.#currentHeader && !this.#currentHeader.isDestroyed()) {
-        this.#currentHeader.close();
-      }
       if (this.#currentContent && !this.#currentContent.isDestroyed()) {
         this.#currentContent.close();
       }
@@ -32,34 +26,11 @@ class NewWindowManager implements AppModule {
       // Get screen dimensions
       const primaryDisplay = screen.getPrimaryDisplay();
       const { width, height } = primaryDisplay.bounds;
-      const HEADER_HEIGHT = 75;
+      const HEADER_HEIGHT = 80; // Leave space for main window header
 
-      // Create header window
-      const headerWindow = new BrowserWindow({
-        parent: mainWindow || undefined,
-        x: 0,
-        y: 0,
-        width: width,
-        height: HEADER_HEIGHT,
-        frame: false,
-        alwaysOnTop: true,
-        resizable: false,
-        movable: false,
-        minimizable: false,
-        maximizable: false,
-        skipTaskbar: true,
-        show: false,
-        webPreferences: {
-          nodeIntegration: false,
-          contextIsolation: true,
-          sandbox: false,
-          preload: this.#preload.path,
-        },
-      });
-
-      // Create content window (below header, child of header)
+      // Create content window positioned below main window's header area
       const contentWindow = new BrowserWindow({
-        parent: headerWindow,
+        parent: mainWindow || undefined,
         x: 0,
         y: HEADER_HEIGHT,
         width: width,
@@ -68,6 +39,8 @@ class NewWindowManager implements AppModule {
         show: false,
         resizable: false,
         movable: false,
+        alwaysOnTop: false, // Main window will be on top
+        skipTaskbar: true,
         webPreferences: {
           nodeIntegration: false,
           contextIsolation: true,
@@ -81,44 +54,27 @@ class NewWindowManager implements AppModule {
         return { action: 'deny' };
       });
 
-      // Store references
-      this.#currentHeader = headerWindow;
+      // Store reference
       this.#currentContent = contentWindow;
 
-      // Cleanup handlers - when either closes, close the other
-      headerWindow.on('closed', () => {
-        if (this.#currentContent && !this.#currentContent.isDestroyed()) {
-          this.#currentContent.close();
-        }
-        this.#currentHeader = null;
-      });
-
+      // Cleanup handler
       contentWindow.on('closed', () => {
-        if (this.#currentHeader && !this.#currentHeader.isDestroyed()) {
-          this.#currentHeader.close();
-        }
         this.#currentContent = null;
       });
-
-      // Load header
-      const rendererPath = this.#renderer instanceof URL
-        ? this.#renderer.href
-        : `file://${this.#renderer.path}`;
-      const headerUrl = `${rendererPath}?header=true`;
-      await headerWindow.loadURL(headerUrl);
 
       // Load website in content window
       await contentWindow.loadURL(url);
 
-      // Additional safeguards for header window
-      headerWindow.setAlwaysOnTop(true, 'screen-saver');
-      headerWindow.setVisibleOnAllWorkspaces(true);
-
-      // Show both windows
-      headerWindow.show();
+      // Show content window
       contentWindow.show();
 
-      return headerWindow.id;
+      // Ensure main window is on top
+      if (mainWindow) {
+        mainWindow.setAlwaysOnTop(true, 'floating');
+        mainWindow.focus();
+      }
+
+      return contentWindow.id;
     });
 
     ipcMain.handle('close-current-window', async (event) => {
@@ -126,7 +82,6 @@ class NewWindowManager implements AppModule {
 
       // Check if this is being called from the main window (no game open)
       const isMainWindow = senderWindow &&
-        (!this.#currentHeader || this.#currentHeader.isDestroyed()) &&
         (!this.#currentContent || this.#currentContent.isDestroyed());
 
       if (isMainWindow) {
@@ -136,19 +91,15 @@ class NewWindowManager implements AppModule {
         return;
       }
 
-      // Close both header and content windows (game is open)
+      // Close content window (game is open)
       if (this.#currentContent && !this.#currentContent.isDestroyed()) {
         this.#currentContent.close();
       }
-      if (this.#currentHeader && !this.#currentHeader.isDestroyed()) {
-        this.#currentHeader.close();
-      }
 
-      // Clear references
-      this.#currentHeader = null;
+      // Clear reference
       this.#currentContent = null;
 
-      // Focus main window (first non-destroyed window)
+      // Focus main window
       const mainWindow = BrowserWindow.getAllWindows().find(w => !w.isDestroyed());
       if (mainWindow) {
         mainWindow.focus();

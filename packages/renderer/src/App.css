@@ -7,6 +7,38 @@ html, body, #root {
   overflow: hidden; /* Prevent scroll bars */
 }
 
+/* Exit Game Button (shown when game is open) */
+.exit-game-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 140px;
+  height: 50px;
+  background-color: rgba(220, 38, 38, 0.9);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+.exit-game-button:hover {
+  background-color: rgba(185, 28, 28, 0.95);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.exit-game-button:active {
+  transform: translateY(0);
+}
+
 /* Make your app container fill the screen */
 .app-container {
   width: 100vw;
