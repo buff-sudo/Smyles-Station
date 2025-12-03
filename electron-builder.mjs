@@ -11,7 +11,9 @@ export default /** @type import('electron-builder').Configuration */
   },
   generateUpdatesFilesForAllChannels: true,
   linux: {
-    target: ['deb'],
+    target: ["AppImage", "deb", "rpm"],
+    category: "Education",
+    icon: "buildResources/icon.png"
   },
   /**
    * It is recommended to avoid using non-standard characters such as spaces in artifact names,

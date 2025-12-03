@@ -5,7 +5,8 @@
   "private": true,
   "type": "module",
   "author": {
-    "name": "Zak Buffington"
+    "name": "Zak Buffington",
+    "email": "smyles-station-safety@proton.me"
   },
   "main": "packages/entry-point.mjs",
   "workspaces": [
