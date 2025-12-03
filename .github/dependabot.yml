@@ -1,14 +1,27 @@
 version: 2
 updates:
-  # Maintain dependencies for GitHub Actions
+  # 1. Maintain GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
 
-  # Maintain dependencies for npm
+  # 2. Maintain NPM 
   - package-ecosystem: "npm"
-    versioning-strategy: increase
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly" 
+      day: "saturday"    
+      dependencies:
+        patterns:
+          - "*"
+
+  # 3. Maintain MkDocs
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      dependencies:
+        patterns:
+          - "*"
