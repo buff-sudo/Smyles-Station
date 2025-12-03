@@ -6,8 +6,8 @@ function send(channel: string, message: string) {
   return ipcRenderer.invoke(channel, message);
 }
 
-function openNewWindow(url: string) {
-  return ipcRenderer.invoke('open-new-window', url);
+function openNewWindow(url: string, siteName?: string) {
+  return ipcRenderer.invoke('open-new-window', url, siteName);
 }
 
 function closeCurrentWindow() {

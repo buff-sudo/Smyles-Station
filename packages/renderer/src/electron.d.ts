@@ -30,7 +30,7 @@ declare global {
       electron: string;
     };
     send: (channel: string, message: string) => Promise<unknown>;
-    openNewWindow: (url: string) => Promise<number>;
+    openNewWindow: (url: string, siteName?: string) => Promise<number>;
     closeCurrentWindow: () => Promise<void>;
 
     // Admin functions

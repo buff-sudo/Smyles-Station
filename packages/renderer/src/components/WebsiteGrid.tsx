@@ -1,4 +1,4 @@
-import { FC, useState, useEffect, useMemo } from 'react';
+import { type FC, useState, useEffect, useMemo } from 'react';
 import './WebsiteGrid.css';
 import type { WhitelistedSite } from '../electron';
 
@@ -67,7 +67,7 @@ export const WebsiteGrid: FC<WebsiteGridProps> = ({ onOpenSite }) => {
   };
 
   const getSiteIcon = (site: WhitelistedSite): string | null => {
-    return site.iconUrl || site.autoFetchedIconUrl;
+    return site.iconUrl || site.autoFetchedIconUrl || null;
   };
 
   const handleIconError = (e: React.SyntheticEvent<HTMLImageElement>) => {

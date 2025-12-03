@@ -8,6 +8,7 @@ interface AdminSettings {
   blockDevTools: boolean;
   blockTaskManager: boolean;
   enableHardwareAcceleration: boolean;
+  autoStartOnBoot: boolean;
 }
 
 interface AdminDashboardProps {
@@ -21,7 +22,7 @@ export const AdminDashboard: FC<AdminDashboardProps> = ({ onLogout }) => {
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
   // Form states
-  const [newUrl, setNewUrl] = useState('');
+  // const [newUrl, setNewUrl] = useState(''); // Deprecated: moved to SiteManagement
   const [timeLimit, setTimeLimit] = useState(0);
   const [blockDevTools, setBlockDevTools] = useState(true);
   const [blockTaskManager, setBlockTaskManager] = useState(true);
@@ -62,42 +63,44 @@ export const AdminDashboard: FC<AdminDashboardProps> = ({ onLogout }) => {
     setTimeout(() => setMessage(null), 3000);
   };
 
-  const handleAddUrl = async () => {
-    if (!newUrl || !settings) return;
+  // Deprecated: URL management moved to SiteManagement component
+  // const handleAddUrl = async () => {
+  //   if (!newUrl || !settings) return;
+  //
+  //   try {
+  //     const updatedUrls = [...settings.whitelistedUrls, newUrl];
+  //     const success = await window.adminUpdateWhitelist(updatedUrls);
+  //     if (success) {
+  //       setSettings({ ...settings, whitelistedUrls: updatedUrls });
+  //       setNewUrl('');
+  //       showMessage('success', 'URL added successfully');
+  //     } else {
+  //       showMessage('error', 'Failed to add URL');
+  //     }
+  //   } catch (err) {
+  //     showMessage('error', 'Failed to add URL');
+  //     console.error('Add URL error:', err);
+  //   }
+  // };
 
-    try {
-      const updatedUrls = [...settings.whitelistedUrls, newUrl];
-      const success = await window.adminUpdateWhitelist(updatedUrls);
-      if (success) {
-        setSettings({ ...settings, whitelistedUrls: updatedUrls });
-        setNewUrl('');
-        showMessage('success', 'URL added successfully');
-      } else {
-        showMessage('error', 'Failed to add URL');
-      }
-    } catch (err) {
-      showMessage('error', 'Failed to add URL');
-      console.error('Add URL error:', err);
-    }
-  };
-
-  const handleRemoveUrl = async (url: string) => {
-    if (!settings) return;
-
-    try {
-      const updatedUrls = settings.whitelistedUrls.filter(u => u !== url);
-      const success = await window.adminUpdateWhitelist(updatedUrls);
-      if (success) {
-        setSettings({ ...settings, whitelistedUrls: updatedUrls });
-        showMessage('success', 'URL removed successfully');
-      } else {
-        showMessage('error', 'Failed to remove URL');
-      }
-    } catch (err) {
-      showMessage('error', 'Failed to remove URL');
-      console.error('Remove URL error:', err);
-    }
-  };
+  // Deprecated: URL management moved to SiteManagement component
+  // const handleRemoveUrl = async (url: string) => {
+  //   if (!settings) return;
+  //
+  //   try {
+  //     const updatedUrls = settings.whitelistedUrls.filter(u => u !== url);
+  //     const success = await window.adminUpdateWhitelist(updatedUrls);
+  //     if (success) {
+  //       setSettings({ ...settings, whitelistedUrls: updatedUrls });
+  //       showMessage('success', 'URL removed successfully');
+  //     } else {
+  //       showMessage('error', 'Failed to remove URL');
+  //     }
+  //   } catch (err) {
+  //     showMessage('error', 'Failed to remove URL');
+  //     console.error('Remove URL error:', err);
+  //   }
+  // };
 
   const handleUpdateTimeLimit = async () => {
     setSaving(true);

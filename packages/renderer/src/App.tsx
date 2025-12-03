@@ -9,6 +9,7 @@ import { SessionWarning } from './components/SessionWarning'
 import { SessionExpired } from './components/SessionExpired'
 import { WebsiteGrid } from './components/WebsiteGrid'
 import { EmergencyExit } from './components/EmergencyExit'
+import { HeaderWindow } from './components/HeaderWindow'
 import type { SessionStatus } from './electron'
 
 type View = 'session-prompt' | 'session-expired' | 'main' | 'admin-login' | 'admin-dashboard'
@@ -19,6 +20,43 @@ const App: FC = () => {
   const [timeRemaining, setTimeRemaining] = useState<number>(0)
   const [showWarning, setShowWarning] = useState(false)
   const [showEmergencyExit, setShowEmergencyExit] = useState(false)
+
+  // Setup session event listeners
+  useEffect(() => {
+    // Listen for session status updates (every second)
+    window.sessionOnStatus((status: SessionStatus) => {
+      setTimeRemaining(status.timeRemaining)
+    })
+
+    // Listen for warning event
+    window.sessionOnWarning(() => {
+      setShowWarning(true)
+      // Auto-dismiss after 5 seconds
+      setTimeout(() => setShowWarning(false), 5000)
+    })
+
+    // Listen for expiry event
+    window.sessionOnExpired(() => {
+      handleSessionExpired()
+    })
+
+    // Listen for emergency exit request
+    window.adminOnEmergencyExitRequested(() => {
+      setShowEmergencyExit(true)
+    })
+  }, [])
+
+  // Check if this is header mode
+  const params = new URLSearchParams(window.location.search);
+  const isHeaderMode = params.has('header');
+
+  // If header mode, render HeaderWindow instead of main app
+  if (isHeaderMode) {
+    return <HeaderWindow />;
+  }
+
+  // Regular app logic below
+
 
   const handleOpenWindow = async (url: string, siteName: string) => {
     if (window.openNewWindow) {
@@ -36,12 +74,7 @@ const App: FC = () => {
   }
 
   const handleAdminLogout = () => {
-    // Return to session prompt if no session is active, otherwise return to main
-    if (sessionActive) {
-      setCurrentView('main')
-    } else {
-      setCurrentView('session-prompt')
-    }
+    setCurrentView('session-prompt')
   }
 
   const handleStartSession = async () => {
@@ -70,36 +103,13 @@ const App: FC = () => {
     setShowWarning(false)
     setCurrentView('session-expired')
     // Auto-transition to session prompt after 3 seconds
-    setTimeout(() => {
+    /*setTimeout(() => {
       setCurrentView('session-prompt')
-    }, 3000)
+    }, 3000)*/
   }
 
 
-  // Setup session event listeners
-  useEffect(() => {
-    // Listen for session status updates (every second)
-    window.sessionOnStatus((status: SessionStatus) => {
-      setTimeRemaining(status.timeRemaining)
-    })
-
-    // Listen for warning event
-    window.sessionOnWarning(() => {
-      setShowWarning(true)
-      // Auto-dismiss after 5 seconds
-      setTimeout(() => setShowWarning(false), 5000)
-    })
-
-    // Listen for expiry event
-    window.sessionOnExpired(() => {
-      handleSessionExpired()
-    })
-
-    // Listen for emergency exit request
-    window.adminOnEmergencyExitRequested(() => {
-      setShowEmergencyExit(true)
-    })
-  }, [])
+  
 
   // Session Prompt View
   if (currentView === 'session-prompt') {

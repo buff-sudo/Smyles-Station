@@ -7,7 +7,7 @@ interface SessionPromptProps {
 }
 
 export const SessionPrompt: FC<SessionPromptProps> = ({ onStartSession, onAdminClick }) => {
-  const [sessionTimeLimit, setSessionTimeLimit] = useState<number>(0);
+  const [, setSessionTimeLimit] = useState<number>(0);
   const [loading, setLoading] = useState(true);
   const [showSettingsMenu, setShowSettingsMenu] = useState(false);
   const [showPasswordDialog, setShowPasswordDialog] = useState(false);
@@ -114,18 +114,19 @@ export const SessionPrompt: FC<SessionPromptProps> = ({ onStartSession, onAdminC
     }
   };
 
-  const formatTimeLimit = (minutes: number): string => {
-    if (minutes === 0) return 'Unlimited';
-    if (minutes < 60) return `${minutes} minute${minutes !== 1 ? 's' : ''}`;
-
-    const hours = Math.floor(minutes / 60);
-    const remainingMinutes = minutes % 60;
-
-    if (remainingMinutes === 0) {
-      return `${hours} hour${hours !== 1 ? 's' : ''}`;
-    }
-    return `${hours}h ${remainingMinutes}m`;
-  };
+  // Deprecated: Time limit display removed from session prompt
+  // const formatTimeLimit = (minutes: number): string => {
+  //   if (minutes === 0) return 'Unlimited';
+  //   if (minutes < 60) return `${minutes} minute${minutes !== 1 ? 's' : ''}`;
+  //
+  //   const hours = Math.floor(minutes / 60);
+  //   const remainingMinutes = minutes % 60;
+  //
+  //   if (remainingMinutes === 0) {
+  //     return `${hours} hour${hours !== 1 ? 's' : ''}`;
+  //   }
+  //   return `${hours}h ${remainingMinutes}m`;
+  // };
 
   return (
     <div className="session-prompt-container">
