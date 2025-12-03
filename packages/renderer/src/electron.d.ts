@@ -41,11 +41,14 @@ declare global {
       blockDevTools: boolean;
       blockTaskManager: boolean;
       enableHardwareAcceleration: boolean;
+      autoStartOnBoot: boolean;
     } | null>;
     adminUpdateWhitelist: (urls: string[]) => Promise<boolean>;
     adminUpdateTimeLimit: (minutes: number) => Promise<boolean>;
     adminUpdateSecurity: (settings: {blockDevTools: boolean, blockTaskManager: boolean}) => Promise<boolean>;
     adminUpdateHardwareAcceleration: (enable: boolean) => Promise<boolean>;
+    adminUpdateAutoStart: (enabled: boolean) => Promise<boolean>;
+    adminVerifyEmergencyExit: (password: string) => Promise<boolean>;
     adminChangePassword: (oldPassword: string, newPassword: string) => Promise<boolean>;
     adminIsUrlWhitelisted: (url: string) => Promise<boolean>;
 
@@ -65,7 +68,9 @@ declare global {
       blockDevTools: boolean;
       blockTaskManager: boolean;
       enableHardwareAcceleration: boolean;
+      autoStartOnBoot: boolean;
     }) => void) => void;
+    adminOnEmergencyExitRequested: (callback: () => void) => void;
 
     // New site management functions
     adminGetSites: () => Promise<WhitelistedSite[]>;

@@ -25,6 +25,8 @@ class WindowManager implements AppModule {
     const browserWindow = new BrowserWindow({
       kiosk: true,
       show: false, // Use the 'ready-to-show' event to show the instantiated BrowserWindow.
+      alwaysOnTop: true, // Keep window above all others
+      skipTaskbar: false, // Keep visible in taskbar
       webPreferences: {
         nodeIntegration: false,
         contextIsolation: true,
@@ -33,6 +35,10 @@ class WindowManager implements AppModule {
         preload: this.#preload.path,
       },
     });
+
+    // Additional safeguards for lockdown
+    browserWindow.setAlwaysOnTop(true, 'screen-saver'); // Highest priority level
+    browserWindow.setVisibleOnAllWorkspaces(true); // Visible on all virtual desktops
 
     if (this.#renderer instanceof URL) {
       await browserWindow.loadURL(this.#renderer.href);

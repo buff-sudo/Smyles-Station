@@ -8,6 +8,7 @@ import { SessionTimer } from './components/SessionTimer'
 import { SessionWarning } from './components/SessionWarning'
 import { SessionExpired } from './components/SessionExpired'
 import { WebsiteGrid } from './components/WebsiteGrid'
+import { EmergencyExit } from './components/EmergencyExit'
 import type { SessionStatus } from './electron'
 
 type View = 'session-prompt' | 'session-expired' | 'main' | 'admin-login' | 'admin-dashboard'
@@ -17,6 +18,7 @@ const App: FC = () => {
   const [sessionActive, setSessionActive] = useState(false)
   const [timeRemaining, setTimeRemaining] = useState<number>(0)
   const [showWarning, setShowWarning] = useState(false)
+  const [showEmergencyExit, setShowEmergencyExit] = useState(false)
 
   const handleOpenWindow = async (url: string, siteName: string) => {
     if (window.openNewWindow) {
@@ -92,6 +94,11 @@ const App: FC = () => {
     window.sessionOnExpired(() => {
       handleSessionExpired()
     })
+
+    // Listen for emergency exit request
+    window.adminOnEmergencyExitRequested(() => {
+      setShowEmergencyExit(true)
+    })
   }, [])
 
   // Session Prompt View
@@ -127,6 +134,11 @@ const App: FC = () => {
   // Main View (website selection)
   return (
     <>
+      {/* Emergency Exit Dialog - highest priority overlay */}
+      {showEmergencyExit && (
+        <EmergencyExit onClose={() => setShowEmergencyExit(false)} />
+      )}
+
       {/* Session Timer (visible when session is active) */}
       {sessionActive && (
         <SessionTimer

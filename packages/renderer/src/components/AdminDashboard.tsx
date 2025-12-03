@@ -26,6 +26,7 @@ export const AdminDashboard: FC<AdminDashboardProps> = ({ onLogout }) => {
   const [blockDevTools, setBlockDevTools] = useState(true);
   const [blockTaskManager, setBlockTaskManager] = useState(true);
   const [enableHardwareAcceleration, setEnableHardwareAcceleration] = useState(true);
+  const [autoStartOnBoot, setAutoStartOnBoot] = useState(true);
 
   // Password change states
   const [showPasswordChange, setShowPasswordChange] = useState(false);
@@ -46,6 +47,7 @@ export const AdminDashboard: FC<AdminDashboardProps> = ({ onLogout }) => {
         setBlockDevTools(data.blockDevTools);
         setBlockTaskManager(data.blockTaskManager);
         setEnableHardwareAcceleration(data.enableHardwareAcceleration);
+        setAutoStartOnBoot(data.autoStartOnBoot);
       }
     } catch (err) {
       showMessage('error', 'Failed to load settings');
@@ -155,6 +157,26 @@ export const AdminDashboard: FC<AdminDashboardProps> = ({ onLogout }) => {
     } catch (err) {
       showMessage('error', 'Failed to update hardware acceleration');
       console.error('Update hardware acceleration error:', err);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleUpdateAutoStart = async () => {
+    setSaving(true);
+    try {
+      const success = await window.adminUpdateAutoStart(autoStartOnBoot);
+      if (success) {
+        if (settings) {
+          setSettings({ ...settings, autoStartOnBoot });
+        }
+        showMessage('success', 'Startup settings updated successfully');
+      } else {
+        showMessage('error', 'Failed to update startup settings');
+      }
+    } catch (err) {
+      showMessage('error', 'Failed to update startup settings');
+      console.error('Update auto-start error:', err);
     } finally {
       setSaving(false);
     }
@@ -311,6 +333,29 @@ export const AdminDashboard: FC<AdminDashboardProps> = ({ onLogout }) => {
 
           <button onClick={handleUpdateHardwareAcceleration} disabled={saving}>
             {saving ? 'Saving...' : 'Update Performance Settings'}
+          </button>
+        </section>
+
+        {/* Auto-Start Settings */}
+        <section className="dashboard-section">
+          <h2>Startup Settings</h2>
+          <p className="section-description">
+            Configure whether the app launches automatically when the system starts
+          </p>
+
+          <div className="checkbox-group">
+            <label>
+              <input
+                type="checkbox"
+                checked={autoStartOnBoot}
+                onChange={(e) => setAutoStartOnBoot(e.target.checked)}
+              />
+              <span>Launch app automatically on system startup (Recommended)</span>
+            </label>
+          </div>
+
+          <button onClick={handleUpdateAutoStart} disabled={saving}>
+            {saving ? 'Saving...' : 'Update Startup Settings'}
           </button>
         </section>
 

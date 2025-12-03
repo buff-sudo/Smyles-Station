@@ -17,6 +17,9 @@ class NewWindowManager implements AppModule {
       const newWindow = new BrowserWindow({
         kiosk: true,
         show: false,
+        frame: false,
+        alwaysOnTop: true, // Keep window above all others
+        skipTaskbar: false, // Keep visible in taskbar
         webPreferences: {
           nodeIntegration: false,
           contextIsolation: true,
@@ -25,6 +28,10 @@ class NewWindowManager implements AppModule {
           preload: this.#preload.path,
         },
       });
+
+      // Additional safeguards for lockdown
+      newWindow.setAlwaysOnTop(true, 'screen-saver'); // Highest priority level
+      newWindow.setVisibleOnAllWorkspaces(true); // Visible on all virtual desktops
 
       await newWindow.loadURL(url);
       newWindow.show();

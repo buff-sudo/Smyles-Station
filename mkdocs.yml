@@ -1,0 +1,6 @@
+site_name: My App Documentation
+theme:
+  name: material
+
+# This tells MkDocs where your markdown files live
+docs_dir: docs

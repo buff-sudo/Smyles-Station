@@ -24,6 +24,7 @@ function adminGetSettings(): Promise<{
   sessionTimeLimit: number;
   blockDevTools: boolean;
   blockTaskManager: boolean;
+  autoStartOnBoot: boolean;
 } | null> {
   return ipcRenderer.invoke('admin:get-settings');
 }
@@ -42,6 +43,14 @@ function adminUpdateSecurity(settings: {blockDevTools: boolean, blockTaskManager
 
 function adminUpdateHardwareAcceleration(enable: boolean): Promise<boolean> {
   return ipcRenderer.invoke('admin:update-hardware-acceleration', enable);
+}
+
+function adminUpdateAutoStart(enabled: boolean): Promise<boolean> {
+  return ipcRenderer.invoke('admin:update-auto-start', enabled);
+}
+
+function adminVerifyEmergencyExit(password: string): Promise<boolean> {
+  return ipcRenderer.invoke('admin:verify-emergency-exit', password);
 }
 
 function adminChangePassword(oldPassword: string, newPassword: string): Promise<boolean> {
@@ -99,8 +108,13 @@ function adminOnSettingsChanged(callback: (settings: {
   blockDevTools: boolean;
   blockTaskManager: boolean;
   enableHardwareAcceleration: boolean;
+  autoStartOnBoot: boolean;
 }) => void) {
   ipcRenderer.on('admin:settings-changed', (_event, settings) => callback(settings));
+}
+
+function adminOnEmergencyExitRequested(callback: () => void): void {
+  ipcRenderer.on('admin:emergency-exit-requested', () => callback());
 }
 
 // New Site Management Functions
@@ -140,6 +154,8 @@ export {
   adminUpdateTimeLimit,
   adminUpdateSecurity,
   adminUpdateHardwareAcceleration,
+  adminUpdateAutoStart,
+  adminVerifyEmergencyExit,
   adminChangePassword,
   adminIsUrlWhitelisted,
   sessionStart,
@@ -150,6 +166,7 @@ export {
   sessionOnWarning,
   sessionOnExpired,
   adminOnSettingsChanged,
+  adminOnEmergencyExitRequested,
   adminGetSites,
   adminAddSite,
   adminUpdateSite,

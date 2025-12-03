@@ -16,6 +16,7 @@ export interface AdminConfig {
   blockDevTools: boolean;
   blockTaskManager: boolean;
   enableHardwareAcceleration: boolean;
+  autoStartOnBoot: boolean;
 }
 
 export class AdminModule implements AppModule {
@@ -23,6 +24,8 @@ export class AdminModule implements AppModule {
   #config: AdminConfig | null = null;
   #navigationBlocker: BlockNotAllowedOrigins | null = null;
   #rendererOrigin: string | null = null;
+  #emergencyExitRequested: boolean = false;
+  #mainWindow: BrowserWindow | null = null;
 
   constructor(navigationBlocker?: BlockNotAllowedOrigins, rendererOrigin?: string) {
     this.#configPath = path.join(app.getPath('userData'), 'admin-config.json');
@@ -49,6 +52,7 @@ export class AdminModule implements AppModule {
 
   async enable(context: ModuleContext): Promise<void> {
     await this.#loadConfig();
+    this.#updateAutoStart();
     this.#setupIPCHandlers();
     this.#setupWindowHooks();
   }
@@ -108,6 +112,7 @@ export class AdminModule implements AppModule {
       blockDevTools: true,
       blockTaskManager: true,
       enableHardwareAcceleration: true, // enabled by default for best performance
+      autoStartOnBoot: true, // enabled by default
     };
   }
 
@@ -137,6 +142,17 @@ export class AdminModule implements AppModule {
       }
       console.log(allowedOrigins);
       this.#navigationBlocker.updateAllowedOrigins(allowedOrigins);
+    }
+  }
+
+  #updateAutoStart(): void {
+    if (this.#config) {
+      app.setLoginItemSettings({
+        openAtLogin: this.#config.autoStartOnBoot,
+        openAsHidden: false,
+        path: process.execPath,
+        args: [],
+      });
     }
   }
 
@@ -170,6 +186,7 @@ export class AdminModule implements AppModule {
         blockDevTools: this.#config.blockDevTools,
         blockTaskManager: this.#config.blockTaskManager,
         enableHardwareAcceleration: this.#config.enableHardwareAcceleration,
+        autoStartOnBoot: this.#config.autoStartOnBoot,
       };
     });
 
@@ -237,6 +254,32 @@ export class AdminModule implements AppModule {
         // Note: Hardware acceleration change requires app restart to take effect
         return true;
       }
+      return false;
+    });
+
+    // Update auto-start on boot setting
+    ipcMain.handle('admin:update-auto-start', async (_event, enabled: boolean) => {
+      if (this.#config) {
+        this.#config.autoStartOnBoot = enabled;
+        await this.#saveConfig();
+        this.#updateAutoStart();
+        this.#broadcastSettingsChange();
+        return true;
+      }
+      return false;
+    });
+
+    // Emergency exit verification
+    ipcMain.handle('admin:verify-emergency-exit', async (_event, password: string) => {
+      const hash = this.#hashPassword(password);
+      const isValid = hash === this.#config?.passwordHash;
+
+      if (isValid) {
+        // Valid password - quit the application
+        app.quit();
+        return true;
+      }
+
       return false;
     });
 
@@ -410,6 +453,7 @@ export class AdminModule implements AppModule {
       blockDevTools: this.#config.blockDevTools,
       blockTaskManager: this.#config.blockTaskManager,
       enableHardwareAcceleration: this.#config.enableHardwareAcceleration,
+      autoStartOnBoot: this.#config.autoStartOnBoot,
     };
   }
 
@@ -436,27 +480,79 @@ export class AdminModule implements AppModule {
   #applySecuritySettings(window: BrowserWindow): void {
     if (!this.#config) return;
 
+    // Store reference to main window for emergency exit
+    if (!this.#mainWindow) {
+      this.#mainWindow = window;
+    }
+
     // Block keyboard shortcuts
     window.webContents.on('before-input-event', (event, input) => {
       if (!this.#config) return;
+
+      // === EMERGENCY EXIT COMBO: Ctrl+Alt+Shift+E ===
+      if (
+        input.control &&
+        input.alt &&
+        input.shift &&
+        input.key.toLowerCase() === 'e' &&
+        input.type === 'keyDown'
+      ) {
+        event.preventDefault();
+        this.#handleEmergencyExit();
+        return;
+      }
+
+      // === BLOCK TASK SWITCHING ===
+
+      // Block Alt+Tab (Windows/Linux task switcher)
+      if (input.alt && input.key === 'Tab') {
+        event.preventDefault();
+        return;
+      }
+
+      // Block Alt+Esc (Windows alternative task switcher)
+      if (input.alt && input.key === 'Escape' && !input.control && !input.shift) {
+        event.preventDefault();
+        return;
+      }
+
+      // Block Win+Tab (Windows Task View)
+      if (input.meta && input.key === 'Tab') {
+        event.preventDefault();
+        return;
+      }
+
+      // === BLOCK CLOSE SHORTCUTS ===
+
+      // Block Alt+F4 (Windows/Linux close window)
+      if (input.alt && input.key === 'F4') {
+        event.preventDefault();
+        return;
+      }
+
+      // Block Ctrl+W (close window)
+      if (input.control && input.key === 'W') {
+        event.preventDefault();
+        return;
+      }
+
+      // === CONDITIONAL BLOCKS ===
 
       // Block DevTools shortcuts
       if (this.#config.blockDevTools) {
         const isDevToolsShortcut =
           // F12
           (input.key === 'F12') ||
-          // Ctrl+Shift+I (Windows/Linux) or Cmd+Option+I (Mac)
+          // Ctrl+Shift+I (Windows/Linux)
           (input.control && input.shift && input.key === 'I') ||
-          (input.meta && input.alt && input.key === 'I') ||
-          // Ctrl+Shift+J (Windows/Linux) or Cmd+Option+J (Mac)
+          // Ctrl+Shift+J (Windows/Linux)
           (input.control && input.shift && input.key === 'J') ||
-          (input.meta && input.alt && input.key === 'J') ||
-          // Ctrl+Shift+C (Windows/Linux) or Cmd+Option+C (Mac)
-          (input.control && input.shift && input.key === 'C') ||
-          (input.meta && input.alt && input.key === 'C');
+          // Ctrl+Shift+C (Windows/Linux)
+          (input.control && input.shift && input.key === 'C');
 
         if (isDevToolsShortcut) {
           event.preventDefault();
+          return;
         }
       }
 
@@ -470,17 +566,8 @@ export class AdminModule implements AppModule {
 
         if (isTaskManagerShortcut) {
           event.preventDefault();
+          return;
         }
-      }
-
-      // Also block Alt+F4 and Ctrl+W to prevent closing
-      const isCloseShortcut =
-        (input.alt && input.key === 'F4') ||
-        (input.control && input.key === 'W') ||
-        (input.meta && input.key === 'W');
-
-      if (isCloseShortcut) {
-        event.preventDefault();
       }
     });
 
@@ -490,6 +577,27 @@ export class AdminModule implements AppModule {
         event.preventDefault();
       });
     }
+  }
+
+  #handleEmergencyExit(): void {
+    if (this.#emergencyExitRequested) {
+      return; // Prevent multiple simultaneous requests
+    }
+
+    this.#emergencyExitRequested = true;
+
+    // Get the focused window or main window
+    const window = BrowserWindow.getFocusedWindow() || this.#mainWindow;
+
+    if (window) {
+      // Send event to renderer to show password dialog
+      window.webContents.send('admin:emergency-exit-requested');
+    }
+
+    // Reset flag after 5 seconds
+    setTimeout(() => {
+      this.#emergencyExitRequested = false;
+    }, 5000);
   }
 }
 

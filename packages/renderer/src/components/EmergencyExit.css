@@ -1,0 +1,102 @@
+.emergency-exit-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.emergency-exit-dialog {
+  background: #2a2a2a;
+  padding: 2rem;
+  border-radius: 8px;
+  min-width: 400px;
+  max-width: 500px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.emergency-exit-dialog h2 {
+  margin: 0 0 1rem 0;
+  color: #ff6b6b;
+  font-size: 1.5rem;
+}
+
+.warning-text {
+  color: #ffd93d;
+  margin-bottom: 1.5rem;
+}
+
+.emergency-exit-dialog input[type="password"] {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 2px solid #444;
+  border-radius: 4px;
+  background: #1a1a1a;
+  color: white;
+  font-size: 1rem;
+}
+
+.emergency-exit-dialog input[type="password"]:focus {
+  outline: none;
+  border-color: #ff6b6b;
+}
+
+.error-message {
+  color: #ff6b6b;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background: rgba(255, 107, 107, 0.1);
+  border-radius: 4px;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.button-group button {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.submit-button {
+  background: #ff6b6b;
+  color: white;
+}
+
+.submit-button:hover:not(:disabled) {
+  background: #ff5252;
+}
+
+.submit-button:disabled {
+  background: #666;
+  cursor: not-allowed;
+}
+
+.cancel-button {
+  background: #444;
+  color: white;
+}
+
+.cancel-button:hover:not(:disabled) {
+  background: #555;
+}
+
+.hint-text {
+  margin-top: 1.5rem;
+  color: #888;
+  font-size: 0.875rem;
+  text-align: center;
+}

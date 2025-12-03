@@ -1,13 +1,11 @@
 {
-  "name": "root",
-  "description": "Secure boilerplate for Electron app based on Vite",
+  "name": "smyles-station",
+  "description": "Customizable Kids Game Kiosk",
   "version": "3.1.0",
   "private": true,
   "type": "module",
   "author": {
-    "email": "kozackunisoft@gmail.com",
-    "name": "Alex Kozack",
-    "url": "https://kozack.me"
+    "name": "Zak Buffington"
   },
   "main": "packages/entry-point.mjs",
   "workspaces": [
