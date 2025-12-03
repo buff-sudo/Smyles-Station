@@ -4,3 +4,19 @@ theme:
 
 # This tells MkDocs where your markdown files live
 docs_dir: docs
+
+nav:
+  - Home: index.md
+  - 'For Librarians (Setup)':
+      - 'Prerequisites (Hardware)': setup/hardware.md
+      - 'Step 1: Installation': setup/install.md
+      - 'Step 2: Kiosk Mode (Locking it down)': setup/kiosk-mode.md
+      - 'Step 3: Customization': setup/config.md
+  - 'Daily Operations':
+      - 'Managing Sessions': daily/sessions.md
+      - 'Updating Content': daily/updates.md
+      - 'Troubleshooting & FAQ': daily/faq.md
+  - 'For Developers':
+      - 'Contributing': dev/contributing.md
+      - 'Architecture': dev/architecture.md
+      - 'Local Development': dev/setup.md
