@@ -15,11 +15,24 @@ interface AdminDashboardProps {
   onLogout: () => void;
 }
 
+interface UsageStatsSummary {
+  totalSessions: number;
+  completedSessions: number;
+  totalGames: number;
+  completedGames: number;
+  totalSessionTime: number;
+  totalGameTime: number;
+  averageSessionTime: number;
+  averageGameTime: number;
+}
+
 export const AdminDashboard: FC<AdminDashboardProps> = ({ onLogout }) => {
   const [settings, setSettings] = useState<AdminSettings | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+  const [usageStats, setUsageStats] = useState<UsageStatsSummary | null>(null);
+  const [statsLoading, setStatsLoading] = useState(false);
 
   // Form states
   // const [newUrl, setNewUrl] = useState(''); // Deprecated: moved to SiteManagement
@@ -37,6 +50,7 @@ export const AdminDashboard: FC<AdminDashboardProps> = ({ onLogout }) => {
 
   useEffect(() => {
     loadSettings();
+    loadUsageStats();
   }, []);
 
   const loadSettings = async () => {
@@ -61,6 +75,48 @@ export const AdminDashboard: FC<AdminDashboardProps> = ({ onLogout }) => {
   const showMessage = (type: 'success' | 'error', text: string) => {
     setMessage({ type, text });
     setTimeout(() => setMessage(null), 3000);
+  };
+
+  const loadUsageStats = async () => {
+    setStatsLoading(true);
+    try {
+      const stats = await window.statsGetSummary();
+      setUsageStats(stats);
+    } catch (err) {
+      console.error('Load usage stats error:', err);
+    } finally {
+      setStatsLoading(false);
+    }
+  };
+
+  const handleDownloadCSV = async () => {
+    try {
+      const csvData = await window.statsDownloadCSV();
+
+      // Create blob and download link
+      const blob = new Blob([csvData], { type: 'text/csv' });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `usage-stats-${new Date().toISOString().split('T')[0]}.csv`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+
+      showMessage('success', 'CSV downloaded successfully');
+    } catch (err) {
+      showMessage('error', 'Failed to download CSV');
+      console.error('Download CSV error:', err);
+    }
+  };
+
+  const formatTime = (milliseconds: number): string => {
+    const minutes = Math.round(milliseconds / 60000);
+    if (minutes < 60) return `${minutes}m`;
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
+    return `${hours}h ${remainingMinutes}m`;
   };
 
   // Deprecated: URL management moved to SiteManagement component
@@ -239,6 +295,66 @@ export const AdminDashboard: FC<AdminDashboardProps> = ({ onLogout }) => {
         {/* Site Management - New comprehensive site management UI */}
         <section className="dashboard-section">
           <SiteManagement />
+        </section>
+
+        {/* Usage Statistics */}
+        <section className="dashboard-section">
+          <h2>Usage Statistics</h2>
+          <p className="section-description">
+            View and download usage data for sessions and games
+          </p>
+
+          {statsLoading ? (
+            <div className="info-box">Loading statistics...</div>
+          ) : usageStats ? (
+            <>
+              <div className="stats-grid">
+                <div className="stat-item">
+                  <div className="stat-label">Total Sessions</div>
+                  <div className="stat-value">{usageStats.totalSessions}</div>
+                </div>
+                <div className="stat-item">
+                  <div className="stat-label">Completed Sessions</div>
+                  <div className="stat-value">{usageStats.completedSessions}</div>
+                </div>
+                <div className="stat-item">
+                  <div className="stat-label">Total Games</div>
+                  <div className="stat-value">{usageStats.totalGames}</div>
+                </div>
+                <div className="stat-item">
+                  <div className="stat-label">Completed Games</div>
+                  <div className="stat-value">{usageStats.completedGames}</div>
+                </div>
+                <div className="stat-item">
+                  <div className="stat-label">Total Session Time</div>
+                  <div className="stat-value">{formatTime(usageStats.totalSessionTime)}</div>
+                </div>
+                <div className="stat-item">
+                  <div className="stat-label">Total Game Time</div>
+                  <div className="stat-value">{formatTime(usageStats.totalGameTime)}</div>
+                </div>
+                <div className="stat-item">
+                  <div className="stat-label">Avg Session Time</div>
+                  <div className="stat-value">{formatTime(usageStats.averageSessionTime)}</div>
+                </div>
+                <div className="stat-item">
+                  <div className="stat-label">Avg Game Time</div>
+                  <div className="stat-value">{formatTime(usageStats.averageGameTime)}</div>
+                </div>
+              </div>
+
+              <div className="button-group">
+                <button onClick={handleDownloadCSV}>
+                  Download CSV Report
+                </button>
+                <button onClick={loadUsageStats} className="secondary-button">
+                  Refresh Statistics
+                </button>
+              </div>
+            </>
+          ) : (
+            <div className="info-box">No statistics available</div>
+          )}
         </section>
 
         {/* Session Time Limit */}

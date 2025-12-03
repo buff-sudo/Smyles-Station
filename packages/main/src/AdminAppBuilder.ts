@@ -10,6 +10,7 @@ import {autoUpdater} from './modules/AutoUpdater.js';
 import {allowInternalOrigins} from './modules/BlockNotAllowdOrigins.js';
 import {allowExternalUrls} from './modules/ExternalUrls.js';
 import {createAdminModule, AdminModule} from './modules/AdminModule.js';
+import {createUsageStatsModule} from './modules/UsageStatsModule.js';
 
 /**
  * Builder for creating an admin-enabled application with extensible features.
@@ -85,24 +86,28 @@ export class AdminAppBuilder {
    * @returns Promise that resolves when all modules are initialized
    */
   async build(): Promise<void> {
+    // Create usage stats module
+    const usageStats = createUsageStatsModule();
+
     const moduleRunner = createModuleRunner()
       // Core modules
       .init(createWindowManagerModule({
         initConfig: this.#initConfig,
         openDevTools: false,
       }))
-      .init(createNewWindowManagerModule({initConfig: this.#initConfig}))
+      .init(createNewWindowManagerModule({initConfig: this.#initConfig, usageStats}))
       .init(disallowMultipleAppInstance())
       .init(terminateAppOnLastWindowClose())
       .init(hardwareAccelerationMode({enable: this.#enableHardwareAcceleration}))
       .init(autoUpdater())
+      .init(usageStats) // Initialize usage stats module
 
       // Admin module
       .init(this.#adminModule);
 
-    // Register all admin features
+    // Register all admin features (including SessionModule which needs usageStats)
     for (const factory of this.#adminFeatures) {
-      const feature = factory(this.#adminModule);
+      const feature = factory(this.#adminModule, usageStats);
       console.log(`Registering admin feature: ${feature.featureName} - ${feature.description}`);
       moduleRunner.init(feature);
     }

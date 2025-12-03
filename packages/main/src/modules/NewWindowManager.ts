@@ -6,9 +6,13 @@ import type {AppInitConfig} from '../AppInitConfig.js';
 class NewWindowManager implements AppModule {
   readonly #preload: {path: string};
   #currentContent: BrowserWindow | null = null;
+  #usageStats: import('./UsageStatsModule.js').UsageStatsModule | null = null;
+  #currentGameUrl: string = '';
+  #currentGameName: string = '';
 
-  constructor({initConfig}: {initConfig: AppInitConfig}) {
+  constructor({initConfig, usageStats}: {initConfig: AppInitConfig, usageStats?: import('./UsageStatsModule.js').UsageStatsModule}) {
     this.#preload = initConfig.preload;
+    this.#usageStats = usageStats || null;
   }
 
   async enable({app}: ModuleContext): Promise<void> {
@@ -54,12 +58,18 @@ class NewWindowManager implements AppModule {
         return { action: 'deny' };
       });
 
-      // Store reference
+      // Store reference and game info
       this.#currentContent = contentWindow;
+      this.#currentGameUrl = url;
+      this.#currentGameName = siteName || url;
 
       // Cleanup handler
       contentWindow.on('closed', () => {
+        // Record game end
+        this.#usageStats?.recordGameEnd();
         this.#currentContent = null;
+        this.#currentGameUrl = '';
+        this.#currentGameName = '';
       });
 
       // Load website in content window
@@ -73,6 +83,9 @@ class NewWindowManager implements AppModule {
         mainWindow.setAlwaysOnTop(true, 'floating');
         mainWindow.focus();
       }
+
+      // Record game start
+      this.#usageStats?.recordGameStart(url, siteName || url);
 
       return contentWindow.id;
     });
@@ -93,11 +106,13 @@ class NewWindowManager implements AppModule {
 
       // Close content window (game is open)
       if (this.#currentContent && !this.#currentContent.isDestroyed()) {
-        this.#currentContent.close();
+        this.#currentContent.close(); // Will trigger 'closed' event which records stats
       }
 
-      // Clear reference
+      // Clear references (also done in closed handler, but be explicit)
       this.#currentContent = null;
+      this.#currentGameUrl = '';
+      this.#currentGameName = '';
 
       // Focus main window
       const mainWindow = BrowserWindow.getAllWindows().find(w => !w.isDestroyed());

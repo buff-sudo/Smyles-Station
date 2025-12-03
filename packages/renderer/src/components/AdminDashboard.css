@@ -327,3 +327,43 @@
   cursor: not-allowed;
   transform: none;
 }
+
+.secondary-button {
+  background: var(--surface-2) !important;
+  color: var(--text-primary) !important;
+  border: 2px solid var(--border) !important;
+}
+
+.secondary-button:hover:not(:disabled) {
+  background: var(--grey-1) !important;
+  border-color: var(--border-focus) !important;
+}
+
+/* Usage Statistics */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.stat-item {
+  background: var(--surface-2);
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  text-align: center;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.stat-value {
+  font-size: 28px;
+  color: var(--primary);
+  font-weight: 700;
+}

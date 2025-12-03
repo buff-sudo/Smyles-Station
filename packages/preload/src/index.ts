@@ -142,6 +142,24 @@ function adminRefreshSiteMetadata(siteId: string): Promise<boolean> {
   return ipcRenderer.invoke('admin:refresh-site-metadata', siteId);
 }
 
+// Usage Statistics
+function statsDownloadCSV(): Promise<string> {
+  return ipcRenderer.invoke('stats:download-csv');
+}
+
+function statsGetSummary(): Promise<{
+  totalSessions: number;
+  completedSessions: number;
+  totalGames: number;
+  completedGames: number;
+  totalSessionTime: number;
+  totalGameTime: number;
+  averageSessionTime: number;
+  averageGameTime: number;
+}> {
+  return ipcRenderer.invoke('stats:get-summary');
+}
+
 export {
   sha256sum,
   versions,
@@ -173,4 +191,6 @@ export {
   adminDeleteSite,
   adminReorderSites,
   adminRefreshSiteMetadata,
+  statsDownloadCSV,
+  statsGetSummary,
 };

@@ -36,8 +36,11 @@ export class SessionModule implements AdminFeature {
     statusBroadcastInterval: null,
   };
 
-  constructor(adminModule: AdminModule) {
+  #usageStats: import('./UsageStatsModule.js').UsageStatsModule | null = null;
+
+  constructor(adminModule: AdminModule, usageStats?: import('./UsageStatsModule.js').UsageStatsModule) {
     this.#adminModule = adminModule;
+    this.#usageStats = usageStats || null;
   }
 
   async enable(context: ModuleContext): Promise<void> {
@@ -94,6 +97,9 @@ export class SessionModule implements AdminFeature {
     }
     this.#startStatusBroadcast();
 
+    // Record stats
+    this.#usageStats?.recordSessionStart(timeLimit);
+
     const timeDescription = timeLimit === 0 ? 'unlimited' : `${timeLimit} minutes`;
     console.log(`Session started: ${timeDescription}`);
   }
@@ -114,6 +120,9 @@ export class SessionModule implements AdminFeature {
         win.close();
       }
     });
+
+    // Record stats
+    this.#usageStats?.recordSessionEnd();
 
     // Reset state
     this.#state.isActive = false;
@@ -276,6 +285,9 @@ export class SessionModule implements AdminFeature {
   }
 }
 
-export function createSessionModule(adminModule: AdminModule): SessionModule {
-  return new SessionModule(adminModule);
+export function createSessionModule(
+  adminModule: AdminModule,
+  usageStats?: import('./UsageStatsModule.js').UsageStatsModule
+): SessionModule {
+  return new SessionModule(adminModule, usageStats);
 }

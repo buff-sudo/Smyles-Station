@@ -79,6 +79,19 @@ declare global {
     adminDeleteSite: (siteId: string) => Promise<boolean>;
     adminReorderSites: (siteIds: string[]) => Promise<boolean>;
     adminRefreshSiteMetadata: (siteId: string) => Promise<boolean>;
+
+    // Usage statistics
+    statsDownloadCSV: () => Promise<string>;
+    statsGetSummary: () => Promise<{
+      totalSessions: number;
+      completedSessions: number;
+      totalGames: number;
+      completedGames: number;
+      totalSessionTime: number;
+      totalGameTime: number;
+      averageSessionTime: number;
+      averageGameTime: number;
+    }>;
   }
 }
 

@@ -41,6 +41,9 @@ export interface AdminFeature extends AppModule {
 
 /**
  * Factory function type for creating admin features.
- * This pattern allows for clean dependency injection of the AdminModule.
+ * This pattern allows for clean dependency injection of the AdminModule and UsageStatsModule.
  */
-export type AdminFeatureFactory = (adminModule: AdminModule) => AdminFeature;
+export type AdminFeatureFactory = (
+  adminModule: AdminModule,
+  usageStats?: import('./modules/UsageStatsModule.js').UsageStatsModule
+) => AdminFeature;
