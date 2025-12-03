@@ -1,7 +1,7 @@
 .admin-dashboard {
   width: 100%;
   height: 100%;
-  background: var(--bg-dim);
+  background: var(--admin-bg);
   overflow-y: auto;
 }
 
