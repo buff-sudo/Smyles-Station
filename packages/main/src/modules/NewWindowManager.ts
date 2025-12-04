@@ -1,9 +1,9 @@
 import type {AppModule} from '../AppModule.js';
 import {ModuleContext} from '../ModuleContext.js';
-import {BrowserWindow, BrowserView, ipcMain, screen} from 'electron';
+import {BrowserWindow, WebContentsView, ipcMain, screen} from 'electron';
 
-class NewWindowManager implements AppModule {
-  #currentView: BrowserView | null = null;
+export class NewWindowManager implements AppModule {
+  #currentView: WebContentsView | null = null;
   #usageStats: import('./UsageStatsModule.js').UsageStatsModule | null = null;
   #currentGameUrl: string = '';
   #currentGameName: string = '';
@@ -32,12 +32,12 @@ class NewWindowManager implements AppModule {
         this.#closeCurrentGame(mainWindow);
       }
 
-      // Get window dimensions for BrowserView bounds
+      // Get window dimensions for WebContentsView bounds
       const [width, height] = mainWindow.getSize();
       const HEADER_HEIGHT = 80;
 
-      // Create BrowserView (no window-specific options needed)
-      const gameView = new BrowserView({
+      // Create WebContentsView (no window-specific options needed)
+      const gameView = new WebContentsView({
         webPreferences: {
           nodeIntegration: false,
           contextIsolation: true,
@@ -58,7 +58,7 @@ class NewWindowManager implements AppModule {
       });
 
       // Add view to main window
-      mainWindow.addBrowserView(gameView);
+      mainWindow.contentView.addChildView(gameView);
 
       // Store reference and game info
       this.#currentView = gameView;
@@ -105,10 +105,10 @@ class NewWindowManager implements AppModule {
     this.#usageStats?.recordGameEnd();
 
     // Remove view from window
-    mainWindow.removeBrowserView(this.#currentView);
+    mainWindow.contentView.removeChildView(this.#currentView);
 
-    // CRITICAL: Destroy webContents to free memory
-    this.#currentView.webContents.destroy();
+    // CRITICAL: Close webContents to free memory
+    this.#currentView.webContents.close();
 
     // Clear references
     this.#currentView = null;
@@ -117,7 +117,7 @@ class NewWindowManager implements AppModule {
   }
 
   /**
-   * Setup resize handler to update BrowserView bounds when window resizes
+   * Setup resize handler to update WebContentsView bounds when window resizes
    * @param window - The browser window to monitor
    */
   #setupResizeHandler(window: BrowserWindow): void {
