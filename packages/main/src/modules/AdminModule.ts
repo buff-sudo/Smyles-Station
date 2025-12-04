@@ -60,13 +60,15 @@ export class AdminModule implements AppModule {
   async #loadConfig(): Promise<void> {
     try {
       const data = await fs.readFile(this.#configPath, 'utf-8');
-      this.#config = JSON.parse(data);
+      const parsedConfig = JSON.parse(data) as AdminConfig;
 
       // Validate structure - if old format, ignore it and use default
-      if (!this.#config.whitelistedSites) {
+      if (!parsedConfig.whitelistedSites) {
         console.log('Old config format detected, creating new default config');
         this.#config = this.#createDefaultConfig();
         await this.#saveConfig();
+      } else {
+        this.#config = parsedConfig;
       }
     } catch (error) {
       // If config doesn't exist, create default
