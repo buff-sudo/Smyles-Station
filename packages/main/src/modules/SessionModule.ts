@@ -37,10 +37,16 @@ export class SessionModule implements AdminFeature {
   };
 
   #usageStats: import('./UsageStatsModule.js').UsageStatsModule | null = null;
+  #newWindowManager: import('./NewWindowManager.js').NewWindowManager | null = null;
 
-  constructor(adminModule: AdminModule, usageStats?: import('./UsageStatsModule.js').UsageStatsModule) {
+  constructor(
+    adminModule: AdminModule,
+    usageStats?: import('./UsageStatsModule.js').UsageStatsModule,
+    newWindowManager?: import('./NewWindowManager.js').NewWindowManager
+  ) {
     this.#adminModule = adminModule;
     this.#usageStats = usageStats || null;
+    this.#newWindowManager = newWindowManager || null;
   }
 
   async enable(context: ModuleContext): Promise<void> {
@@ -110,16 +116,8 @@ export class SessionModule implements AdminFeature {
     // Clear all timers
     this.#clearTimers();
 
-    // Close all windows except the main window
-    const allWindows = BrowserWindow.getAllWindows();
-    allWindows.forEach(win => {
-      // Only close child windows, not the main window
-      // Main window is identified by its stored ID
-      if (win.id !== this.#mainWindowId && !win.isDestroyed()) {
-        console.log(`Closing child window ${win.id}`);
-        win.close();
-      }
-    });
+    // Close game if open (replaces child window closing logic)
+    this.#newWindowManager?.closeGameIfOpen();
 
     // Record stats
     this.#usageStats?.recordSessionEnd();
@@ -213,20 +211,15 @@ export class SessionModule implements AdminFeature {
       const allWindows = BrowserWindow.getAllWindows();
       const mainWindow = allWindows.find(win => win.id === this.#mainWindowId && !win.isDestroyed());
 
-      console.log(`Session expired - Total windows: ${allWindows.length}, Main window ID: ${this.#mainWindowId}`);
+      console.log(`Session expired - Main window ID: ${this.#mainWindowId}`);
 
       if (!mainWindow) {
         console.error('Main window not found during session expiry!');
         return;
       }
 
-      // Step 1: Close all child windows
-      allWindows.forEach(win => {
-        if (win.id !== this.#mainWindowId && !win.isDestroyed()) {
-          console.log(`Closing child window ${win.id}`);
-          win.close();
-        }
-      });
+      // Step 1: Close game if open (replaces child window closing logic)
+      this.#newWindowManager?.closeGameIfOpen();
 
       // Step 2: Clear all browser data from the main window
       console.log('Clearing browser data (cookies, cache, storage)...');
@@ -287,7 +280,8 @@ export class SessionModule implements AdminFeature {
 
 export function createSessionModule(
   adminModule: AdminModule,
-  usageStats?: import('./UsageStatsModule.js').UsageStatsModule
+  usageStats?: import('./UsageStatsModule.js').UsageStatsModule,
+  newWindowManager?: import('./NewWindowManager.js').NewWindowManager
 ): SessionModule {
-  return new SessionModule(adminModule, usageStats);
+  return new SessionModule(adminModule, usageStats, newWindowManager);
 }

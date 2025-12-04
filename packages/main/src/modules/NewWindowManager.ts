@@ -1,125 +1,149 @@
 import type {AppModule} from '../AppModule.js';
 import {ModuleContext} from '../ModuleContext.js';
-import {BrowserWindow, ipcMain, screen} from 'electron';
-import type {AppInitConfig} from '../AppInitConfig.js';
+import {BrowserWindow, BrowserView, ipcMain, screen} from 'electron';
 
 class NewWindowManager implements AppModule {
-  readonly #preload: {path: string};
-  #currentContent: BrowserWindow | null = null;
+  #currentView: BrowserView | null = null;
   #usageStats: import('./UsageStatsModule.js').UsageStatsModule | null = null;
   #currentGameUrl: string = '';
   #currentGameName: string = '';
 
-  constructor({initConfig, usageStats}: {initConfig: AppInitConfig, usageStats?: import('./UsageStatsModule.js').UsageStatsModule}) {
-    this.#preload = initConfig.preload;
+  constructor({usageStats}: {usageStats?: import('./UsageStatsModule.js').UsageStatsModule}) {
     this.#usageStats = usageStats || null;
   }
 
   async enable({app}: ModuleContext): Promise<void> {
     await app.whenReady();
 
+    // Setup resize handler for main window
+    app.on('browser-window-created', (_event, window) => {
+      this.#setupResizeHandler(window);
+    });
+
     ipcMain.handle('open-new-window', async (event, url: string, siteName?: string) => {
-      // Close any existing game first (single-game enforcement)
-      if (this.#currentContent && !this.#currentContent.isDestroyed()) {
-        this.#currentContent.close();
+      // Get main window from event sender
+      const mainWindow = BrowserWindow.fromWebContents(event.sender);
+      if (!mainWindow) {
+        throw new Error('Main window not found');
       }
 
-      // Get the main window (parent) from the event sender
-      const mainWindow = BrowserWindow.fromWebContents(event.sender);
+      // Close existing game if any (single-game enforcement)
+      if (this.#currentView) {
+        this.#closeCurrentGame(mainWindow);
+      }
 
-      // Get screen dimensions
-      const primaryDisplay = screen.getPrimaryDisplay();
-      const { width, height } = primaryDisplay.bounds;
-      const HEADER_HEIGHT = 80; // Leave space for main window header
+      // Get window dimensions for BrowserView bounds
+      const [width, height] = mainWindow.getSize();
+      const HEADER_HEIGHT = 80;
 
-      // Create content window positioned below main window's header area
-      const contentWindow = new BrowserWindow({
-        parent: mainWindow || undefined,
-        x: 0,
-        y: HEADER_HEIGHT,
-        width: width,
-        height: height - HEADER_HEIGHT,
-        frame: false,
-        show: false,
-        resizable: false,
-        movable: false,
-        alwaysOnTop: false, // Main window will be on top
-        skipTaskbar: true,
+      // Create BrowserView (no window-specific options needed)
+      const gameView = new BrowserView({
         webPreferences: {
           nodeIntegration: false,
           contextIsolation: true,
-          sandbox: true, // More secure, no preload needed
+          sandbox: true,
           webviewTag: false,
         },
       });
 
-      // Block popups in content window
-      contentWindow.webContents.setWindowOpenHandler(() => {
-        return { action: 'deny' };
+      // Block popups in game view
+      gameView.webContents.setWindowOpenHandler(() => ({ action: 'deny' }));
+
+      // Set bounds to position below header
+      gameView.setBounds({
+        x: 0,
+        y: HEADER_HEIGHT,
+        width: width,
+        height: height - HEADER_HEIGHT,
       });
 
+      // Add view to main window
+      mainWindow.addBrowserView(gameView);
+
       // Store reference and game info
-      this.#currentContent = contentWindow;
+      this.#currentView = gameView;
       this.#currentGameUrl = url;
       this.#currentGameName = siteName || url;
 
-      // Cleanup handler
-      contentWindow.on('closed', () => {
-        // Record game end
-        this.#usageStats?.recordGameEnd();
-        this.#currentContent = null;
-        this.#currentGameUrl = '';
-        this.#currentGameName = '';
-      });
-
-      // Load website in content window
-      await contentWindow.loadURL(url);
-
-      // Show content window
-      contentWindow.show();
-
-      // Ensure main window is on top
-      if (mainWindow) {
-        mainWindow.setAlwaysOnTop(true, 'floating');
-        mainWindow.focus();
-      }
+      // Load game URL
+      await gameView.webContents.loadURL(url);
 
       // Record game start
       this.#usageStats?.recordGameStart(url, siteName || url);
 
-      return contentWindow.id;
+      // Return view ID for tracking (optional)
+      return gameView.webContents.id;
     });
 
     ipcMain.handle('close-current-window', async (event) => {
-      const senderWindow = BrowserWindow.fromWebContents(event.sender);
+      const mainWindow = BrowserWindow.fromWebContents(event.sender);
+      if (!mainWindow) {
+        throw new Error('Main window not found');
+      }
 
-      // Check if this is being called from the main window (no game open)
-      const isMainWindow = senderWindow &&
-        (!this.#currentContent || this.#currentContent.isDestroyed());
-
-      if (isMainWindow) {
-        // Close the entire application
+      // Check if game is open
+      if (!this.#currentView) {
+        // No game open, user wants to quit the app
         const {app} = await import('electron');
         app.quit();
         return;
       }
 
-      // Close content window (game is open)
-      if (this.#currentContent && !this.#currentContent.isDestroyed()) {
-        this.#currentContent.close(); // Will trigger 'closed' event which records stats
-      }
+      // Close the game
+      this.#closeCurrentGame(mainWindow);
+    });
+  }
 
-      // Clear references (also done in closed handler, but be explicit)
-      this.#currentContent = null;
-      this.#currentGameUrl = '';
-      this.#currentGameName = '';
+  /**
+   * Close the currently open game (if any)
+   * @param mainWindow - The main browser window
+   */
+  #closeCurrentGame(mainWindow: BrowserWindow): void {
+    if (!this.#currentView) return;
 
-      // Focus main window
-      const mainWindow = BrowserWindow.getAllWindows().find(w => !w.isDestroyed());
-      if (mainWindow) {
-        mainWindow.focus();
+    // Record game end BEFORE destroying
+    this.#usageStats?.recordGameEnd();
+
+    // Remove view from window
+    mainWindow.removeBrowserView(this.#currentView);
+
+    // CRITICAL: Destroy webContents to free memory
+    this.#currentView.webContents.destroy();
+
+    // Clear references
+    this.#currentView = null;
+    this.#currentGameUrl = '';
+    this.#currentGameName = '';
+  }
+
+  /**
+   * Setup resize handler to update BrowserView bounds when window resizes
+   * @param window - The browser window to monitor
+   */
+  #setupResizeHandler(window: BrowserWindow): void {
+    window.on('resize', () => {
+      if (this.#currentView && !this.#currentView.webContents.isDestroyed()) {
+        const [width, height] = window.getSize();
+        const HEADER_HEIGHT = 80;
+        this.#currentView.setBounds({
+          x: 0,
+          y: HEADER_HEIGHT,
+          width: width,
+          height: height - HEADER_HEIGHT,
+        });
       }
     });
+  }
+
+  /**
+   * Public method to close game if one is open
+   * Called by SessionModule during session end/expiry
+   */
+  closeGameIfOpen(): void {
+    const mainWindow = BrowserWindow.getAllWindows().find(w => !w.isDestroyed());
+    if (mainWindow) {
+      this.#closeCurrentGame(mainWindow);
+    }
   }
 }
 

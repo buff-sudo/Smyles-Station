@@ -94,8 +94,13 @@ export class AdminAppBuilder {
       .init(createWindowManagerModule({
         initConfig: this.#initConfig,
         openDevTools: false,
-      }))
-      .init(createNewWindowManagerModule({initConfig: this.#initConfig, usageStats}))
+      }));
+
+    // Create NewWindowManager and store reference for SessionModule
+    const newWindowManager = createNewWindowManagerModule({usageStats});
+    moduleRunner.init(newWindowManager);
+
+    moduleRunner
       .init(disallowMultipleAppInstance())
       .init(terminateAppOnLastWindowClose())
       .init(hardwareAccelerationMode({enable: this.#enableHardwareAcceleration}))
@@ -105,9 +110,9 @@ export class AdminAppBuilder {
       // Admin module
       .init(this.#adminModule);
 
-    // Register all admin features (including SessionModule which needs usageStats)
+    // Register all admin features (pass newWindowManager to SessionModule)
     for (const factory of this.#adminFeatures) {
-      const feature = factory(this.#adminModule, usageStats);
+      const feature = factory(this.#adminModule, usageStats, newWindowManager);
       console.log(`Registering admin feature: ${feature.featureName} - ${feature.description}`);
       moduleRunner.init(feature);
     }
