@@ -90,15 +90,21 @@ function sessionOnStatus(callback: (status: {
   timeLimit: number;
   startTime: number | null;
 }) => void) {
-  ipcRenderer.on('session:status-update', (_event, status) => callback(status));
+  const handler = (_event: any, status: any) => callback(status);
+  ipcRenderer.on('session:status-update', handler);
+  return () => ipcRenderer.removeListener('session:status-update', handler);
 }
 
 function sessionOnWarning(callback: () => void) {
-  ipcRenderer.on('session:warning', () => callback());
+  const handler = () => callback();
+  ipcRenderer.on('session:warning', handler);
+  return () => ipcRenderer.removeListener('session:warning', handler);
 }
 
 function sessionOnExpired(callback: () => void) {
-  ipcRenderer.on('session:expired', () => callback());
+  const handler = () => callback();
+  ipcRenderer.on('session:expired', handler);
+  return () => ipcRenderer.removeListener('session:expired', handler);
 }
 
 // Admin event listeners
@@ -110,11 +116,15 @@ function adminOnSettingsChanged(callback: (settings: {
   enableHardwareAcceleration: boolean;
   autoStartOnBoot: boolean;
 }) => void) {
-  ipcRenderer.on('admin:settings-changed', (_event, settings) => callback(settings));
+  const handler = (_event: any, settings: any) => callback(settings);
+  ipcRenderer.on('admin:settings-changed', handler);
+  return () => ipcRenderer.removeListener('admin:settings-changed', handler);
 }
 
-function adminOnEmergencyExitRequested(callback: () => void): void {
-  ipcRenderer.on('admin:emergency-exit-requested', () => callback());
+function adminOnEmergencyExitRequested(callback: () => void): () => void {
+  const handler = () => callback();
+  ipcRenderer.on('admin:emergency-exit-requested', handler);
+  return () => ipcRenderer.removeListener('admin:emergency-exit-requested', handler);
 }
 
 // New Site Management Functions

@@ -18,9 +18,12 @@ export const WebsiteGrid: FC<WebsiteGridProps> = ({ onOpenSite }) => {
     loadSites();
 
     // Listen for admin settings changes to reload sites in real-time
-    window.adminOnSettingsChanged(() => {
+    const removeListener = window.adminOnSettingsChanged(() => {
       loadSites();
     });
+
+    // Cleanup listener on unmount
+    return removeListener;
   }, []);
 
   const loadSites = async () => {

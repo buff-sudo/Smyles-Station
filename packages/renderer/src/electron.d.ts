@@ -57,9 +57,9 @@ declare global {
     sessionEnd: () => Promise<boolean>;
     sessionGetStatus: () => Promise<SessionStatus>;
     sessionIsActive: () => Promise<boolean>;
-    sessionOnStatus: (callback: (status: SessionStatus) => void) => void;
-    sessionOnWarning: (callback: () => void) => void;
-    sessionOnExpired: (callback: () => void) => void;
+    sessionOnStatus: (callback: (status: SessionStatus) => void) => () => void;
+    sessionOnWarning: (callback: () => void) => () => void;
+    sessionOnExpired: (callback: () => void) => () => void;
 
     // Admin event listeners
     adminOnSettingsChanged: (callback: (settings: {
@@ -69,8 +69,8 @@ declare global {
       blockTaskManager: boolean;
       enableHardwareAcceleration: boolean;
       autoStartOnBoot: boolean;
-    }) => void) => void;
-    adminOnEmergencyExitRequested: (callback: () => void) => void;
+    }) => void) => () => void;
+    adminOnEmergencyExitRequested: (callback: () => void) => () => void;
 
     // New site management functions
     adminGetSites: () => Promise<WhitelistedSite[]>;
