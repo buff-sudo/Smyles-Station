@@ -98,35 +98,6 @@ To permanently delete a site:
 3. Confirm deletion
 4. The site is removed from the list
 
-**Warning:** This cannot be undone.
-
-### Recommended Sites
-
-Here are some safe, educational sites to get started:
-
-**General Education:**
-- PBS Kids: `https://pbskids.org`
-- National Geographic Kids: `https://kids.nationalgeographic.com`
-- Funbrain: `https://www.funbrain.com`
-- Starfall: `https://www.starfall.com`
-
-**Math:**
-- Coolmath Games: `https://www.coolmathgames.com`
-- Math Playground: `https://www.mathplayground.com`
-- Prodigy: `https://www.prodigygame.com`
-
-**Reading & Language:**
-- Storyline Online: `https://www.storylineonline.net`
-- ReadWriteThink: `http://www.readwritethink.org`
-
-**Coding:**
-- Code.org: `https://code.org`
-- Scratch: `https://scratch.mit.edu`
-
-**Science:**
-- NASA Kids' Club: `https://www.nasa.gov/kidsclub`
-- Science Kids: `https://www.sciencekids.co.nz`
-
 ### Troubleshooting Site Issues
 
 **Site won't load:**
@@ -153,7 +124,7 @@ Configure default behavior for all sessions.
 
 ### Default Session Duration
 
-1. Admin Dashboard ’ **Settings** tab
+1. Admin Dashboard ï¿½ **Settings** tab
 2. Find **Default Session Time**
 3. Choose duration:
    - 15 minutes (short sessions)
@@ -197,7 +168,7 @@ Choose what happens when a session ends:
 - Computer locks
 - Requires password to unlock
 
-Configure in **Settings** ’ **Session End Behavior**
+Configure in **Settings** ï¿½ **Session End Behavior**
 
 ---
 
@@ -207,7 +178,7 @@ Configure automatic computer shutdown for closing time.
 
 ### Setting Up Scheduled Shutdowns
 
-1. Admin Dashboard ’ **Schedule** tab
+1. Admin Dashboard ï¿½ **Schedule** tab
 2. You'll see each day of the week
 3. For each day you want automatic shutdown:
    - Toggle **Enabled** to ON
@@ -255,19 +226,6 @@ To turn off for a specific day:
 
 To disable completely: Turn OFF all days.
 
-### Emergency Override
-
-If you need to cancel an imminent shutdown:
-
-**Not possible by design** - this prevents kids from cancelling it.
-
-**Workaround:**
-1. Exit Smyles Station (`Ctrl+Shift+Q` + password)
-2. Access Admin Dashboard
-3. Disable that day's schedule
-4. Save
-
-**Or:** If warning is showing, you have 10 minutes to finish work.
 
 ---
 
@@ -275,7 +233,7 @@ If you need to cancel an imminent shutdown:
 
 ### Changing Your Password
 
-1. Admin Dashboard ’ **Password** tab
+1. Admin Dashboard ï¿½ **Password** tab
 2. Enter **current password**
 3. Enter **new password**
 4. Re-enter new password to confirm
@@ -425,7 +383,7 @@ SMYLES_DEBUG=1
 
 ### Viewing Statistics
 
-1. Admin Dashboard ’ **Statistics** tab
+1. Admin Dashboard ï¿½ **Statistics** tab
 2. View data:
    - Total sessions
    - Total time used
@@ -436,11 +394,9 @@ SMYLES_DEBUG=1
 
 **To export usage data:**
 
-1. Statistics tab
-2. Click **Export Data**
-3. Choose format:
-   - CSV (for spreadsheets)
-   - JSON (for advanced analysis)
+1. Admin Portal
+2. Scroll to Usage Data
+3. Download CSV
 4. Save file
 
 **Use for:**
@@ -452,7 +408,7 @@ SMYLES_DEBUG=1
 
 **To reset all statistics:**
 
-1. Statistics tab
+1. Admin Portal
 2. Click **Clear All Data**
 3. Confirm
 4. All usage data is deleted

@@ -19,7 +19,7 @@ This guide covers the day-to-day operation of Smyles Station, including starting
 When Smyles Station launches, children see a simple welcome screen with:
 
 - **Large Play Button (�)** - The main button to start
-- **Settings button (�)** - At the bottom (staff use only)
+- **Settings button (�)** - At the bottom (staff use only)
 
 ### Starting a Session
 
@@ -72,7 +72,7 @@ Common durations:
 
 ### Game View Controls
 
-**Exit Game button ( Exit Game):**
+**Exit Game button ( Exit Game):**
 - Located in top left corner
 - Returns to game selection screen
 - Session timer continues running
@@ -106,7 +106,7 @@ Common durations:
 
 **Children can switch games freely:**
 
-1. Click " Exit Game" (top left)
+1. Click "X Exit Game" (top left)
 2. Returns to game selection screen
 3. Click different game
 4. Session timer continues - no time added
@@ -167,7 +167,7 @@ If a child finishes early:
 - Quick and simple
 
 **Option 2: Close Application**
-- Click Settings button (�) on welcome screen
+- Click Settings button (�) on welcome screen
 - Select "Close Application"
 - Enter admin password
 - Closes Smyles Station entirely
@@ -184,7 +184,7 @@ If a child finishes early:
 ### Technical Issue During Session
 
 **Game won't load:**
-1. Click " Exit Game"
+1. Click "X Exit Game"
 2. Try different game
 3. If all games fail, check internet connection
 
@@ -213,7 +213,7 @@ If a child finishes early:
 
 **From welcome screen:**
 
-1. Click **Settings button (�)** at bottom
+1. Click **Settings button (�)** at bottom
 2. Choose **Admin Settings**
 3. Enter admin password
 4. Access full Admin Dashboard
@@ -229,7 +229,7 @@ If a child finishes early:
 
 **To exit to Windows desktop:**
 
-1. On welcome screen, click **Settings (�)**
+1. On welcome screen, click **Settings (�)**
 2. Select **Close Application**
 3. Enter admin password
 4. Smyles Station closes
@@ -301,7 +301,7 @@ Recent session history shows:
 ### Can't exit game
 
 **Try:**
-1. Click " Exit Game" button (top left)
+1. Click "X Exit Game" button (top right)
 2. Or click "End Session" button
 3. If both fail, restart Smyles Station
 
@@ -333,10 +333,10 @@ How to Play:
 
 ```
 Starting: Child clicks Play button
-Switching games: " Exit Game" button (top left)
+Switching games: "X Exit Game" button (top right)
 Ending early: "End Session" button
-Admin access: Settings � � Admin Settings � Password
-Close app: Settings � � Close Application � Password
+Admin access: Settings � � Admin Settings � Password
+Close app: Settings � � Close Application � Password
 ```
 
 ---

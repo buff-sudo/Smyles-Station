@@ -67,7 +67,7 @@ You set this once in Admin Dashboard � Settings � "Session Time Limit"
 
 ### Q: Can kids switch games during their session?
 
-**A:** Yes! Kids can click " Exit Game" to return to the game selection screen and choose a different game. The session timer continues running - no extra time is added.
+**A:** Yes! Kids can click "X Exit Game" to return to the game selection screen and choose a different game. The session timer continues running - no extra time is added.
 
 ### Q: How do I set session time to unlimited?
 
@@ -81,12 +81,12 @@ You set this once in Admin Dashboard � Settings � "Session Time Limit"
 
 ### Q: What's the default admin password?
 
-**A:** There is no default password. You create the admin password the first time you launch Smyles Station.
+**A:** admin.
 
 ### Q: How do I access Admin Settings?
 
 **A:**
-1. On the welcome screen, click the **Settings button (�)** at the bottom
+1. On the welcome screen, click the **Settings button (�)** at the top right
 2. Select **Admin Settings**
 3. Enter your admin password
 
@@ -99,7 +99,7 @@ You set this once in Admin Dashboard � Settings � "Session Time Limit"
    - Linux: `~/.config/smyles-station/`
 3. Delete the file `config.json`
 4. Restart Smyles Station
-5. You'll be prompted to create a new password
+5. Create a new password
 
 **Warning:** This resets ALL settings, not just the password. Your site list (in `sites.json`) is preserved.
 
@@ -118,7 +118,7 @@ You set this once in Admin Dashboard � Settings � "Session Time Limit"
 
 ### Q: The Settings button doesn't appear. Where is it?
 
-**A:** The Settings button (�) is at the bottom center of the welcome screen (the screen with the big Play button). If you're in a game session, end the session first.
+**A:** The Settings button (�) is at the top right of the welcome screen (the screen with the big Play button). If you're in a game session, end the session first.
 
 ---
 
