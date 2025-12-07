@@ -9,6 +9,7 @@ import { SessionWarning } from './components/SessionWarning'
 import { SessionExpired } from './components/SessionExpired'
 import { WebsiteGrid } from './components/WebsiteGrid'
 import { EmergencyExit } from './components/EmergencyExit'
+import { ShutdownWarning } from './components/ShutdownWarning'
 import type { SessionStatus } from './electron'
 
 type View = 'session-prompt' | 'session-expired' | 'main' | 'admin-login' | 'admin-dashboard' | 'game-open'
@@ -19,6 +20,7 @@ const App: FC = () => {
   const [timeRemaining, setTimeRemaining] = useState<number>(0)
   const [showWarning, setShowWarning] = useState(false)
   const [showEmergencyExit, setShowEmergencyExit] = useState(false)
+  const [shutdownWarning, setShutdownWarning] = useState<{shutdownTime: number; timeRemaining: number} | null>(null)
 
   // Setup session event listeners
   useEffect(() => {
@@ -42,6 +44,23 @@ const App: FC = () => {
     // Listen for emergency exit request
     window.adminOnEmergencyExitRequested(() => {
       setShowEmergencyExit(true)
+    })
+
+    // Listen for shutdown warning
+    window.shutdownOnWarning((data) => {
+      setShutdownWarning(data)
+    })
+
+    // Listen for imminent shutdown
+    window.shutdownOnImminent(() => {
+      console.log('System shutdown imminent')
+    })
+
+    // Listen for shutdown failures
+    window.shutdownOnFailed((error) => {
+      console.error('Shutdown failed:', error)
+      alert(`Shutdown failed: ${error.error}`)
+      setShutdownWarning(null)
     })
   }, [])
 
@@ -149,6 +168,11 @@ const App: FC = () => {
           <EmergencyExit onClose={() => setShowEmergencyExit(false)} />
         )}
 
+        {/* Shutdown Warning - highest priority */}
+        {shutdownWarning && (
+          <ShutdownWarning shutdownTime={shutdownWarning.shutdownTime} />
+        )}
+
         {/* Session Timer (visible when session is active) */}
         {sessionActive && (
           <SessionTimer
@@ -180,6 +204,11 @@ const App: FC = () => {
       {/* Emergency Exit Dialog - highest priority overlay */}
       {showEmergencyExit && (
         <EmergencyExit onClose={() => setShowEmergencyExit(false)} />
+      )}
+
+      {/* Shutdown Warning - highest priority */}
+      {shutdownWarning && (
+        <ShutdownWarning shutdownTime={shutdownWarning.shutdownTime} />
       )}
 
       {/* Session Timer (visible when session is active) */}

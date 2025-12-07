@@ -1,0 +1,121 @@
+.shutdown-schedule {
+  margin-bottom: 30px;
+}
+
+.shutdown-schedule h2 {
+  color: var(--text-primary, #333);
+  margin-bottom: 8px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.shutdown-schedule .section-description {
+  color: var(--text-secondary, #666);
+  font-size: 14px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.shutdown-schedule .message {
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.shutdown-schedule .message.success {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  color: #155724;
+}
+
+.shutdown-schedule .message.error {
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+}
+
+.schedule-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.schedule-day-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border: 2px solid var(--border, #ddd);
+  border-radius: 8px;
+  background-color: var(--card-bg, #fff);
+  transition: border-color 0.2s;
+}
+
+.schedule-day-row:hover {
+  border-color: var(--border-hover, #bbb);
+}
+
+.day-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 130px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.day-checkbox input[type='checkbox'] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.day-label {
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--text-primary, #333);
+}
+
+.time-input {
+  padding: 8px 12px;
+  border: 2px solid var(--border, #ddd);
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: border-color 0.2s, background-color 0.2s;
+  min-width: 120px;
+}
+
+.time-input:focus {
+  outline: none;
+  border-color: var(--primary, #4a90e2);
+}
+
+.time-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--disabled-bg, #f5f5f5);
+}
+
+.save-button {
+  padding: 12px 24px;
+  background-color: var(--primary, #4a90e2);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, opacity 0.2s;
+}
+
+.save-button:hover:not(:disabled) {
+  background-color: var(--primary-hover, #3a7bc8);
+}
+
+.save-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

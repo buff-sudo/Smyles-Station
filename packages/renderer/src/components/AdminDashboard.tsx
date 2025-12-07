@@ -1,6 +1,7 @@
 import { type FC, useState, useEffect } from 'react';
 import './AdminDashboard.css';
 import { SiteManagement } from './SiteManagement';
+import { ShutdownSchedule } from './ShutdownSchedule';
 
 interface AdminSettings {
   whitelistedUrls: string[];
@@ -476,6 +477,11 @@ export const AdminDashboard: FC<AdminDashboardProps> = ({ onLogout }) => {
           <button onClick={handleUpdateAutoStart} disabled={saving}>
             {saving ? 'Saving...' : 'Update Startup Settings'}
           </button>
+        </section>
+
+        {/* Shutdown Schedule */}
+        <section className="dashboard-section">
+          <ShutdownSchedule />
         </section>
 
         {/* Password Management */}

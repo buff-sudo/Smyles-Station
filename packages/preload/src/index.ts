@@ -160,6 +160,35 @@ function statsGetSummary(): Promise<{
   return ipcRenderer.invoke('stats:get-summary');
 }
 
+// Shutdown schedule functions
+function adminUpdateShutdownSchedule(schedule: any): Promise<boolean> {
+  return ipcRenderer.invoke('shutdown:update-schedule', schedule);
+}
+
+function shutdownGetNextShutdown(): Promise<{
+  nextShutdownTime: number | null;
+  timeRemaining: number | null;
+}> {
+  return ipcRenderer.invoke('shutdown:get-next-shutdown');
+}
+
+// Shutdown event listeners
+function shutdownOnWarning(callback: (data: {shutdownTime: number; timeRemaining: number}) => void) {
+  ipcRenderer.on('shutdown:warning', (_event, data) => callback(data));
+}
+
+function shutdownOnImminent(callback: () => void) {
+  ipcRenderer.on('shutdown:imminent', () => callback());
+}
+
+function shutdownOnFailed(callback: (error: {error: string}) => void) {
+  ipcRenderer.on('shutdown:failed', (_event, error) => callback(error));
+}
+
+function shutdownOnDryRun(callback: () => void) {
+  ipcRenderer.on('shutdown:dry-run', () => callback());
+}
+
 export {
   sha256sum,
   versions,
@@ -193,4 +222,10 @@ export {
   adminRefreshSiteMetadata,
   statsDownloadCSV,
   statsGetSummary,
+  adminUpdateShutdownSchedule,
+  shutdownGetNextShutdown,
+  shutdownOnWarning,
+  shutdownOnImminent,
+  shutdownOnFailed,
+  shutdownOnDryRun,
 };

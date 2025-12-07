@@ -7,6 +7,21 @@ export interface SessionStatus {
   startTime: number | null;
 }
 
+export interface DaySchedule {
+  enabled: boolean;
+  time: string; // HH:MM format (24-hour)
+}
+
+export interface ShutdownSchedule {
+  monday: DaySchedule;
+  tuesday: DaySchedule;
+  wednesday: DaySchedule;
+  thursday: DaySchedule;
+  friday: DaySchedule;
+  saturday: DaySchedule;
+  sunday: DaySchedule;
+}
+
 export interface WhitelistedSite {
   id: string;
   url: string;
@@ -42,6 +57,7 @@ declare global {
       blockTaskManager: boolean;
       enableHardwareAcceleration: boolean;
       autoStartOnBoot: boolean;
+      shutdownSchedule: ShutdownSchedule;
     } | null>;
     adminUpdateWhitelist: (urls: string[]) => Promise<boolean>;
     adminUpdateTimeLimit: (minutes: number) => Promise<boolean>;
@@ -92,6 +108,19 @@ declare global {
       averageSessionTime: number;
       averageGameTime: number;
     }>;
+
+    // Shutdown schedule functions
+    adminUpdateShutdownSchedule: (schedule: ShutdownSchedule) => Promise<boolean>;
+    shutdownGetNextShutdown: () => Promise<{
+      nextShutdownTime: number | null;
+      timeRemaining: number | null;
+    }>;
+
+    // Shutdown event listeners
+    shutdownOnWarning: (callback: (data: {shutdownTime: number; timeRemaining: number}) => void) => void;
+    shutdownOnImminent: (callback: () => void) => void;
+    shutdownOnFailed: (callback: (error: {error: string}) => void) => void;
+    shutdownOnDryRun: (callback: () => void) => void;
   }
 }
 

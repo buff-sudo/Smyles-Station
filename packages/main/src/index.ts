@@ -1,6 +1,7 @@
 import type {AppInitConfig} from './AppInitConfig.js';
 import {createAdminApp} from './AdminAppBuilder.js';
 import {createSessionModule} from './modules/SessionModule.js';
+import {createShutdownScheduleModule} from './modules/ShutdownScheduleModule.js';
 
 /**
  * Initialize the application with admin features.
@@ -27,7 +28,7 @@ export async function initApp(initConfig: AppInitConfig) {
   await createAdminApp(initConfig)
     .then(builder => builder.withAdminFeatures([
       createSessionModule,
-      // Add more admin features here
+      createShutdownScheduleModule,
     ]))
     .then(builder => builder.build());
 }

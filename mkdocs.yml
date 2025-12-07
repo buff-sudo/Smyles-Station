@@ -14,6 +14,7 @@ nav:
       - 'Step 3: Customization': setup/config.md
   - 'Daily Operations':
       - 'Managing Sessions': daily/sessions.md
+      - 'Setting Up Automatic Shutdowns': daily/scheduled-shutdown.md
       - 'Updating Content': daily/updates.md
       - 'Troubleshooting & FAQ': daily/faq.md
   - 'For Developers':

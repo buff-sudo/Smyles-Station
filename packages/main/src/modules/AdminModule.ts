@@ -9,6 +9,21 @@ import type {WhitelistedSite} from '../types/WhitelistedSite.js';
 import {DefaultIcons} from '../utils/DefaultIcons.js';
 import {UrlNormalizer} from '../utils/UrlNormalizer.js';
 
+export interface DaySchedule {
+  enabled: boolean;
+  time: string; // HH:MM format (24-hour)
+}
+
+export interface ShutdownSchedule {
+  monday: DaySchedule;
+  tuesday: DaySchedule;
+  wednesday: DaySchedule;
+  thursday: DaySchedule;
+  friday: DaySchedule;
+  saturday: DaySchedule;
+  sunday: DaySchedule;
+}
+
 export interface AdminConfig {
   passwordHash: string;
   whitelistedSites: WhitelistedSite[]; // Changed from whitelistedUrls: string[]
@@ -17,6 +32,7 @@ export interface AdminConfig {
   blockTaskManager: boolean;
   enableHardwareAcceleration: boolean;
   autoStartOnBoot: boolean;
+  shutdownSchedule: ShutdownSchedule;
 }
 
 export class AdminModule implements AppModule {
@@ -69,6 +85,21 @@ export class AdminModule implements AppModule {
         await this.#saveConfig();
       } else {
         this.#config = parsedConfig;
+
+        // Migration: Add shutdownSchedule if missing
+        if (!this.#config.shutdownSchedule) {
+          console.log('Adding shutdownSchedule to existing config');
+          this.#config.shutdownSchedule = {
+            monday: { enabled: false, time: '20:00' },
+            tuesday: { enabled: false, time: '20:00' },
+            wednesday: { enabled: false, time: '20:00' },
+            thursday: { enabled: false, time: '20:00' },
+            friday: { enabled: false, time: '20:00' },
+            saturday: { enabled: false, time: '20:00' },
+            sunday: { enabled: false, time: '20:00' },
+          };
+          await this.#saveConfig();
+        }
       }
     } catch (error) {
       // If config doesn't exist, create default
@@ -115,6 +146,15 @@ export class AdminModule implements AppModule {
       blockTaskManager: true,
       enableHardwareAcceleration: true, // enabled by default for best performance
       autoStartOnBoot: true, // enabled by default
+      shutdownSchedule: {
+        monday: { enabled: false, time: '20:00' },
+        tuesday: { enabled: false, time: '20:00' },
+        wednesday: { enabled: false, time: '20:00' },
+        thursday: { enabled: false, time: '20:00' },
+        friday: { enabled: false, time: '20:00' },
+        saturday: { enabled: false, time: '20:00' },
+        sunday: { enabled: false, time: '20:00' },
+      },
     };
   }
 
@@ -189,6 +229,7 @@ export class AdminModule implements AppModule {
         blockTaskManager: this.#config.blockTaskManager,
         enableHardwareAcceleration: this.#config.enableHardwareAcceleration,
         autoStartOnBoot: this.#config.autoStartOnBoot,
+        shutdownSchedule: this.#config.shutdownSchedule,
       };
     });
 
@@ -446,6 +487,17 @@ export class AdminModule implements AppModule {
     });
   }
 
+  // Public method to update shutdown schedule
+  async updateShutdownSchedule(schedule: ShutdownSchedule): Promise<boolean> {
+    if (this.#config) {
+      this.#config.shutdownSchedule = schedule;
+      await this.#saveConfig();
+      this.#broadcastSettingsChange();
+      return true;
+    }
+    return false;
+  }
+
   // Public method for other modules to access settings
   getSettings() {
     if (!this.#config) return null;
@@ -456,6 +508,7 @@ export class AdminModule implements AppModule {
       blockTaskManager: this.#config.blockTaskManager,
       enableHardwareAcceleration: this.#config.enableHardwareAcceleration,
       autoStartOnBoot: this.#config.autoStartOnBoot,
+      shutdownSchedule: this.#config.shutdownSchedule,
     };
   }
 
