@@ -97,7 +97,7 @@ You set this once in Admin Dashboard -> Settings -> "Session Time Limit"
 2. Navigate to the config directory:
    - Windows: Press `Win + R`, type `%APPDATA%\smyles-station\`, press Enter
    - Linux: `~/.config/smyles-station/`
-3. Delete the file `config.json`
+3. Delete the file `admin-config.json`
 4. Restart Smyles Station
 5. Create a new password
 

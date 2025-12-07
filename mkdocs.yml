@@ -1,4 +1,4 @@
-site_name: My App Documentation
+site_name: Smyles Station Documentation
 theme:
   name: material
 
@@ -15,7 +15,6 @@ nav:
   - 'Daily Operations':
       - 'Managing Sessions': daily/sessions.md
       - 'Setting Up Automatic Shutdowns': daily/scheduled-shutdown.md
-      - 'Updating Content': daily/updates.md
       - 'Troubleshooting & FAQ': daily/faq.md
   - 'For Developers':
       - 'Contributing': dev/contributing.md

@@ -19,7 +19,7 @@ This guide covers the day-to-day operation of Smyles Station, including starting
 When Smyles Station launches, children see a simple welcome screen with:
 
 - **Large Play Button** - The main button to start
-- **Settings button** - At the bottom (staff use only)
+- **Settings button** - In the top left
 
 ### Starting a Session
 
@@ -115,16 +115,9 @@ Common durations:
 
 ### Session Warnings
 
-**5 minutes before end:**
-- Warning message appears
-- Timer turns yellow/orange
-- Gentle alert sound
-- Child has time to finish up
-
 **1 minute before end:**
-- Urgent warning appears
+- Warning appears
 - Timer turns red
-- More noticeable alert
 - Time to save and wrap up
 
 **When timer reaches zero:**
@@ -148,36 +141,15 @@ When the session timer expires:
 
 **This is the standard, fair way sessions end.**
 
-### Manual End by Child
+### Manual End
 
 If a child finishes early:
 
 1. Click **End Session** button (with timer)
 2. Session ends immediately
-3. Returns to welcome screen
-4. Next child can use computer
-
-### Manual End by Staff
-
-**To end a session early:**
-
-**Option 1: End Session button**
-- Click the "End Session" button visible on screen
-- No password required
-- Quick and simple
-
-**Option 2: Close Application**
-- Click Settings button on welcome screen
-- Select "Close Application"
-- Enter admin password
-- Closes Smyles Station entirely
-- Returns to Windows desktop
-
-**When to manually end:**
-- Closing time approaching
-- Inappropriate behavior
-- Technical issue
-- Emergency situation
+3. Browser data is cleared
+4. Returns to welcome screen
+5. Next child can use computer
 
 ---
 
@@ -193,18 +165,6 @@ If a child finishes early:
 2. Child can start new session
 3. Previous session time is lost (by design - prevents exploits)
 
-### Multiple Short Sessions vs. One Long Session
-
-**Multiple short sessions (15-20 min):**
-- Better for busy times
-- More kids get turns
-- Change in admin settings before busy period
-
-**Longer sessions (45-60 min):**
-- Better for quiet times
-- Allows deeper engagement
-- Less switching overhead
-
 ---
 
 ## Staff Access
@@ -213,7 +173,7 @@ If a child finishes early:
 
 **From welcome screen:**
 
-1. Click **Settings button** at bottom
+1. Click **Settings button** at top right
 2. Choose **Admin Settings**
 3. Enter admin password
 4. Access full Admin Dashboard
