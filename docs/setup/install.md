@@ -24,7 +24,7 @@ Choose the installation method appropriate for your operating system:
 
 ### Step 1: Download Smyles Station
 
-1. Visit the Smyles Station releases page: [GitHub Releases](https://github.com/YOUR_USERNAME/verbose-funicular/releases)
+1. Visit the Smyles Station releases page: [GitHub Releases](https://github.com/buff-sudo/smyles-station/releases)
 
 2. Download the latest Windows installer:
    - Look for `Smyles-Station-Setup-X.X.X.exe`
@@ -85,7 +85,7 @@ Choose the installation method appropriate for your operating system:
 
 #### Step 1: Download Smyles Station
 
-1. Visit the Smyles Station releases page: [GitHub Releases](https://github.com/YOUR_USERNAME/verbose-funicular/releases)
+1. Visit the Smyles Station releases page: [GitHub Releases](https://github.com/buff-sudo/smyles-station/releases)
 
 2. Download the latest Linux package:
    - For Debian/Ubuntu: `Smyles-Station_X.X.X_amd64.deb`
@@ -317,7 +317,7 @@ sudo dnf install missing-package-name
 
 1. Press `Win + R`
 2. Type `shell:startup` and press Enter
-3. Right-click in the folder ’ New ’ Shortcut
+3. Right-click in the folder ï¿½ New ï¿½ Shortcut
 4. Browse to: `C:\Program Files\Smyles Station\Smyles Station.exe`
 5. Click OK and name it "Smyles Station"
 
@@ -352,7 +352,7 @@ sudo systemctl start smyles-station
 For extra security, run Smyles Station under a limited user account:
 
 **Windows:**
-1. Settings ’ Accounts ’ Family & other users
+1. Settings ï¿½ Accounts ï¿½ Family & other users
 2. Add someone else to this PC
 3. Create account without Microsoft account
 4. Set as Standard user (not Administrator)
@@ -375,7 +375,7 @@ Smyles Station does NOT include automatic updates by default for security.
 
 To update:
 
-1. Visit the [releases page](https://github.com/YOUR_USERNAME/verbose-funicular/releases)
+1. Visit the [releases page](https://github.com/buff-sudo/smyles-station/releases)
 2. Download the latest version
 3. Install over existing installation (settings are preserved)
 
@@ -386,9 +386,9 @@ To update:
 If you need to remove Smyles Station:
 
 **Windows:**
-1. Settings ’ Apps ’ Apps & features
+1. Settings ï¿½ Apps ï¿½ Apps & features
 2. Find "Smyles Station"
-3. Click ’ Uninstall
+3. Click ï¿½ Uninstall
 
 **Linux (Debian/Ubuntu):**
 ```sh

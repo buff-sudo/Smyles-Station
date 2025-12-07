@@ -345,7 +345,6 @@ Close app: Settings � � Close Application � Password
 
 - [Set up Scheduled Shutdowns](scheduled-shutdown.md)
 - [Troubleshooting & FAQ](faq.md)
-- [Updating Content](updates.md)
 
 ## Need Help?
 
