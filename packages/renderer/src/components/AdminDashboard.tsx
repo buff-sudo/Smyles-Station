@@ -112,6 +112,21 @@ export const AdminDashboard: FC<AdminDashboardProps> = ({ onLogout }) => {
     }
   };
 
+  const handleDeleteStats = async () => {
+    try {
+      const success = await window.statsDeleteAll();
+      if (success) {
+        showMessage('success', 'Usage data deleted successfully');
+        await loadUsageStats(); // Reload to show empty stats
+      } else {
+        showMessage('error', 'Failed to delete usage data');
+      }
+    } catch (err) {
+      showMessage('error', 'Failed to delete usage data');
+      console.error('Delete stats error:', err);
+    }
+  };
+
   const formatTime = (milliseconds: number): string => {
     const minutes = Math.round(milliseconds / 60000);
     if (minutes < 60) return `${minutes}m`;
@@ -350,6 +365,9 @@ export const AdminDashboard: FC<AdminDashboardProps> = ({ onLogout }) => {
                 </button>
                 <button onClick={loadUsageStats} className="secondary-button">
                   Refresh Statistics
+                </button>
+                <button onClick={handleDeleteStats} className="danger-button">
+                  Delete Usage Data
                 </button>
               </div>
             </>

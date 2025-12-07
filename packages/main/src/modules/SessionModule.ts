@@ -263,7 +263,7 @@ export class SessionModule implements AdminFeature {
     this.#stopStatusBroadcast();
   }
 
-  #broadcastToAllWindows(channel: string, ...args: any[]): void {
+  #broadcastToAllWindows(channel: string, ...args: unknown[]): void {
     BrowserWindow.getAllWindows().forEach(win => {
       if (!win.isDestroyed()) {
         win.webContents.send(channel, ...args);

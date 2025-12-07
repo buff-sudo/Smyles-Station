@@ -283,7 +283,7 @@ export class ShutdownScheduleModule implements AdminFeature {
   /**
    * Broadcast event to all windows
    */
-  #broadcastToAllWindows(channel: string, data?: any): void {
+  #broadcastToAllWindows(channel: string, data?: unknown): void {
     BrowserWindow.getAllWindows().forEach(win => {
       if (!win.isDestroyed()) {
         win.webContents.send(channel, data);
@@ -360,9 +360,7 @@ export class ShutdownScheduleModule implements AdminFeature {
 }
 
 export function createShutdownScheduleModule(
-  adminModule: AdminModule,
-  usageStats?: any,
-  newWindowManager?: any
+  adminModule: AdminModule
 ): ShutdownScheduleModule {
   // Check for dry-run mode via environment variable
   const dryRun = process.env.SHUTDOWN_DRY_RUN === 'true';

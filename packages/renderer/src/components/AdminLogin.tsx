@@ -13,12 +13,14 @@ export const AdminLogin: FC<AdminLoginProps> = ({ onLoginSuccess, onCancel }) =>
 
   // Ensure window has focus for input to work properly
   useEffect(() => {
-    window.windowFocus?.().then(() => {
+    const focusInput = async () => {
+      await window.windowFocus?.();
       const input = document.getElementById('password');
       if (input) {
         (input as HTMLInputElement).focus();
       }
-    });
+    };
+    focusInput();
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {

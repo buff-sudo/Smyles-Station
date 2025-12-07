@@ -54,6 +54,11 @@ export class UsageStatsModule implements AppModule {
     ipcMain.handle('stats:get-summary', async () => {
       return this.#getSummary();
     });
+
+    // Delete all usage data
+    ipcMain.handle('stats:delete-all', async () => {
+      return this.#deleteAllStats();
+    });
   }
 
   // Public methods for other modules to call
@@ -205,6 +210,22 @@ export class UsageStatsModule implements AppModule {
       averageSessionTime: completedSessions > 0 ? Math.round(totalSessionTime / completedSessions) : 0,
       averageGameTime: completedGames > 0 ? Math.round(totalGameTime / completedGames) : 0,
     };
+  }
+
+  async #deleteAllStats(): Promise<boolean> {
+    try {
+      // Reset stats to empty
+      this.#stats = {sessions: [], games: []};
+      this.#currentSession = null;
+      this.#currentGame = null;
+
+      // Save empty stats to file
+      await this.#saveStats();
+      return true;
+    } catch (error) {
+      console.error('Failed to delete usage stats:', error);
+      return false;
+    }
   }
 }
 

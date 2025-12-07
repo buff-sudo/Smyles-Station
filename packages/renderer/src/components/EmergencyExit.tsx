@@ -44,14 +44,16 @@ export const EmergencyExit: FC<EmergencyExitProps> = ({ onClose }) => {
 
   // Auto-focus password input and ensure window has focus
   useEffect(() => {
-    // First, ensure the main window has focus
-    window.windowFocus?.().then(() => {
+    const focusInput = async () => {
+      // First, ensure the main window has focus
+      await window.windowFocus?.();
       // Then focus the password input
       const input = document.getElementById('emergency-password');
       if (input) {
         (input as HTMLInputElement).focus();
       }
-    });
+    };
+    focusInput();
   }, []);
 
   return (

@@ -111,6 +111,7 @@ declare global {
       averageSessionTime: number;
       averageGameTime: number;
     }>;
+    statsDeleteAll: () => Promise<boolean>;
 
     // Shutdown schedule functions
     adminUpdateShutdownSchedule: (schedule: ShutdownSchedule) => Promise<boolean>;

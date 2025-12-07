@@ -2,6 +2,35 @@ import {sha256sum} from './nodeCrypto.js';
 import {versions} from './versions.js';
 import {ipcRenderer} from 'electron';
 
+// Type definitions for complex objects
+interface WhitelistedSite {
+  id: string;
+  url: string;
+  displayName: string | null;
+  iconUrl: string | null;
+  showOnSelectionScreen: boolean;
+  displayOrder: number;
+  autoFetchedTitle?: string;
+  autoFetchedIconUrl?: string;
+  lastUpdated: number;
+  createdAt: number;
+}
+
+interface DaySchedule {
+  enabled: boolean;
+  time: string;
+}
+
+interface ShutdownSchedule {
+  monday: DaySchedule;
+  tuesday: DaySchedule;
+  wednesday: DaySchedule;
+  thursday: DaySchedule;
+  friday: DaySchedule;
+  saturday: DaySchedule;
+  sunday: DaySchedule;
+}
+
 function send(channel: string, message: string) {
   return ipcRenderer.invoke(channel, message);
 }
@@ -102,7 +131,7 @@ function sessionOnStatus(callback: (status: {
   timeLimit: number;
   startTime: number | null;
 }) => void) {
-  const handler = (_event: any, status: any) => callback(status);
+  const handler = (_event: Electron.IpcRendererEvent, status: {isActive: boolean; timeRemaining: number; timeLimit: number; startTime: number | null}) => callback(status);
   ipcRenderer.on('session:status-update', handler);
   return () => ipcRenderer.removeListener('session:status-update', handler);
 }
@@ -128,7 +157,7 @@ function adminOnSettingsChanged(callback: (settings: {
   enableHardwareAcceleration: boolean;
   autoStartOnBoot: boolean;
 }) => void) {
-  const handler = (_event: any, settings: any) => callback(settings);
+  const handler = (_event: Electron.IpcRendererEvent, settings: {whitelistedUrls: string[]; sessionTimeLimit: number; blockDevTools: boolean; blockTaskManager: boolean; enableHardwareAcceleration: boolean; autoStartOnBoot: boolean}) => callback(settings);
   ipcRenderer.on('admin:settings-changed', handler);
   return () => ipcRenderer.removeListener('admin:settings-changed', handler);
 }
@@ -140,15 +169,15 @@ function adminOnEmergencyExitRequested(callback: () => void): () => void {
 }
 
 // New Site Management Functions
-function adminGetSites(): Promise<any[]> {
+function adminGetSites(): Promise<WhitelistedSite[]> {
   return ipcRenderer.invoke('admin:get-sites');
 }
 
-function adminAddSite(url: string): Promise<any | null> {
+function adminAddSite(url: string): Promise<WhitelistedSite | null> {
   return ipcRenderer.invoke('admin:add-site', url);
 }
 
-function adminUpdateSite(siteId: string, updates: any): Promise<boolean> {
+function adminUpdateSite(siteId: string, updates: Partial<WhitelistedSite>): Promise<boolean> {
   return ipcRenderer.invoke('admin:update-site', siteId, updates);
 }
 
@@ -182,8 +211,12 @@ function statsGetSummary(): Promise<{
   return ipcRenderer.invoke('stats:get-summary');
 }
 
+function statsDeleteAll(): Promise<boolean> {
+  return ipcRenderer.invoke('stats:delete-all');
+}
+
 // Shutdown schedule functions
-function adminUpdateShutdownSchedule(schedule: any): Promise<boolean> {
+function adminUpdateShutdownSchedule(schedule: ShutdownSchedule): Promise<boolean> {
   return ipcRenderer.invoke('shutdown:update-schedule', schedule);
 }
 
@@ -247,6 +280,7 @@ export {
   adminRefreshSiteMetadata,
   statsDownloadCSV,
   statsGetSummary,
+  statsDeleteAll,
   adminUpdateShutdownSchedule,
   shutdownGetNextShutdown,
   shutdownOnWarning,

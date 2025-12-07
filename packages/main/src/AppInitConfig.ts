@@ -1,4 +1,4 @@
-export type AppInitConfig = {
+export interface AppInitConfig {
   preload: {
     path: string;
   };
@@ -8,4 +8,4 @@ export type AppInitConfig = {
         path: string;
       }
     | URL;
-};
+}
