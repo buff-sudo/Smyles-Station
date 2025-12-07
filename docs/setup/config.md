@@ -124,7 +124,7 @@ Configure default behavior for all sessions.
 
 ### Default Session Duration
 
-1. Admin Dashboard � **Settings** tab
+1. Admin Dashboard -> **Settings** tab
 2. Find **Default Session Time**
 3. Choose duration:
    - 15 minutes (short sessions)
@@ -168,7 +168,7 @@ Choose what happens when a session ends:
 - Computer locks
 - Requires password to unlock
 
-Configure in **Settings** � **Session End Behavior**
+Configure in **Settings** -> **Session End Behavior**
 
 ---
 
@@ -178,7 +178,7 @@ Configure automatic computer shutdown for closing time.
 
 ### Setting Up Scheduled Shutdowns
 
-1. Admin Dashboard � **Schedule** tab
+1. Admin Dashboard -> **Schedule** tab
 2. You'll see each day of the week
 3. For each day you want automatic shutdown:
    - Toggle **Enabled** to ON
@@ -233,7 +233,7 @@ To disable completely: Turn OFF all days.
 
 ### Changing Your Password
 
-1. Admin Dashboard � **Password** tab
+1. Admin Dashboard -> **Password** tab
 2. Enter **current password**
 3. Enter **new password**
 4. Re-enter new password to confirm
@@ -383,7 +383,7 @@ SMYLES_DEBUG=1
 
 ### Viewing Statistics
 
-1. Admin Dashboard � **Statistics** tab
+1. Admin Dashboard -> **Statistics** tab
 2. View data:
    - Total sessions
    - Total time used

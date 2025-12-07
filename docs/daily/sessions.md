@@ -18,14 +18,14 @@ This guide covers the day-to-day operation of Smyles Station, including starting
 
 When Smyles Station launches, children see a simple welcome screen with:
 
-- **Large Play Button (�)** - The main button to start
-- **Settings button (�)** - At the bottom (staff use only)
+- **Large Play Button** - The main button to start
+- **Settings button** - At the bottom (staff use only)
 
 ### Starting a Session
 
 **For children:**
 
-1. Click the **Play button (�)**
+1. Click the **Play button**
 2. Session starts automatically with the default time limit
 3. Game selection screen appears
 
@@ -47,7 +47,7 @@ After clicking play:
 Sessions use the **default time limit** configured in admin settings.
 
 **To change the default:**
-1. Access Admin Dashboard (Settings button � Admin Settings)
+1. Access Admin Dashboard (Settings button -> Admin Settings)
 2. Enter admin password
 3. Go to Settings tab
 4. Change "Session Time Limit"
@@ -167,7 +167,7 @@ If a child finishes early:
 - Quick and simple
 
 **Option 2: Close Application**
-- Click Settings button (�) on welcome screen
+- Click Settings button on welcome screen
 - Select "Close Application"
 - Enter admin password
 - Closes Smyles Station entirely
@@ -213,7 +213,7 @@ If a child finishes early:
 
 **From welcome screen:**
 
-1. Click **Settings button (�)** at bottom
+1. Click **Settings button** at bottom
 2. Choose **Admin Settings**
 3. Enter admin password
 4. Access full Admin Dashboard
@@ -229,7 +229,7 @@ If a child finishes early:
 
 **To exit to Windows desktop:**
 
-1. On welcome screen, click **Settings (�)**
+1. On welcome screen, click **Settings**
 2. Select **Close Application**
 3. Enter admin password
 4. Smyles Station closes
@@ -246,7 +246,7 @@ If a child finishes early:
 
 ### Viewing Usage Data
 
-1. Access Admin Dashboard (Settings � Admin Settings + password)
+1. Access Admin Dashboard (Settings -> Admin Settings + password)
 2. Go to Statistics tab
 3. See:
    - Total sessions
@@ -286,7 +286,7 @@ Recent session history shows:
 - Display issue
 
 **Fix:**
-- Check Admin Settings � Session Time Limit
+- Check Admin Settings -> Session Time Limit
 - Should be set to desired minutes (e.g., 30)
 
 ### Session doesn't end automatically
@@ -311,7 +311,7 @@ Recent session history shows:
 - Internet connection working?
 - Try different game
 - Restart Smyles Station
-- Check Admin Dashboard � Sites for URL errors
+- Check Admin Dashboard -> Sites for URL errors
 
 ---
 
@@ -322,7 +322,7 @@ Recent session history shows:
 ```
 How to Play:
 
-1. Click the big Play button �
+1. Click the big Play button 
 2. Choose your game
 3. Have fun!
 4. Click "Exit Game" to pick a different game
@@ -335,8 +335,8 @@ How to Play:
 Starting: Child clicks Play button
 Switching games: "X Exit Game" button (top right)
 Ending early: "End Session" button
-Admin access: Settings � � Admin Settings � Password
-Close app: Settings � � Close Application � Password
+Admin access: Settings -> Admin Settings -> Password
+Close app: Settings -> Close Application -> Password
 ```
 
 ---

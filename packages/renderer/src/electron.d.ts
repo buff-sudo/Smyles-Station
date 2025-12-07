@@ -47,6 +47,9 @@ declare global {
     send: (channel: string, message: string) => Promise<unknown>;
     openNewWindow: (url: string, siteName?: string) => Promise<number>;
     closeCurrentWindow: () => Promise<void>;
+    hideGameView: () => Promise<void>;
+    showGameView: () => Promise<void>;
+    windowFocus: () => Promise<void>;
 
     // Admin functions
     adminLogin: (password: string) => Promise<boolean>;

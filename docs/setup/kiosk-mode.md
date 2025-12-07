@@ -77,7 +77,7 @@ Smyles Station automatically provides these security features:
 
 **Step 3: Configure Session Settings**
 
-1. In Admin Dashboard � **Settings**
+1. In Admin Dashboard -> **Settings**
 2. Set **Default Session Time** (recommended: 30-60 minutes)
 3. Set **Warning Time** (recommended: 5 minutes before end)
 4. Click **Save**
@@ -134,7 +134,7 @@ For dedicated kiosk computers where you don't want ANY access to Windows.
 Create a restricted Windows account for kiosk use:
 
 1. **Create kiosk user:**
-   - Settings � Accounts � Family & other users
+   - Settings -> Accounts -> Family & other users
    - Add someone else to this PC
    - Create local account (no Microsoft account)
    - Set as "Standard user" (not Administrator)
@@ -160,7 +160,7 @@ Create a restricted Windows account for kiosk use:
 
 Windows 10/11 Pro includes built-in kiosk mode:
 
-1. Settings � Accounts � Family & other users
+1. Settings -> Accounts -> Family & other users
 2. Set up assigned access
 3. Choose kiosk account
 4. Select Smyles Station as the app
@@ -173,12 +173,12 @@ For IT administrators:
 
 ```
 gpedit.msc
-� User Configuration
-� Administrative Templates
-� System
-� Disable Task Manager
-� Disable Command Prompt
-� Disable Registry Editor
+- User Configuration
+- Administrative Templates
+- System
+- Disable Task Manager
+- Disable Command Prompt
+- Disable Registry Editor
 ```
 
 **Only recommended if you know what you're doing.**
@@ -302,7 +302,7 @@ For standard Windows profiles:
 
 1. Open Admin Dashboard (`Ctrl+Shift+A`)
 2. Enter current password
-3. Settings � Change Admin Password
+3. Settings -> Change Admin Password
 4. Enter current password, then new password twice
 5. Save
 

@@ -14,6 +14,18 @@ function closeCurrentWindow() {
   return ipcRenderer.invoke('close-current-window');
 }
 
+function hideGameView() {
+  return ipcRenderer.invoke('hide-game-view');
+}
+
+function showGameView() {
+  return ipcRenderer.invoke('show-game-view');
+}
+
+function windowFocus() {
+  return ipcRenderer.invoke('window:focus');
+}
+
 // Admin functions
 function adminLogin(password: string): Promise<boolean> {
   return ipcRenderer.invoke('admin:login', password);
@@ -205,6 +217,9 @@ export {
   send,
   openNewWindow,
   closeCurrentWindow,
+  hideGameView,
+  showGameView,
+  windowFocus,
   adminLogin,
   adminGetSettings,
   adminUpdateWhitelist,

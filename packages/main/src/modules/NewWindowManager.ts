@@ -7,6 +7,7 @@ export class NewWindowManager implements AppModule {
   #usageStats: import('./UsageStatsModule.js').UsageStatsModule | null = null;
   #currentGameUrl: string = '';
   #currentGameName: string = '';
+  #isViewAttached: boolean = false;
 
   constructor({usageStats}: {usageStats?: import('./UsageStatsModule.js').UsageStatsModule}) {
     this.#usageStats = usageStats || null;
@@ -64,6 +65,7 @@ export class NewWindowManager implements AppModule {
       this.#currentView = gameView;
       this.#currentGameUrl = url;
       this.#currentGameName = siteName || url;
+      this.#isViewAttached = true;
 
       // Load game URL
       await gameView.webContents.loadURL(url);
@@ -92,6 +94,53 @@ export class NewWindowManager implements AppModule {
       // Close the game
       this.#closeCurrentGame(mainWindow);
     });
+
+    // Hide game view (for showing dialogs on top)
+    ipcMain.handle('hide-game-view', async (event) => {
+      const mainWindow = BrowserWindow.fromWebContents(event.sender);
+      if (!mainWindow || !this.#currentView || this.#currentView.webContents.isDestroyed()) {
+        return;
+      }
+
+      // Only remove if currently attached
+      if (this.#isViewAttached) {
+        try {
+          mainWindow.contentView.removeChildView(this.#currentView);
+          this.#isViewAttached = false;
+        } catch (error) {
+          console.error('Error hiding game view:', error);
+        }
+      }
+    });
+
+    // Show game view (after closing dialogs)
+    ipcMain.handle('show-game-view', async (event) => {
+      const mainWindow = BrowserWindow.fromWebContents(event.sender);
+      if (!mainWindow || !this.#currentView || this.#currentView.webContents.isDestroyed()) {
+        return;
+      }
+
+      // Only add if not currently attached
+      if (!this.#isViewAttached) {
+        try {
+          mainWindow.contentView.addChildView(this.#currentView);
+
+          // Reset bounds to ensure proper positioning
+          const [width, height] = mainWindow.getSize();
+          const HEADER_HEIGHT = 80;
+          this.#currentView.setBounds({
+            x: 0,
+            y: HEADER_HEIGHT,
+            width: width,
+            height: height - HEADER_HEIGHT,
+          });
+
+          this.#isViewAttached = true;
+        } catch (error) {
+          console.error('Error showing game view:', error);
+        }
+      }
+    });
   }
 
   /**
@@ -104,8 +153,15 @@ export class NewWindowManager implements AppModule {
     // Record game end BEFORE destroying
     this.#usageStats?.recordGameEnd();
 
-    // Remove view from window
-    mainWindow.contentView.removeChildView(this.#currentView);
+    // Remove view from window if attached
+    if (this.#isViewAttached) {
+      try {
+        mainWindow.contentView.removeChildView(this.#currentView);
+        this.#isViewAttached = false;
+      } catch (error) {
+        console.error('Error removing game view:', error);
+      }
+    }
 
     // CRITICAL: Close webContents to free memory
     this.#currentView.webContents.close();

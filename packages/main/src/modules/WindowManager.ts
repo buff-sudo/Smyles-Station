@@ -1,6 +1,6 @@
 import type {AppModule} from '../AppModule.js';
 import {ModuleContext} from '../ModuleContext.js';
-import {BrowserWindow} from 'electron';
+import {BrowserWindow, ipcMain} from 'electron';
 import type {AppInitConfig} from '../AppInitConfig.js';
 
 class WindowManager implements AppModule {
@@ -19,6 +19,18 @@ class WindowManager implements AppModule {
     await this.restoreOrCreateWindow(true);
     app.on('second-instance', () => this.restoreOrCreateWindow(true));
     app.on('activate', () => this.restoreOrCreateWindow(true));
+
+    // IPC handler to force window focus (useful after dialogs)
+    ipcMain.handle('window:focus', async () => {
+      const window = BrowserWindow.getAllWindows().find(w => !w.isDestroyed());
+      if (window) {
+        if (window.isMinimized()) {
+          window.restore();
+        }
+        window.focus();
+        window.setAlwaysOnTop(true, 'screen-saver');
+      }
+    });
   }
 
   async createWindow(): Promise<BrowserWindow> {

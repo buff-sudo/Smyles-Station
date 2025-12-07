@@ -59,7 +59,6 @@ const App: FC = () => {
     // Listen for shutdown failures
     window.shutdownOnFailed((error) => {
       console.error('Shutdown failed:', error)
-      alert(`Shutdown failed: ${error.error}`)
       setShutdownWarning(null)
     })
 
@@ -71,6 +70,48 @@ const App: FC = () => {
       removeEmergencyExitListener()
     }
   }, [])
+
+  // Setup global keyboard shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Ctrl+Shift+A - Open Admin Dashboard
+      if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+        e.preventDefault()
+        // If already in admin dashboard, ignore
+        if (currentView === 'admin-dashboard') return
+        // Navigate to admin login
+        setCurrentView('admin-login')
+      }
+
+      // Ctrl+Shift+Q - Emergency Exit (requires password)
+      if (e.ctrlKey && e.shiftKey && e.key === 'Q') {
+        e.preventDefault()
+        // Trigger emergency exit dialog
+        setShowEmergencyExit(true)
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [currentView])
+
+  // Manage game view visibility based on dialogs and current view
+  useEffect(() => {
+    const shouldHideGame =
+      showEmergencyExit ||
+      currentView === 'admin-login' ||
+      currentView === 'admin-dashboard'
+
+    if (shouldHideGame) {
+      window.hideGameView?.()
+    } else if (currentView === 'game-open' || currentView === 'main') {
+      // Only show game view when in game-open or main view (not session-prompt, etc.)
+      window.showGameView?.()
+    }
+  }, [showEmergencyExit, currentView])
 
   const handleOpenWindow = async (url: string, siteName: string) => {
     if (window.openNewWindow) {
@@ -140,31 +181,63 @@ const App: FC = () => {
   // Session Prompt View
   if (currentView === 'session-prompt') {
     return (
-      <SessionPrompt
-        onStartSession={handleStartSession}
-        onAdminClick={() => setCurrentView('admin-login')}
-      />
+      <>
+        {/* Emergency Exit Dialog - accessible from anywhere */}
+        {showEmergencyExit && (
+          <EmergencyExit onClose={() => setShowEmergencyExit(false)} />
+        )}
+
+        <SessionPrompt
+          onStartSession={handleStartSession}
+          onAdminClick={() => setCurrentView('admin-login')}
+        />
+      </>
     )
   }
 
   // Session Expired View
   if (currentView === 'session-expired') {
-    return <SessionExpired />
+    return (
+      <>
+        {/* Emergency Exit Dialog - accessible from anywhere */}
+        {showEmergencyExit && (
+          <EmergencyExit onClose={() => setShowEmergencyExit(false)} />
+        )}
+
+        <SessionExpired />
+      </>
+    )
   }
 
   // Admin Login View
   if (currentView === 'admin-login') {
     return (
-      <AdminLogin
-        onLoginSuccess={handleAdminLogin}
-        onCancel={() => setCurrentView('session-prompt')}
-      />
+      <>
+        {/* Emergency Exit Dialog - accessible from anywhere */}
+        {showEmergencyExit && (
+          <EmergencyExit onClose={() => setShowEmergencyExit(false)} />
+        )}
+
+        <AdminLogin
+          onLoginSuccess={handleAdminLogin}
+          onCancel={() => setCurrentView('session-prompt')}
+        />
+      </>
     )
   }
 
   // Admin Dashboard View
   if (currentView === 'admin-dashboard') {
-    return <AdminDashboard onLogout={handleAdminLogout} />
+    return (
+      <>
+        {/* Emergency Exit Dialog - accessible from anywhere */}
+        {showEmergencyExit && (
+          <EmergencyExit onClose={() => setShowEmergencyExit(false)} />
+        )}
+
+        <AdminDashboard onLogout={handleAdminLogout} />
+      </>
+    )
   }
 
   // Game Open View (minimal header while game plays)

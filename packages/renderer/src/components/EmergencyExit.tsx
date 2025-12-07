@@ -42,12 +42,16 @@ export const EmergencyExit: FC<EmergencyExitProps> = ({ onClose }) => {
     onClose();
   };
 
-  // Auto-focus password input
+  // Auto-focus password input and ensure window has focus
   useEffect(() => {
-    const input = document.getElementById('emergency-password');
-    if (input) {
-      (input as HTMLInputElement).focus();
-    }
+    // First, ensure the main window has focus
+    window.windowFocus?.().then(() => {
+      // Then focus the password input
+      const input = document.getElementById('emergency-password');
+      if (input) {
+        (input as HTMLInputElement).focus();
+      }
+    });
   }, []);
 
   return (
@@ -91,7 +95,7 @@ export const EmergencyExit: FC<EmergencyExitProps> = ({ onClose }) => {
         </form>
 
         <p className="hint-text">
-          Key combo: Ctrl+Alt+Shift+E
+          Keyboard shortcut: Ctrl+Shift+Q
         </p>
       </div>
     </div>

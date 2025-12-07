@@ -48,8 +48,6 @@ export const SiteManagement: FC = () => {
   };
 
   const handleDeleteSite = async (siteId: string, siteName: string) => {
-    if (!confirm(`Are you sure you want to delete "${siteName}"?`)) return;
-
     try {
       const success = await window.adminDeleteSite(siteId);
       if (success) {

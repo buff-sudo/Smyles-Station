@@ -46,7 +46,7 @@ Common questions and solutions for Smyles Station.
 - 45 minutes (classroom use)
 - 60 minutes (extended use)
 
-You set this once in Admin Dashboard � Settings � "Session Time Limit"
+You set this once in Admin Dashboard -> Settings -> "Session Time Limit"
 
 ### Q: Can I change the time limit for individual sessions?
 
@@ -86,7 +86,7 @@ You set this once in Admin Dashboard � Settings � "Session Time Limit"
 ### Q: How do I access Admin Settings?
 
 **A:**
-1. On the welcome screen, click the **Settings button (�)** at the top right
+1. On the welcome screen, click the **Settings button** at the top right
 2. Select **Admin Settings**
 3. Enter your admin password
 
@@ -118,7 +118,7 @@ You set this once in Admin Dashboard � Settings � "Session Time Limit"
 
 ### Q: The Settings button doesn't appear. Where is it?
 
-**A:** The Settings button (�) is at the top right of the welcome screen (the screen with the big Play button). If you're in a game session, end the session first.
+**A:** The Settings button is at the top right of the welcome screen (the screen with the big Play button). If you're in a game session, end the session first.
 
 ---
 
@@ -148,7 +148,7 @@ See [Configuration Guide](../setup/config.md) for details.
 
 **Site blocks embedding:** Some websites prevent being displayed in embedded views for security. These sites won't work in Smyles Station.
 
-**Wrong URL:** Verify the URL is correct in Admin Dashboard � Sites
+**Wrong URL:** Verify the URL is correct in Admin Dashboard -> Sites
 
 ### Q: A game loads but looks broken or doesn't work properly.
 
@@ -166,7 +166,7 @@ Not all websites are compatible with embedded viewing.
 ### Q: How do I remove a game?
 
 **A:**
-1. Admin Dashboard � Sites tab
+1. Admin Dashboard -> Sites tab
 2. Find the site
 3. Click the **Delete** button (trash icon)
 4. Confirm deletion
@@ -180,7 +180,7 @@ Not all websites are compatible with embedded viewing.
 
 ### Q: How do I reorder games?
 
-**A:** In Admin Dashboard � Sites tab, drag and drop the site tiles to reorder them. Changes save automatically.
+**A:** In Admin Dashboard -> Sites tab, drag and drop the site tiles to reorder them. Changes save automatically.
 
 ---
 
@@ -202,7 +202,7 @@ Try reinstalling if the issue persists.
 
 **Try:**
 1. Disable hardware acceleration:
-   - Admin Dashboard � Settings � Uncheck "Enable Hardware Acceleration"
+   - Admin Dashboard -> Settings -> Uncheck "Enable Hardware Acceleration"
 2. Update graphics drivers
 3. Check available RAM (4 GB minimum, 8 GB recommended)
 4. Review logs for error messages
@@ -232,7 +232,7 @@ Try reinstalling if the issue persists.
 
 **Check:**
 - Session Time Limit is set to a value greater than 0
-- Admin Dashboard � Settings � "Session Time Limit"
+- Admin Dashboard -> Settings -> "Session Time Limit"
 - If set to 0, timer won't display (unlimited session)
 
 ### Q: The session doesn't end when timer reaches zero.
@@ -245,7 +245,7 @@ Try reinstalling if the issue persists.
 ### Q: Scheduled shutdown isn't working.
 
 **Check:**
-1. Admin Dashboard � Schedule tab
+1. Admin Dashboard -> Schedule tab
 2. Verify day is enabled (checkmark)
 3. Verify time is correct (24-hour format: 8 PM = 20:00)
 4. Click "Save" or "Update" after making changes
@@ -292,7 +292,7 @@ Files include:
 **A:**
 1. Immediately end the session (click "End Session")
 2. Investigate what they saw
-3. Remove the site: Admin Dashboard � Sites � Delete
+3. Remove the site: Admin Dashboard -> Sites -> Delete
 4. Report the issue to the site owner and/or Smyles Station developers
 
 ### Q: How do I prevent kids from closing Smyles Station?
@@ -303,7 +303,7 @@ For complete lockdown where kids cannot access Windows at all, see [OS-Level Sec
 
 ### Q: Can I monitor which games kids are playing?
 
-**A:** Yes. Admin Dashboard � Statistics tab shows:
+**A:** Yes. Admin Dashboard -> Statistics tab shows:
 - Most popular games
 - Total time played
 - Session history
@@ -328,7 +328,7 @@ You can also export this data as CSV.
 ### Q: How do I view usage statistics?
 
 **A:**
-1. Admin Dashboard � Statistics tab
+1. Admin Dashboard -> Statistics tab
 2. View summary data:
    - Total sessions
    - Completed sessions

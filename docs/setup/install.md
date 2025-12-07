@@ -317,7 +317,7 @@ sudo dnf install missing-package-name
 
 1. Press `Win + R`
 2. Type `shell:startup` and press Enter
-3. Right-click in the folder � New � Shortcut
+3. Right-click in the folder -> New -> Shortcut
 4. Browse to: `C:\Program Files\Smyles Station\Smyles Station.exe`
 5. Click OK and name it "Smyles Station"
 
@@ -352,7 +352,7 @@ sudo systemctl start smyles-station
 For extra security, run Smyles Station under a limited user account:
 
 **Windows:**
-1. Settings � Accounts � Family & other users
+1. Settings -> Accounts -> Family & other users
 2. Add someone else to this PC
 3. Create account without Microsoft account
 4. Set as Standard user (not Administrator)
@@ -386,9 +386,9 @@ To update:
 If you need to remove Smyles Station:
 
 **Windows:**
-1. Settings � Apps � Apps & features
+1. Settings -> Apps -> Apps & features
 2. Find "Smyles Station"
-3. Click � Uninstall
+3. Click -> Uninstall
 
 **Linux (Debian/Ubuntu):**
 ```sh

@@ -1,4 +1,4 @@
-import { type FC, useState } from 'react';
+import { type FC, useState, useEffect } from 'react';
 import './AdminLogin.css';
 
 interface AdminLoginProps {
@@ -10,6 +10,16 @@ export const AdminLogin: FC<AdminLoginProps> = ({ onLoginSuccess, onCancel }) =>
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  // Ensure window has focus for input to work properly
+  useEffect(() => {
+    window.windowFocus?.().then(() => {
+      const input = document.getElementById('password');
+      if (input) {
+        (input as HTMLInputElement).focus();
+      }
+    });
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
