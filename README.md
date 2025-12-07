@@ -2,7 +2,7 @@
 
 A secure, kid-friendly computer kiosk designed for libraries, schools, and community centers. Smyles Station provides safe access to educational games and websites with time management, content control, and automatic shutdowns.
 
-![Smyle Station Logo](packages/renderer/src/assets/smyles-station-logo.png)
+![Smyle Station Logo](packages/renderer/src/assets/smyles-station-logo.svg)
 
 ## For Librarians & Administrators
 

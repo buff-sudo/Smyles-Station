@@ -79,8 +79,6 @@ A bright yellow warning screen appears that says:
 - Shows a countdown timer
 - Reminds everyone to save their work
 
-**Important**: This warning CANNOT be closed or cancelled!
-
 ### When Time's Up
 - The computer counts down to zero
 - Everything closes automatically
@@ -98,17 +96,6 @@ A bright yellow warning screen appears that says:
 
 They can refer to the technical notes at the bottom of this page for exact instructions.
 
-## Testing It Out
-
-Before setting this up for real, you might want to test it:
-
-1. Set a shutdown time for 5 minutes from now
-2. Click "Update Shutdown Schedule"
-3. Wait and watch - the warning should appear in 10 minutes... wait, that won't work!
-
-**Better test**: Set it for today, about 15 minutes from now, so you can see the 10-minute warning.
-
-**Even better**: Ask someone technical to run the program in "test mode" where it shows the warnings but doesn't actually shut down.
 
 ## Common Questions
 
