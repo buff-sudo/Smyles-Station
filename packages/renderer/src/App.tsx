@@ -25,24 +25,24 @@ const App: FC = () => {
   // Setup session event listeners
   useEffect(() => {
     // Listen for session status updates (every second)
-    window.sessionOnStatus((status: SessionStatus) => {
+    const removeStatusListener = window.sessionOnStatus((status: SessionStatus) => {
       setTimeRemaining(status.timeRemaining)
     })
 
     // Listen for warning event
-    window.sessionOnWarning(() => {
+    const removeWarningListener = window.sessionOnWarning(() => {
       setShowWarning(true)
       // Auto-dismiss after 5 seconds
       setTimeout(() => setShowWarning(false), 5000)
     })
 
     // Listen for expiry event
-    window.sessionOnExpired(() => {
+    const removeExpiredListener = window.sessionOnExpired(() => {
       handleSessionExpired()
     })
 
     // Listen for emergency exit request
-    window.adminOnEmergencyExitRequested(() => {
+    const removeEmergencyExitListener = window.adminOnEmergencyExitRequested(() => {
       setShowEmergencyExit(true)
     })
 
@@ -62,6 +62,14 @@ const App: FC = () => {
       alert(`Shutdown failed: ${error.error}`)
       setShutdownWarning(null)
     })
+
+    // Cleanup all listeners on unmount
+    return () => {
+      removeStatusListener()
+      removeWarningListener()
+      removeExpiredListener()
+      removeEmergencyExitListener()
+    }
   }, [])
 
   const handleOpenWindow = async (url: string, siteName: string) => {

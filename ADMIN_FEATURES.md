@@ -192,7 +192,9 @@ function myFeatureDoAction(arg1: string, arg2: number): Promise<{success: boolea
 }
 
 function myFeatureOnNotification(callback: (data: {message: string}) => void) {
-  ipcRenderer.on('my-feature:notification', (_event, data) => callback(data));
+  const handler = (_event: any, data: any) => callback(data);
+  ipcRenderer.on('my-feature:notification', handler);
+  return () => ipcRenderer.removeListener('my-feature:notification', handler);
 }
 
 export {

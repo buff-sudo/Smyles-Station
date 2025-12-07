@@ -36,9 +36,12 @@ export const SessionPrompt: FC<SessionPromptProps> = ({ onStartSession, onAdminC
     loadSettings();
 
     // Listen for admin settings changes
-    window.adminOnSettingsChanged((settings) => {
+    const removeListener = window.adminOnSettingsChanged((settings) => {
       setSessionTimeLimit(settings.sessionTimeLimit);
     });
+
+    // Cleanup listener on unmount
+    return removeListener;
   }, []);
 
   // Handle click outside to close settings menu
