@@ -30,6 +30,13 @@ jobs:
       name: ${{inputs.distribution-channel}}
       url: https://github.com/${{github.repository}}/releases/tag/v${{inputs.app-version}}
     steps:
+      - name: Debug - List available artifacts
+        run: |
+          echo "Looking for artifacts matching pattern: *-${{inputs.distribution-channel}}"
+          gh api repos/${{github.repository}}/actions/runs/${{github.run_id}}/artifacts --jq '.artifacts[] | "Name: \(.name), ID: \(.id)"'
+        env:
+          GH_TOKEN: ${{ github.token }}
+
       - name: Download compiled app
         uses: actions/download-artifact@v5
         with:
@@ -40,9 +47,9 @@ jobs:
       - name: Debug - List dist contents
         run: |
           echo "Contents of dist directory:"
-          ls -laR dist/
+          ls -laR dist/ || echo "dist directory does not exist"
           echo "Looking for smyles-station files:"
-          find dist -name "smyles-station-*" -type f || echo "No smyles-station files found"
+          find dist -name "smyles-station-*" -type f 2>/dev/null || echo "No smyles-station files found"
 
       - run: gh release create v${{inputs.app-version}} dist/smyles-station-*.* --repo ${{github.repository}}
         env:
