@@ -5,6 +5,14 @@ theme:
 # This tells MkDocs where your markdown files live
 docs_dir: docs
 
+# Enable Mermaid diagram support
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
 nav:
   - Home: index.md
   - 'For Librarians (Setup)':

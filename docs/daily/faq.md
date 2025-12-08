@@ -351,33 +351,6 @@ You can also export this data as CSV.
 
 ---
 
-## Updating & Maintenance
-
-### Q: How do I update Smyles Station?
-
-**A:** Smyles Station doesn't auto-update. To update:
-1. Visit [GitHub Releases](https://github.com/buff-sudo/smyles-station/releases)
-2. Download latest version
-3. Install over existing installation
-4. Your settings and sites are preserved
-
-See the [Updates Guide](updates.md) for details.
-
-### Q: How often should I backup my configuration?
-
-**A:** Recommended:
-- Before any updates
-- Weekly during regular maintenance
-- After adding many sites or making major changes
-
-See [Backup Guide](updates.md#backup-and-restore) for instructions.
-
-### Q: Can I use Smyles Station on multiple computers with the same configuration?
-
-**A:** Yes. Backup the configuration files from one computer and copy them to others. See [Configuration Sharing](updates.md#sharing-configuration-across-multiple-installations).
-
----
-
 ## Advanced Questions
 
 ### Q: Can I customize the appearance/colors?
