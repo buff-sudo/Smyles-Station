@@ -72,7 +72,7 @@ jobs:
           subject-path: "dist/smyles-station-*.*, dist/latest*.yml"
 
       - name: Upload compiled app
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: ${{ matrix.os }}-${{inputs.distribution-channel}}
           path: dist
