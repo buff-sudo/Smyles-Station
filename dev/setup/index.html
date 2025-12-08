@@ -1,0 +1,2015 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../architecture/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Local Development - Smyles Station Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#local-development-setup" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Smyles Station Documentation" class="md-header__button md-logo" aria-label="Smyles Station Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Smyles Station Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Local Development
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Smyles Station Documentation" class="md-nav__button md-logo" aria-label="Smyles Station Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Smyles Station Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For Librarians (Setup)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    For Librarians (Setup)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prerequisites (Hardware)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Step 1: Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/kiosk-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Step 2: Kiosk Mode (Locking it down)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Step 3: Customization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Daily Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Daily Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../daily/sessions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing Sessions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../daily/scheduled-shutdown/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setting Up Automatic Shutdowns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../daily/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting & FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For Developers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    For Developers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Local Development
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Local Development
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prerequisites">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required Software
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recommended-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Software
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#initial-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initial Setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Initial Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-clone-the-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Clone the Repository
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-install-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Install Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-verify-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Verify Installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#development-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Development Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Development Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#start-development-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Start Development Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-checking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type Checking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#development-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Development Workflow
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Development Workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#making-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Making Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#working-with-different-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Working with Different Packages
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Working with Different Packages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#renderer-ui-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Renderer (UI) Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#main-process-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Main Process Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preload-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preload Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debugging
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#renderer-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Renderer Process
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#main-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Main Process
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preload-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preload Script
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-development-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Development Tasks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Development Tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-new-npm-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding a New npm Package
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updating-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Updating Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clearing-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clearing Cache
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Variables
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-not-found-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Module not found" errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#typescript-errors-after-pulling-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TypeScript errors after pulling changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-wont-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Application won't start
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hot-reload-not-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hot reload not working
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compiled-app-behaves-differently-than-dev-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compiled app behaves differently than dev mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting Help
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prerequisites">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required Software
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recommended-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Software
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#initial-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initial Setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Initial Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-clone-the-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Clone the Repository
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-install-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Install Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-verify-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Verify Installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#development-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Development Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Development Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#start-development-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Start Development Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-checking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type Checking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#development-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Development Workflow
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Development Workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#making-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Making Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#working-with-different-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Working with Different Packages
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Working with Different Packages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#renderer-ui-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Renderer (UI) Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#main-process-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Main Process Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preload-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preload Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debugging
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#renderer-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Renderer Process
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#main-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Main Process
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preload-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preload Script
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-development-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Development Tasks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Development Tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-new-npm-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding a New npm Package
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updating-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Updating Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clearing-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clearing Cache
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Variables
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-not-found-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Module not found" errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#typescript-errors-after-pulling-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TypeScript errors after pulling changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-wont-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Application won't start
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hot-reload-not-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hot reload not working
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compiled-app-behaves-differently-than-dev-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compiled app behaves differently than dev mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting Help
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="local-development-setup">Local Development Setup</h1>
+<p>This guide will help you set up your development environment for Smyles Station.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<h3 id="required-software">Required Software</h3>
+<ol>
+<li><strong>Node.js &gt;= 23.0.0</strong></li>
+<li>Download from <a href="https://nodejs.org/">nodejs.org</a></li>
+<li>
+<p>Verify installation: <code>node --version</code></p>
+</li>
+<li>
+<p><strong>npm</strong> (included with Node.js)</p>
+</li>
+<li>
+<p>Verify installation: <code>npm --version</code></p>
+</li>
+<li>
+<p><strong>Git</strong></p>
+</li>
+<li>Download from <a href="https://git-scm.com/">git-scm.com</a></li>
+<li>Verify installation: <code>git --version</code></li>
+</ol>
+<h3 id="recommended-software">Recommended Software</h3>
+<ol>
+<li><strong>Visual Studio Code</strong></li>
+<li>Download from <a href="https://code.visualstudio.com/">code.visualstudio.com</a></li>
+<li>
+<p>Recommended extensions:</p>
+<ul>
+<li>ESLint</li>
+<li>Prettier</li>
+<li>TypeScript and JavaScript Language Features</li>
+</ul>
+</li>
+<li>
+<p><strong>React Developer Tools</strong></p>
+</li>
+<li>Browser extension for debugging React components</li>
+<li>Available in development mode</li>
+</ol>
+<h2 id="initial-setup">Initial Setup</h2>
+<h3 id="1-clone-the-repository">1. Clone the Repository</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Clone your fork</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/buff-sudo/smyles-station.git
+<span class="nb">cd</span><span class="w"> </span>verbose-funicular
+
+<span class="c1"># Add upstream remote</span>
+git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>https://github.com/buff-sudo/smyles-station.git
+</code></pre></div>
+<h3 id="2-install-dependencies">2. Install Dependencies</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Install all dependencies for all packages</span>
+npm<span class="w"> </span>install
+</code></pre></div>
+<p>This will install dependencies for all packages in the monorepo (main, preload, renderer, etc.).</p>
+<h3 id="3-verify-installation">3. Verify Installation</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Check that TypeScript compiles without errors</span>
+npm<span class="w"> </span>run<span class="w"> </span>typecheck
+
+<span class="c1"># Try building all packages</span>
+npm<span class="w"> </span>run<span class="w"> </span>build
+</code></pre></div>
+<p>If these commands complete without errors, you're ready to develop!</p>
+<h2 id="development-commands">Development Commands</h2>
+<h3 id="start-development-mode">Start Development Mode</h3>
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>start
+</code></pre></div>
+<p>This will:
+- Start the Vite dev server for the renderer
+- Launch Electron in development mode
+- Enable hot-reload for renderer changes
+- Auto-restart on main process changes</p>
+<p><strong>Note:</strong> The application will open in a development window. DevTools are available by default.</p>
+<h3 id="type-checking">Type Checking</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Check types across all packages</span>
+npm<span class="w"> </span>run<span class="w"> </span>typecheck
+</code></pre></div>
+<p>Run this frequently during development to catch type errors early.</p>
+<h3 id="building">Building</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Build all packages</span>
+npm<span class="w"> </span>run<span class="w"> </span>build
+
+<span class="c1"># Build for production and create executable</span>
+npm<span class="w"> </span>run<span class="w"> </span>compile
+
+<span class="c1"># Build for debugging (unpacked, no asar)</span>
+npm<span class="w"> </span>run<span class="w"> </span>compile<span class="w"> </span>--<span class="w"> </span>--dir<span class="w"> </span>-c.asar<span class="o">=</span><span class="nb">false</span>
+</code></pre></div>
+<h3 id="testing">Testing</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Run end-to-end tests</span>
+npm<span class="w"> </span><span class="nb">test</span>
+</code></pre></div>
+<p>Tests are located in the <code>tests/</code> directory and use Playwright.</p>
+<h2 id="project-structure">Project Structure</h2>
+<pre class="mermaid"><code>graph TD
+    root[smyles-station/]
+
+    root --&gt; packages[packages/]
+    root --&gt; tests[tests/&lt;br/&gt;E2E tests]
+    root --&gt; docs[docs/&lt;br/&gt;Documentation]
+    root --&gt; builder[electron-builder.mjs&lt;br/&gt;Build configuration]
+    root --&gt; pkgjson[package.json&lt;br/&gt;Root package.json]
+
+    packages --&gt; main[main/&lt;br/&gt;Electron main process]
+    packages --&gt; preload[preload/&lt;br/&gt;Preload scripts]
+    packages --&gt; renderer[renderer/&lt;br/&gt;React UI]
+    packages --&gt; integrate[integrate-renderer/&lt;br/&gt;Build tooling]
+    packages --&gt; versions[electron-versions/&lt;br/&gt;Version helpers]
+
+    main --&gt; main_src[src/]
+    main --&gt; main_pkg[package.json]
+    main --&gt; main_ts[tsconfig.json]
+    main_src --&gt; main_index[index.ts&lt;br/&gt;Entry point]
+    main_src --&gt; main_modules[modules/&lt;br/&gt;Feature modules]
+
+    preload --&gt; preload_src[src/]
+    preload --&gt; preload_pkg[package.json]
+    preload --&gt; preload_ts[tsconfig.json]
+    preload_src --&gt; preload_index[index.ts&lt;br/&gt;Exposed APIs]
+
+    renderer --&gt; renderer_src[src/]
+    renderer --&gt; renderer_pkg[package.json]
+    renderer --&gt; renderer_ts[tsconfig.json]
+    renderer_src --&gt; renderer_app[App.tsx]
+    renderer_src --&gt; renderer_comp[components/]
+    renderer_src --&gt; renderer_assets[assets/]</code></pre>
+<h2 id="development-workflow">Development Workflow</h2>
+<h3 id="making-changes">Making Changes</h3>
+<ol>
+<li>
+<p><strong>Create a feature branch:</strong>
+   <div class="highlight"><pre><span></span><code>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feature/my-feature
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Start development mode:</strong>
+   <div class="highlight"><pre><span></span><code>npm<span class="w"> </span>start
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Make your changes:</strong></p>
+</li>
+<li>Edit files in the appropriate package</li>
+<li>Renderer changes hot-reload automatically</li>
+<li>
+<p>Main process changes trigger automatic restart</p>
+</li>
+<li>
+<p><strong>Test your changes:</strong></p>
+</li>
+<li>Manually test in the development window</li>
+<li>Run type checking: <code>npm run typecheck</code></li>
+<li>
+<p>Run tests: <code>npm test</code></p>
+</li>
+<li>
+<p><strong>Commit your changes:</strong>
+   <div class="highlight"><pre><span></span><code>git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Descriptive commit message&quot;</span>
+</code></pre></div></p>
+</li>
+</ol>
+<h3 id="working-with-different-packages">Working with Different Packages</h3>
+<h4 id="renderer-ui-changes">Renderer (UI) Changes</h4>
+<p>Located in <code>packages/renderer/src/</code>:</p>
+<ul>
+<li><strong>React components:</strong> <code>components/</code></li>
+<li><strong>Styles:</strong> Component-specific <code>.css</code> files</li>
+<li><strong>Assets:</strong> <code>assets/</code></li>
+</ul>
+<p>Changes hot-reload automatically - no restart needed.</p>
+<h4 id="main-process-changes">Main Process Changes</h4>
+<p>Located in <code>packages/main/src/</code>:</p>
+<ul>
+<li><strong>Modules:</strong> <code>modules/</code></li>
+<li><strong>Entry point:</strong> <code>index.ts</code></li>
+</ul>
+<p>Changes trigger automatic application restart in development mode.</p>
+<h4 id="preload-changes">Preload Changes</h4>
+<p>Located in <code>packages/preload/src/</code>:</p>
+<ul>
+<li><strong>Exposed APIs:</strong> <code>index.ts</code></li>
+</ul>
+<p>Changes require application restart. The preload script acts as a secure bridge between renderer and main.</p>
+<h2 id="debugging">Debugging</h2>
+<h3 id="renderer-process">Renderer Process</h3>
+<ol>
+<li><strong>Chrome DevTools:</strong></li>
+<li>Automatically available in development mode</li>
+<li>Press <code>Ctrl+Shift+I</code> (Windows/Linux) or <code>Cmd+Option+I</code> (Mac)</li>
+<li>
+<p>Use React DevTools for component inspection</p>
+</li>
+<li>
+<p><strong>Console Logging:</strong>
+   <div class="highlight"><pre><span></span><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Debugging info&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">);</span>
+</code></pre></div></p>
+</li>
+</ol>
+<h3 id="main-process">Main Process</h3>
+<ol>
+<li>
+<p><strong>Console Logging:</strong>
+   <div class="highlight"><pre><span></span><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Main process log&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">);</span>
+</code></pre></div>
+   Output appears in the terminal where you ran <code>npm start</code>.</p>
+</li>
+<li>
+<p><strong>VS Code Debugging:</strong>
+   Create <code>.vscode/launch.json</code>:
+   <div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.2.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;configurations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Debug Main Process&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;node&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;launch&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;cwd&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceFolder}&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;runtimeExecutable&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceFolder}/node_modules/.bin/electron&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;windows&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;runtimeExecutable&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceFolder}/node_modules/.bin/electron.cmd&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;.&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--remote-debugging-port=9223&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;outputCapture&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;std&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;console&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integratedTerminal&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></p>
+</li>
+</ol>
+<h3 id="preload-script">Preload Script</h3>
+<p>Logging appears in the renderer's console (DevTools):
+<div class="highlight"><pre><span></span><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Preload log&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">);</span>
+</code></pre></div></p>
+<h2 id="common-development-tasks">Common Development Tasks</h2>
+<h3 id="adding-a-new-npm-package">Adding a New npm Package</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Add to a specific workspace</span>
+npm<span class="w"> </span>install<span class="w"> </span>package-name<span class="w"> </span>--workspace<span class="w"> </span>@app/renderer
+
+<span class="c1"># Add to main package</span>
+npm<span class="w"> </span>install<span class="w"> </span>package-name<span class="w"> </span>--workspace<span class="w"> </span>@app/main
+
+<span class="c1"># Add dev dependency to root</span>
+npm<span class="w"> </span>install<span class="w"> </span>-D<span class="w"> </span>package-name
+</code></pre></div>
+<h3 id="updating-dependencies">Updating Dependencies</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Update all dependencies</span>
+npm<span class="w"> </span>update
+
+<span class="c1"># Update specific package</span>
+npm<span class="w"> </span>update<span class="w"> </span>package-name
+</code></pre></div>
+<h3 id="clearing-cache">Clearing Cache</h3>
+<p>If you encounter build issues:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Clear node_modules and reinstall</span>
+rm<span class="w"> </span>-rf<span class="w"> </span>node_modules<span class="w"> </span>package-lock.json
+npm<span class="w"> </span>install
+
+<span class="c1"># Clear Vite cache</span>
+rm<span class="w"> </span>-rf<span class="w"> </span>packages/renderer/.vite
+</code></pre></div>
+<h2 id="environment-variables">Environment Variables</h2>
+<p>Environment variables are managed through <code>.env</code> files:</p>
+<div class="highlight"><pre><span></span><code>.env                # Shared across all modes
+.env.local          # Local overrides (git-ignored)
+.env.development    # Development mode only
+.env.production     # Production mode only
+</code></pre></div>
+<p><strong>Important:</strong> Only variables prefixed with <code>VITE_</code> are exposed to the renderer:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># .env.local</span>
+<span class="nv">VITE_API_KEY</span><span class="o">=</span>your-key-here<span class="w">  </span><span class="c1"># Available in renderer</span>
+<span class="nv">SECRET_KEY</span><span class="o">=</span>secret<span class="w">           </span><span class="c1"># Only available in main process</span>
+</code></pre></div>
+<p>Access in renderer:
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">apiKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">import</span><span class="p">.</span><span class="nx">meta</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">VITE_API_KEY</span><span class="p">;</span>
+</code></pre></div></p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="module-not-found-errors">"Module not found" errors</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Reinstall dependencies</span>
+npm<span class="w"> </span>install
+</code></pre></div>
+<h3 id="typescript-errors-after-pulling-changes">TypeScript errors after pulling changes</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Rebuild all packages</span>
+npm<span class="w"> </span>run<span class="w"> </span>build
+</code></pre></div>
+<h3 id="application-wont-start">Application won't start</h3>
+<ol>
+<li>Check Node.js version: <code>node --version</code> (must be &gt;= 23.0.0)</li>
+<li>Clear cache and reinstall:
+   <div class="highlight"><pre><span></span><code>rm<span class="w"> </span>-rf<span class="w"> </span>node_modules<span class="w"> </span>package-lock.json
+npm<span class="w"> </span>install
+</code></pre></div></li>
+</ol>
+<h3 id="hot-reload-not-working">Hot reload not working</h3>
+<ol>
+<li>Restart development server: <code>Ctrl+C</code>, then <code>npm start</code></li>
+<li>Check that you're editing files in <code>packages/renderer/src/</code></li>
+<li>Main process changes require manual restart</li>
+</ol>
+<h3 id="compiled-app-behaves-differently-than-dev-mode">Compiled app behaves differently than dev mode</h3>
+<ol>
+<li>Test with debug build:
+   <div class="highlight"><pre><span></span><code>npm<span class="w"> </span>run<span class="w"> </span>compile<span class="w"> </span>--<span class="w"> </span>--dir<span class="w"> </span>-c.asar<span class="o">=</span><span class="nb">false</span>
+</code></pre></div></li>
+<li>Check console logs in compiled app (terminal output)</li>
+<li>Verify environment variables are set correctly</li>
+</ol>
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li>Read the <a href="../architecture/">Architecture Overview</a> to understand system design</li>
+<li>Review the <a href="../contributing/">Contributing Guide</a> for code standards</li>
+<li>Check out existing modules in <code>packages/main/src/modules/</code> for examples</li>
+</ul>
+<h2 id="getting-help">Getting Help</h2>
+<ul>
+<li><strong>Issues:</strong> Check existing issues or open a new one</li>
+<li><strong>Questions:</strong> Open a discussion on GitHub</li>
+<li><strong>Security:</strong> Email smyles-station-safety@proton.me</li>
+</ul>
+<p>Happy coding!</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

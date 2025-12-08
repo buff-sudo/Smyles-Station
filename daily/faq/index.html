@@ -1,0 +1,2511 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../scheduled-shutdown/">
+      
+      
+        <link rel="next" href="../../dev/contributing/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Troubleshooting & FAQ - Smyles Station Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#troubleshooting-faq" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Smyles Station Documentation" class="md-header__button md-logo" aria-label="Smyles Station Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Smyles Station Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Troubleshooting & FAQ
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Smyles Station Documentation" class="md-nav__button md-logo" aria-label="Smyles Station Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Smyles Station Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For Librarians (Setup)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    For Librarians (Setup)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prerequisites (Hardware)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Step 1: Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/kiosk-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Step 2: Kiosk Mode (Locking it down)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Step 3: Customization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Daily Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Daily Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sessions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing Sessions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scheduled-shutdown/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setting Up Automatic Shutdowns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting & FAQ
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting & FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting Started
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting Started">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q-what-is-smyles-station" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: What is Smyles Station?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-what-do-i-need-to-run-smyles-station" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: What do I need to run Smyles Station?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-install-smyles-station" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: How do I install Smyles Station?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-is-smyles-station-free" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Is Smyles Station free?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sessions-time-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sessions &amp; Time Limits
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sessions &amp; Time Limits">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q-how-long-is-each-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: How long is each session?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-i-change-the-time-limit-for-individual-sessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Can I change the time limit for individual sessions?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-kids-extend-their-session-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Can kids extend their session time?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-what-happens-when-the-session-timer-expires" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: What happens when the session timer expires?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-kids-switch-games-during-their-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Can kids switch games during their session?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-set-session-time-to-unlimited" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: How do I set session time to unlimited?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#admin-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Admin Access
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Admin Access">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q-whats-the-default-admin-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: What's the default admin password?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-access-admin-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: How do I access Admin Settings?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-i-forgot-my-admin-password-what-do-i-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: I forgot my admin password. What do I do?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-change-the-admin-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: How do I change the admin password?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-i-have-multiple-admin-passwords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Can I have multiple admin passwords?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-the-settings-button-doesnt-appear-where-is-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: The Settings button doesn't appear. Where is it?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#games-sites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Games &amp; Sites
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Games &amp; Sites">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-add-games" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: How do I add games?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-why-wont-a-game-load" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Why won't a game load?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-a-game-loads-but-looks-broken-or-doesnt-work-properly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: A game loads but looks broken or doesn't work properly.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-kids-download-files-or-install-programs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Can kids download files or install programs?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-remove-a-game" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: How do I remove a game?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-the-game-icons-dont-show-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: The game icons don't show up.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-reorder-games" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: How do I reorder games?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technical-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technical Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Technical Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q-smyles-station-wont-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Smyles Station won't start.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-the-application-crashes-frequently" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: The application crashes frequently.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-the-play-button-doesnt-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: The Play button doesn't work.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-games-load-slowly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Games load slowly.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-the-timer-doesnt-appear" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: The timer doesn't appear.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-the-session-doesnt-end-when-timer-reaches-zero" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: The session doesn't end when timer reaches zero.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-scheduled-shutdown-isnt-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Scheduled shutdown isn't working.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-where-are-configuration-files-stored" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Where are configuration files stored?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-safety" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security &amp; Safety
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security &amp; Safety">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q-is-smyles-station-safe-for-children" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Is Smyles Station safe for children?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-kids-access-websites-not-on-the-approved-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Can kids access websites not on the approved list?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-kids-access-windows-or-other-programs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Can kids access Windows or other programs?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-what-if-a-kid-finds-inappropriate-content-on-an-approved-site" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: What if a kid finds inappropriate content on an approved site?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-prevent-kids-from-closing-smyles-station" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: How do I prevent kids from closing Smyles Station?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-i-monitor-which-games-kids-are-playing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Can I monitor which games kids are playing?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-how-secure-is-the-admin-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: How secure is the admin password?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-statistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage &amp; Statistics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage &amp; Statistics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-view-usage-statistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: How do I view usage statistics?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-i-export-usage-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Can I export usage data?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-resetclear-statistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: How do I reset/clear statistics?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q-can-i-customize-the-appearancecolors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Can I customize the appearance/colors?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-i-add-password-protection-to-individual-games" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Can I add password protection to individual games?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-i-have-different-time-limits-for-different-age-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Can I have different time limits for different age groups?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-does-smyles-station-work-offline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Does Smyles Station work offline?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-i-host-my-own-games-instead-of-using-external-websites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Can I host my own games instead of using external websites?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-i-white-label-or-rebrand-smyles-station" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Can I white-label or rebrand Smyles Station?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#still-need-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Still Need Help?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reporting-bugs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reporting Bugs
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For Developers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    For Developers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Local Development
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting Started
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting Started">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q-what-is-smyles-station" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: What is Smyles Station?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-what-do-i-need-to-run-smyles-station" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: What do I need to run Smyles Station?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-install-smyles-station" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: How do I install Smyles Station?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-is-smyles-station-free" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Is Smyles Station free?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sessions-time-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sessions &amp; Time Limits
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sessions &amp; Time Limits">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q-how-long-is-each-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: How long is each session?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-i-change-the-time-limit-for-individual-sessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Can I change the time limit for individual sessions?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-kids-extend-their-session-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Can kids extend their session time?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-what-happens-when-the-session-timer-expires" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: What happens when the session timer expires?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-kids-switch-games-during-their-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Can kids switch games during their session?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-set-session-time-to-unlimited" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: How do I set session time to unlimited?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#admin-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Admin Access
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Admin Access">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q-whats-the-default-admin-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: What's the default admin password?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-access-admin-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: How do I access Admin Settings?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-i-forgot-my-admin-password-what-do-i-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: I forgot my admin password. What do I do?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-change-the-admin-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: How do I change the admin password?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-i-have-multiple-admin-passwords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Can I have multiple admin passwords?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-the-settings-button-doesnt-appear-where-is-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: The Settings button doesn't appear. Where is it?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#games-sites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Games &amp; Sites
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Games &amp; Sites">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-add-games" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: How do I add games?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-why-wont-a-game-load" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Why won't a game load?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-a-game-loads-but-looks-broken-or-doesnt-work-properly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: A game loads but looks broken or doesn't work properly.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-kids-download-files-or-install-programs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Can kids download files or install programs?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-remove-a-game" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: How do I remove a game?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-the-game-icons-dont-show-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: The game icons don't show up.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-reorder-games" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: How do I reorder games?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technical-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technical Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Technical Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q-smyles-station-wont-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Smyles Station won't start.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-the-application-crashes-frequently" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: The application crashes frequently.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-the-play-button-doesnt-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: The Play button doesn't work.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-games-load-slowly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Games load slowly.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-the-timer-doesnt-appear" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: The timer doesn't appear.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-the-session-doesnt-end-when-timer-reaches-zero" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: The session doesn't end when timer reaches zero.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-scheduled-shutdown-isnt-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Scheduled shutdown isn't working.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-where-are-configuration-files-stored" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Where are configuration files stored?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-safety" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security &amp; Safety
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security &amp; Safety">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q-is-smyles-station-safe-for-children" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Is Smyles Station safe for children?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-kids-access-websites-not-on-the-approved-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Can kids access websites not on the approved list?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-kids-access-windows-or-other-programs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Can kids access Windows or other programs?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-what-if-a-kid-finds-inappropriate-content-on-an-approved-site" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: What if a kid finds inappropriate content on an approved site?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-prevent-kids-from-closing-smyles-station" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: How do I prevent kids from closing Smyles Station?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-i-monitor-which-games-kids-are-playing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Can I monitor which games kids are playing?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-how-secure-is-the-admin-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: How secure is the admin password?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-statistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage &amp; Statistics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage &amp; Statistics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-view-usage-statistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: How do I view usage statistics?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-i-export-usage-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Can I export usage data?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-how-do-i-resetclear-statistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: How do I reset/clear statistics?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q-can-i-customize-the-appearancecolors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Can I customize the appearance/colors?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-i-add-password-protection-to-individual-games" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Can I add password protection to individual games?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-i-have-different-time-limits-for-different-age-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Can I have different time limits for different age groups?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-does-smyles-station-work-offline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Does Smyles Station work offline?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-i-host-my-own-games-instead-of-using-external-websites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Can I host my own games instead of using external websites?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-can-i-white-label-or-rebrand-smyles-station" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q: Can I white-label or rebrand Smyles Station?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#still-need-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Still Need Help?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reporting-bugs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reporting Bugs
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="troubleshooting-faq">Troubleshooting &amp; FAQ</h1>
+<p>Common questions and solutions for Smyles Station.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#sessions--time-limits">Sessions &amp; Time Limits</a></li>
+<li><a href="#admin-access">Admin Access</a></li>
+<li><a href="#games--sites">Games &amp; Sites</a></li>
+<li><a href="#technical-issues">Technical Issues</a></li>
+<li><a href="#security--safety">Security &amp; Safety</a></li>
+</ul>
+<hr />
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="q-what-is-smyles-station">Q: What is Smyles Station?</h3>
+<p><strong>A:</strong> Smyles Station is a kid-friendly kiosk application that provides safe, time-limited access to educational games and websites. It's designed for libraries, schools, and community centers.</p>
+<h3 id="q-what-do-i-need-to-run-smyles-station">Q: What do I need to run Smyles Station?</h3>
+<p><strong>A:</strong>
+- Windows 10+ or Ubuntu 20.04+ (Linux)
+- 4 GB RAM minimum (8 GB recommended)
+- Internet connection
+- See <a href="../../setup/hardware/">Hardware Requirements</a> for full details</p>
+<h3 id="q-how-do-i-install-smyles-station">Q: How do I install Smyles Station?</h3>
+<p><strong>A:</strong> See the <a href="../../setup/install/">Installation Guide</a> for step-by-step instructions for Windows and Linux.</p>
+<h3 id="q-is-smyles-station-free">Q: Is Smyles Station free?</h3>
+<p><strong>A:</strong> Yes, Smyles Station is open source and free to use.</p>
+<hr />
+<h2 id="sessions-time-limits">Sessions &amp; Time Limits</h2>
+<h3 id="q-how-long-is-each-session">Q: How long is each session?</h3>
+<p><strong>A:</strong> The default session length is configured in Admin Settings. Common defaults are:
+- 30 minutes (typical for libraries)
+- 45 minutes (classroom use)
+- 60 minutes (extended use)</p>
+<p>You set this once in Admin Dashboard -&gt; Settings -&gt; "Session Time Limit"</p>
+<h3 id="q-can-i-change-the-time-limit-for-individual-sessions">Q: Can I change the time limit for individual sessions?</h3>
+<p><strong>A:</strong> No, the current design uses a single default time limit for all sessions. All children get the same amount of time for fairness.</p>
+<h3 id="q-can-kids-extend-their-session-time">Q: Can kids extend their session time?</h3>
+<p><strong>A:</strong> No. Time limits are enforced automatically and cannot be extended by users. This ensures fairness for all children.</p>
+<h3 id="q-what-happens-when-the-session-timer-expires">Q: What happens when the session timer expires?</h3>
+<p><strong>A:</strong>
+1. 5 minutes before end: Yellow warning appears
+2. 1 minute before end: Red warning appears
+3. At zero: Session ends automatically
+4. "Session Expired" message shows briefly
+5. Returns to welcome screen for next child</p>
+<h3 id="q-can-kids-switch-games-during-their-session">Q: Can kids switch games during their session?</h3>
+<p><strong>A:</strong> Yes! Kids can click "X Exit Game" to return to the game selection screen and choose a different game. The session timer continues running - no extra time is added.</p>
+<h3 id="q-how-do-i-set-session-time-to-unlimited">Q: How do I set session time to unlimited?</h3>
+<p><strong>A:</strong> Set "Session Time Limit" to <code>0</code> in Admin Dashboard. The timer won't display and sessions won't auto-end.</p>
+<p><strong>Warning:</strong> Unlimited sessions aren't recommended for public use as they prevent fair access.</p>
+<hr />
+<h2 id="admin-access">Admin Access</h2>
+<h3 id="q-whats-the-default-admin-password">Q: What's the default admin password?</h3>
+<p><strong>A:</strong> admin.</p>
+<h3 id="q-how-do-i-access-admin-settings">Q: How do I access Admin Settings?</h3>
+<p><strong>A:</strong>
+1. On the welcome screen, click the <strong>Settings button</strong> at the top right
+2. Select <strong>Admin Settings</strong>
+3. Enter your admin password</p>
+<h3 id="q-i-forgot-my-admin-password-what-do-i-do">Q: I forgot my admin password. What do I do?</h3>
+<p><strong>A:</strong>
+1. Close Smyles Station completely
+2. Navigate to the config directory:
+   - Windows: Press <code>Win + R</code>, type <code>%APPDATA%\smyles-station\</code>, press Enter
+   - Linux: <code>~/.config/smyles-station/</code>
+3. Delete the file <code>admin-config.json</code>
+4. Restart Smyles Station
+5. Create a new password</p>
+<p><strong>Warning:</strong> This resets ALL settings, not just the password. Your site list (in <code>sites.json</code>) is preserved.</p>
+<h3 id="q-how-do-i-change-the-admin-password">Q: How do I change the admin password?</h3>
+<p><strong>A:</strong>
+1. Access Admin Dashboard
+2. Go to the Settings or Password tab
+3. Enter current password
+4. Enter new password twice
+5. Click Save</p>
+<h3 id="q-can-i-have-multiple-admin-passwords">Q: Can I have multiple admin passwords?</h3>
+<p><strong>A:</strong> No, there's only one admin password for the entire system.</p>
+<h3 id="q-the-settings-button-doesnt-appear-where-is-it">Q: The Settings button doesn't appear. Where is it?</h3>
+<p><strong>A:</strong> The Settings button is at the top right of the welcome screen (the screen with the big Play button). If you're in a game session, end the session first.</p>
+<hr />
+<h2 id="games-sites">Games &amp; Sites</h2>
+<h3 id="q-how-do-i-add-games">Q: How do I add games?</h3>
+<p><strong>A:</strong>
+1. Access Admin Dashboard
+2. Go to <strong>Sites</strong> tab
+3. Click <strong>Add New Site</strong>
+4. Enter the full URL (e.g., <code>https://pbskids.org</code>)
+5. App fetches the site name and icon automatically
+6. Click <strong>Save</strong></p>
+<p>See <a href="../../setup/config/">Configuration Guide</a> for details.</p>
+<h3 id="q-why-wont-a-game-load">Q: Why won't a game load?</h3>
+<p><strong>Possible causes:</strong></p>
+<p><strong>No internet:</strong> Check your internet connection</p>
+<p><strong>Site is down:</strong> Try accessing the site in a regular browser</p>
+<p><strong>Blocked by firewall:</strong> Some firewalls block embedded browsers. Check firewall settings.</p>
+<p><strong>Site blocks embedding:</strong> Some websites prevent being displayed in embedded views for security. These sites won't work in Smyles Station.</p>
+<p><strong>Wrong URL:</strong> Verify the URL is correct in Admin Dashboard -&gt; Sites</p>
+<h3 id="q-a-game-loads-but-looks-broken-or-doesnt-work-properly">Q: A game loads but looks broken or doesn't work properly.</h3>
+<p><strong>A:</strong> Some websites use features that don't work well in embedded views. Try:
+1. Re-fetching the site info in Admin Dashboard
+2. Checking if the site works in a regular browser
+3. Finding an alternative similar site</p>
+<p>Not all websites are compatible with embedded viewing.</p>
+<h3 id="q-can-kids-download-files-or-install-programs">Q: Can kids download files or install programs?</h3>
+<p><strong>A:</strong> No. File downloads are blocked by design. Kids cannot install programs or download files through Smyles Station.</p>
+<h3 id="q-how-do-i-remove-a-game">Q: How do I remove a game?</h3>
+<p><strong>A:</strong>
+1. Admin Dashboard -&gt; Sites tab
+2. Find the site
+3. Click the <strong>Delete</strong> button (trash icon)
+4. Confirm deletion</p>
+<h3 id="q-the-game-icons-dont-show-up">Q: The game icons don't show up.</h3>
+<p><strong>A:</strong> Some sites don't provide icons (favicons). You can:
+- Upload a custom icon when editing the site
+- Leave it with a generic placeholder
+- Re-fetch site info to try again</p>
+<h3 id="q-how-do-i-reorder-games">Q: How do I reorder games?</h3>
+<p><strong>A:</strong> In Admin Dashboard -&gt; Sites tab, drag and drop the site tiles to reorder them. Changes save automatically.</p>
+<hr />
+<h2 id="technical-issues">Technical Issues</h2>
+<h3 id="q-smyles-station-wont-start">Q: Smyles Station won't start.</h3>
+<p><strong>Check:</strong>
+- System requirements are met (see <a href="../../setup/hardware/">Hardware Requirements</a>)
+- All Windows updates are installed
+- Try restarting your computer
+- Check error logs:
+  - Windows: <code>%APPDATA%\smyles-station\logs\</code>
+  - Linux: <code>~/.config/smyles-station/logs/</code></p>
+<p>Try reinstalling if the issue persists.</p>
+<h3 id="q-the-application-crashes-frequently">Q: The application crashes frequently.</h3>
+<p><strong>Try:</strong>
+1. Disable hardware acceleration:
+   - Admin Dashboard -&gt; Settings -&gt; Uncheck "Enable Hardware Acceleration"
+2. Update graphics drivers
+3. Check available RAM (4 GB minimum, 8 GB recommended)
+4. Review logs for error messages</p>
+<h3 id="q-the-play-button-doesnt-work">Q: The Play button doesn't work.</h3>
+<p><strong>Check:</strong>
+- Internet connection is working
+- Application isn't frozen (try clicking Settings button)
+- Restart Smyles Station
+- Check console for errors (if in development mode)</p>
+<h3 id="q-games-load-slowly">Q: Games load slowly.</h3>
+<p><strong>Possible causes:</strong>
+- Slow internet connection (need 5+ Mbps)
+- Many browser tabs/windows open
+- Insufficient RAM
+- Site itself is slow</p>
+<p><strong>Try:</strong>
+- Close other programs
+- Test internet speed
+- Try different games to see if all are slow</p>
+<h3 id="q-the-timer-doesnt-appear">Q: The timer doesn't appear.</h3>
+<p><strong>Check:</strong>
+- Session Time Limit is set to a value greater than 0
+- Admin Dashboard -&gt; Settings -&gt; "Session Time Limit"
+- If set to 0, timer won't display (unlimited session)</p>
+<h3 id="q-the-session-doesnt-end-when-timer-reaches-zero">Q: The session doesn't end when timer reaches zero.</h3>
+<p><strong>This is a bug.</strong> Workaround:
+1. Click "End Session" button manually
+2. Report the issue on GitHub
+3. Check logs: <code>%APPDATA%\smyles-station\logs\</code></p>
+<h3 id="q-scheduled-shutdown-isnt-working">Q: Scheduled shutdown isn't working.</h3>
+<p><strong>Check:</strong>
+1. Admin Dashboard -&gt; Schedule tab
+2. Verify day is enabled (checkmark)
+3. Verify time is correct (24-hour format: 8 PM = 20:00)
+4. Click "Save" or "Update" after making changes
+5. Smyles Station must be running at shutdown time</p>
+<p><strong>Linux only:</strong> May need special permissions. See <a href="../scheduled-shutdown/#technical-notes-for-it-staff">Scheduled Shutdown Guide</a>.</p>
+<h3 id="q-where-are-configuration-files-stored">Q: Where are configuration files stored?</h3>
+<p><strong>A:</strong>
+- <strong>Windows:</strong> <code>%APPDATA%\smyles-station\</code>
+  - Full path: <code>C:\Users\[YourUsername]\AppData\Roaming\smyles-station\</code>
+- <strong>Linux:</strong> <code>~/.config/smyles-station/</code></p>
+<p>Files include:
+- <code>config.json</code> - Settings and admin password
+- <code>sites.json</code> - Game list
+- <code>schedule.json</code> - Shutdown schedule
+- <code>stats.json</code> - Usage statistics</p>
+<hr />
+<h2 id="security-safety">Security &amp; Safety</h2>
+<h3 id="q-is-smyles-station-safe-for-children">Q: Is Smyles Station safe for children?</h3>
+<p><strong>A:</strong> Yes. Smyles Station includes multiple security layers:
+- Only whitelisted sites can be accessed
+- No file downloads
+- Developer tools disabled
+- Cannot exit without admin password
+- Time limits prevent excessive use</p>
+<h3 id="q-can-kids-access-websites-not-on-the-approved-list">Q: Can kids access websites not on the approved list?</h3>
+<p><strong>A:</strong> No. Only sites added to the whitelist in Admin Dashboard can be accessed. Kids cannot navigate to other sites.</p>
+<h3 id="q-can-kids-access-windows-or-other-programs">Q: Can kids access Windows or other programs?</h3>
+<p><strong>A:</strong> From within a session, no - fullscreen mode and keyboard blocking prevent this. However, Smyles Station is designed to allow admin exit to Windows desktop with a password. For maximum lockdown, see <a href="../../setup/kiosk-mode/">Kiosk Mode Guide</a>.</p>
+<h3 id="q-what-if-a-kid-finds-inappropriate-content-on-an-approved-site">Q: What if a kid finds inappropriate content on an approved site?</h3>
+<p><strong>A:</strong>
+1. Immediately end the session (click "End Session")
+2. Investigate what they saw
+3. Remove the site: Admin Dashboard -&gt; Sites -&gt; Delete
+4. Report the issue to the site owner and/or Smyles Station developers</p>
+<h3 id="q-how-do-i-prevent-kids-from-closing-smyles-station">Q: How do I prevent kids from closing Smyles Station?</h3>
+<p><strong>A:</strong> Built-in protections block common exit methods (Alt+F4, Alt+Tab, Windows key).</p>
+<p>For complete lockdown where kids cannot access Windows at all, see <a href="../../setup/kiosk-mode/#os-level-security-optional">OS-Level Security</a>.</p>
+<h3 id="q-can-i-monitor-which-games-kids-are-playing">Q: Can I monitor which games kids are playing?</h3>
+<p><strong>A:</strong> Yes. Admin Dashboard -&gt; Statistics tab shows:
+- Most popular games
+- Total time played
+- Session history
+- Usage patterns</p>
+<p>You can also export this data as CSV.</p>
+<h3 id="q-how-secure-is-the-admin-password">Q: How secure is the admin password?</h3>
+<p><strong>A:</strong> The password is hashed (encrypted) and stored locally. Only someone with physical access to the computer could attempt to reset it (by deleting config files).</p>
+<p><strong>Best practices:</strong>
+- Use a strong password
+- Don't share it with children
+- Change it periodically
+- Store it securely but accessible to all authorized staff</p>
+<hr />
+<h2 id="usage-statistics">Usage &amp; Statistics</h2>
+<h3 id="q-how-do-i-view-usage-statistics">Q: How do I view usage statistics?</h3>
+<p><strong>A:</strong>
+1. Admin Dashboard -&gt; Statistics tab
+2. View summary data:
+   - Total sessions
+   - Completed sessions
+   - Total time used
+   - Most popular games</p>
+<h3 id="q-can-i-export-usage-data">Q: Can I export usage data?</h3>
+<p><strong>A:</strong> Yes. In Statistics tab, click "Download CSV" to export data for use in Excel or other spreadsheet programs.</p>
+<h3 id="q-how-do-i-resetclear-statistics">Q: How do I reset/clear statistics?</h3>
+<p><strong>A:</strong> Currently, statistics automatically accumulate. To clear:
+1. Close Smyles Station
+2. Navigate to config directory
+3. Delete <code>stats.json</code>
+4. Restart Smyles Station</p>
+<p><strong>Warning:</strong> This permanently deletes all usage history.</p>
+<hr />
+<h2 id="advanced-questions">Advanced Questions</h2>
+<h3 id="q-can-i-customize-the-appearancecolors">Q: Can I customize the appearance/colors?</h3>
+<p><strong>A:</strong> Not currently through the UI. Advanced users can modify CSS files, but this requires technical knowledge and may break with updates.</p>
+<h3 id="q-can-i-add-password-protection-to-individual-games">Q: Can I add password protection to individual games?</h3>
+<p><strong>A:</strong> No, all approved games are equally accessible once a session starts.</p>
+<h3 id="q-can-i-have-different-time-limits-for-different-age-groups">Q: Can I have different time limits for different age groups?</h3>
+<p><strong>A:</strong> Not currently. All sessions use the same default time limit.</p>
+<h3 id="q-does-smyles-station-work-offline">Q: Does Smyles Station work offline?</h3>
+<p><strong>A:</strong> No, an internet connection is required as the games are web-based.</p>
+<h3 id="q-can-i-host-my-own-games-instead-of-using-external-websites">Q: Can I host my own games instead of using external websites?</h3>
+<p><strong>A:</strong> Yes, if you have a local web server, you can add <code>http://localhost:port</code> or local IP addresses to the site list.</p>
+<h3 id="q-can-i-white-label-or-rebrand-smyles-station">Q: Can I white-label or rebrand Smyles Station?</h3>
+<p><strong>A:</strong> Smyles Station is open source. Advanced users can modify branding, but this requires technical knowledge of Electron and React.</p>
+<hr />
+<h2 id="still-need-help">Still Need Help?</h2>
+<p><strong>If your question isn't answered here:</strong></p>
+<ol>
+<li><strong>Check the other guides:</strong></li>
+<li><a href="../../setup/install/">Installation</a></li>
+<li><a href="../../setup/config/">Configuration</a></li>
+<li><a href="../sessions/">Sessions</a></li>
+<li>
+<p><a href="../../setup/kiosk-mode/">Kiosk Mode</a></p>
+</li>
+<li>
+<p><strong>Check GitHub Issues:</strong></p>
+</li>
+<li><a href="https://github.com/buff-sudo/smyles-station/issues">Existing issues</a></li>
+<li>Search for your problem</li>
+<li>
+<p>Open a new issue if needed</p>
+</li>
+<li>
+<p><strong>Contact Support:</strong></p>
+</li>
+<li>Email: smyles-station-safety@proton.me</li>
+<li>
+<p>Include:</p>
+<ul>
+<li>Operating system and version</li>
+<li>Smyles Station version</li>
+<li>Description of issue</li>
+<li>Steps to reproduce</li>
+<li>Error messages or logs</li>
+</ul>
+</li>
+<li>
+<p><strong>Community Support:</strong></p>
+</li>
+<li>GitHub Discussions</li>
+<li>Share solutions with other users</li>
+</ol>
+<hr />
+<h2 id="reporting-bugs">Reporting Bugs</h2>
+<p><strong>When reporting a bug, include:</strong></p>
+<ol>
+<li><strong>System Information:</strong></li>
+<li>OS (Windows 10, Ubuntu 22.04, etc.)</li>
+<li>Smyles Station version</li>
+<li>
+<p>RAM and processor</p>
+</li>
+<li>
+<p><strong>What you expected to happen</strong></p>
+</li>
+<li>
+<p><strong>What actually happened</strong></p>
+</li>
+<li>
+<p><strong>Steps to reproduce:</strong></p>
+</li>
+<li>Step-by-step instructions</li>
+<li>
+<p>Happens every time or intermittently?</p>
+</li>
+<li>
+<p><strong>Error messages:</strong></p>
+</li>
+<li>Screenshots</li>
+<li>
+<p>Log files from <code>%APPDATA%\smyles-station\logs\</code></p>
+</li>
+<li>
+<p><strong>Configuration:</strong></p>
+</li>
+<li>Are you using kiosk mode?</li>
+<li>How many sites configured?</li>
+<li>Any custom settings?</li>
+</ol>
+<p><strong>Where to report:</strong>
+- GitHub Issues: <a href="https://github.com/buff-sudo/smyles-station/issues">github.com/buff-sudo/smyles-station/issues</a>
+- Email: smyles-station-safety@proton.me</p>
+<hr />
+<p>Thank you for using Smyles Station!</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

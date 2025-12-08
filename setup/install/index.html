@@ -1,0 +1,1965 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../hardware/">
+      
+      
+        <link rel="next" href="../kiosk-mode/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Step 1: Installation - Smyles Station Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#step-1-installation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Smyles Station Documentation" class="md-header__button md-logo" aria-label="Smyles Station Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Smyles Station Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Step 1: Installation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Smyles Station Documentation" class="md-nav__button md-logo" aria-label="Smyles Station Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Smyles Station Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For Librarians (Setup)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    For Librarians (Setup)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prerequisites (Hardware)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Step 1: Installation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Step 1: Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-begin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before You Begin
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation Methods
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#windows-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Windows Installation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Windows Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-download-smyles-station" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Download Smyles Station
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-run-the-installer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Run the Installer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-follow-the-installation-wizard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Follow the Installation Wizard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-verify-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Verify Installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linux-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linux Installation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Linux Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ubuntudebian-based-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ubuntu/Debian-based Systems
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ubuntu/Debian-based Systems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-download-smyles-station_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Download Smyles Station
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-install-the-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Install the Package
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-verify-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Verify Installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fedorarhel-based-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fedora/RHEL-based Systems
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fedora/RHEL-based Systems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-download-and-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Download and Install
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-launch-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        First Launch Setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="First Launch Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-launch-smyles-station" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Launch Smyles Station
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-initial-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Initial Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-test-a-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Test a Session
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting Installation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Windows Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linux Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#general-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#post-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Post-Installation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Post-Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommended-next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-auto-start-on-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional: Auto-Start on Boot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-create-limited-user-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional: Create Limited User Account
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update Policy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uninstallation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uninstallation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#need-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Need Help?
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kiosk-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Step 2: Kiosk Mode (Locking it down)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Step 3: Customization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Daily Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Daily Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../daily/sessions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing Sessions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../daily/scheduled-shutdown/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setting Up Automatic Shutdowns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../daily/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting & FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For Developers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    For Developers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Local Development
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-begin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before You Begin
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation Methods
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#windows-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Windows Installation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Windows Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-download-smyles-station" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Download Smyles Station
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-run-the-installer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Run the Installer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-follow-the-installation-wizard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Follow the Installation Wizard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-verify-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Verify Installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linux-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linux Installation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Linux Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ubuntudebian-based-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ubuntu/Debian-based Systems
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ubuntu/Debian-based Systems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-download-smyles-station_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Download Smyles Station
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-install-the-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Install the Package
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-verify-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Verify Installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fedorarhel-based-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fedora/RHEL-based Systems
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fedora/RHEL-based Systems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-download-and-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Download and Install
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-launch-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        First Launch Setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="First Launch Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-launch-smyles-station" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Launch Smyles Station
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-initial-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Initial Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-test-a-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Test a Session
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting Installation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Windows Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linux Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#general-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#post-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Post-Installation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Post-Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommended-next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-auto-start-on-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional: Auto-Start on Boot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-create-limited-user-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional: Create Limited User Account
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update Policy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uninstallation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uninstallation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#need-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Need Help?
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="step-1-installation">Step 1: Installation</h1>
+<p>This guide will walk you through installing Smyles Station on your computer.</p>
+<h2 id="before-you-begin">Before You Begin</h2>
+<p>Make sure you have:</p>
+<ul>
+<li>[ ] Verified your <a href="../hardware/">hardware meets requirements</a></li>
+<li>[ ] Internet connection</li>
+<li>[ ] Administrator access to the computer</li>
+<li>[ ] About 15-30 minutes for installation</li>
+</ul>
+<h2 id="installation-methods">Installation Methods</h2>
+<p>Choose the installation method appropriate for your operating system:</p>
+<ul>
+<li><a href="#windows-installation">Windows Installation</a></li>
+<li><a href="#linux-installation">Linux Installation</a></li>
+</ul>
+<hr />
+<h2 id="windows-installation">Windows Installation</h2>
+<h3 id="step-1-download-smyles-station">Step 1: Download Smyles Station</h3>
+<ol>
+<li>
+<p>Visit the Smyles Station releases page: <a href="https://github.com/buff-sudo/smyles-station/releases">GitHub Releases</a></p>
+</li>
+<li>
+<p>Download the latest Windows installer:</p>
+</li>
+<li>Look for <code>Smyles-Station-Setup-X.X.X.exe</code></li>
+<li>
+<p>Click to download</p>
+</li>
+<li>
+<p>Wait for the download to complete</p>
+</li>
+</ol>
+<h3 id="step-2-run-the-installer">Step 2: Run the Installer</h3>
+<ol>
+<li>
+<p>Locate the downloaded file (usually in your Downloads folder)</p>
+</li>
+<li>
+<p><strong>Right-click</strong> the installer and select <strong>Run as administrator</strong></p>
+</li>
+<li>
+<p>If prompted by Windows Security, click <strong>Yes</strong> to allow</p>
+</li>
+<li>
+<p>The Smyles Station Setup Wizard will open</p>
+</li>
+</ol>
+<h3 id="step-3-follow-the-installation-wizard">Step 3: Follow the Installation Wizard</h3>
+<ol>
+<li><strong>Welcome Screen:</strong></li>
+<li>
+<p>Click <strong>Next</strong></p>
+</li>
+<li>
+<p><strong>Choose Installation Location:</strong></p>
+</li>
+<li>Default location is recommended: <code>C:\Program Files\Smyles Station</code></li>
+<li>
+<p>Click <strong>Next</strong></p>
+</li>
+<li>
+<p><strong>Select Start Menu Folder:</strong></p>
+</li>
+<li>Use the default or choose a custom folder</li>
+<li>
+<p>Click <strong>Next</strong></p>
+</li>
+<li>
+<p><strong>Create Desktop Shortcut:</strong></p>
+</li>
+<li>Check the box if you want a desktop icon</li>
+<li>
+<p>Click <strong>Next</strong></p>
+</li>
+<li>
+<p><strong>Ready to Install:</strong></p>
+</li>
+<li>Review your choices</li>
+<li>
+<p>Click <strong>Install</strong></p>
+</li>
+<li>
+<p><strong>Installing:</strong></p>
+</li>
+<li>
+<p>Wait for the installation to complete (1-2 minutes)</p>
+</li>
+<li>
+<p><strong>Completing Setup:</strong></p>
+</li>
+<li>Uncheck "Launch Smyles Station" for now</li>
+<li>Click <strong>Finish</strong></li>
+</ol>
+<h3 id="step-4-verify-installation">Step 4: Verify Installation</h3>
+<ol>
+<li>
+<p>Press the <strong>Windows key</strong> and type "Smyles Station"</p>
+</li>
+<li>
+<p>You should see the Smyles Station app</p>
+</li>
+<li>
+<p><strong>Don't launch it yet</strong> - we'll configure it first</p>
+</li>
+</ol>
+<hr />
+<h2 id="linux-installation">Linux Installation</h2>
+<h3 id="ubuntudebian-based-systems">Ubuntu/Debian-based Systems</h3>
+<h4 id="step-1-download-smyles-station_1">Step 1: Download Smyles Station</h4>
+<ol>
+<li>
+<p>Visit the Smyles Station releases page: <a href="https://github.com/buff-sudo/smyles-station/releases">GitHub Releases</a></p>
+</li>
+<li>
+<p>Download the latest Linux package:</p>
+</li>
+<li>For Debian/Ubuntu: <code>Smyles-Station_X.X.X_amd64.deb</code></li>
+<li>For other distros: <code>Smyles-Station-X.X.X.AppImage</code></li>
+</ol>
+<h4 id="step-2-install-the-package">Step 2: Install the Package</h4>
+<p><strong>For .deb package:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Navigate to Downloads folder</span>
+<span class="nb">cd</span><span class="w"> </span>~/Downloads
+
+<span class="c1"># Install using dpkg</span>
+sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>Smyles-Station_*.deb
+
+<span class="c1"># Fix any dependency issues</span>
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-f
+</code></pre></div>
+<p><strong>For AppImage:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Navigate to Downloads folder</span>
+<span class="nb">cd</span><span class="w"> </span>~/Downloads
+
+<span class="c1"># Make AppImage executable</span>
+chmod<span class="w"> </span>+x<span class="w"> </span>Smyles-Station-*.AppImage
+
+<span class="c1"># Move to /opt for system-wide access</span>
+sudo<span class="w"> </span>mv<span class="w"> </span>Smyles-Station-*.AppImage<span class="w"> </span>/opt/smyles-station
+
+<span class="c1"># Create a desktop entry</span>
+cat<span class="w"> </span>&gt;<span class="w"> </span>~/.local/share/applications/smyles-station.desktop<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+<span class="s">[Desktop Entry]</span>
+<span class="s">Name=Smyles Station</span>
+<span class="s">Exec=/opt/smyles-station</span>
+<span class="s">Type=Application</span>
+<span class="s">Categories=Education;</span>
+<span class="s">EOF</span>
+</code></pre></div>
+<h4 id="step-3-verify-installation">Step 3: Verify Installation</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Check if installed</span>
+which<span class="w"> </span>smyles-station
+
+<span class="c1"># Or search in application menu</span>
+<span class="c1"># Look for &quot;Smyles Station&quot; in your application launcher</span>
+</code></pre></div>
+<h3 id="fedorarhel-based-systems">Fedora/RHEL-based Systems</h3>
+<h4 id="step-1-download-and-install">Step 1: Download and Install</h4>
+<ol>
+<li>
+<p>Download the <code>.rpm</code> package from releases</p>
+</li>
+<li>
+<p>Install using dnf:</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/Downloads
+sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>Smyles-Station-*.rpm
+</code></pre></div>
+<p>Or use rpm directly:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>rpm<span class="w"> </span>-ivh<span class="w"> </span>Smyles-Station-*.rpm
+</code></pre></div>
+<hr />
+<h2 id="first-launch-setup">First Launch Setup</h2>
+<p>Now that Smyles Station is installed, let's configure it:</p>
+<h3 id="step-1-launch-smyles-station">Step 1: Launch Smyles Station</h3>
+<p><strong>Windows:</strong>
+- Press Windows key
+- Type "Smyles Station"
+- Click the app</p>
+<p><strong>Linux:</strong>
+- Open application menu
+- Find "Smyles Station"
+- Click to launch</p>
+<h3 id="step-2-initial-configuration">Step 2: Initial Configuration</h3>
+<p>On first launch, you'll see the welcome screen:</p>
+<ol>
+<li><strong>Set Admin Password:</strong></li>
+<li>Create a strong password (you'll need this to access admin settings)</li>
+<li>Confirm the password</li>
+<li><strong>Write this password down in a safe place!</strong></li>
+<li>
+<p>Click <strong>Continue</strong></p>
+</li>
+<li>
+<p><strong>Add Your First Game/Website:</strong></p>
+</li>
+<li>Enter a website URL (e.g., <code>https://pbskids.org</code>)</li>
+<li>The app will automatically fetch the site's name and icon</li>
+<li>Click <strong>Add Site</strong></li>
+<li>
+<p>Add a few more sites to get started</p>
+</li>
+<li>
+<p><strong>Set Default Session Time:</strong></p>
+</li>
+<li>Choose how long each session should last (e.g., 30 minutes)</li>
+<li>You can change this later for individual sessions</li>
+<li>
+<p>Click <strong>Save</strong></p>
+</li>
+<li>
+<p><strong>Finish Setup:</strong></p>
+</li>
+<li>Click <strong>Done</strong></li>
+<li>You'll see the main screen with your added sites</li>
+</ol>
+<h3 id="step-3-test-a-session">Step 3: Test a Session</h3>
+<p>Let's make sure everything works:</p>
+<ol>
+<li>
+<p>Click on one of your added sites</p>
+</li>
+<li>
+<p>Choose a session duration (or use default)</p>
+</li>
+<li>
+<p>Click <strong>Start Session</strong></p>
+</li>
+<li>
+<p>The game/website should load in fullscreen</p>
+</li>
+<li>
+<p>You should see a timer in the corner showing remaining time</p>
+</li>
+<li>
+<p>Press <code>Ctrl+Shift+Q</code> to exit the session (you'll need to enter the admin password)</p>
+</li>
+</ol>
+<p><strong>If everything works, you're ready to proceed!</strong></p>
+<hr />
+<h2 id="troubleshooting-installation">Troubleshooting Installation</h2>
+<h3 id="windows-issues">Windows Issues</h3>
+<p><strong>"Windows protected your PC" warning:</strong>
+- This appears because the app isn't digitally signed
+- Click <strong>More info</strong>
+- Click <strong>Run anyway</strong>
+- This is safe - it's just because we're not a big company with a signing certificate</p>
+<p><strong>Installer won't run:</strong>
+- Make sure you're running as administrator
+- Disable antivirus temporarily during installation
+- Check that you downloaded the correct version (64-bit Windows)</p>
+<p><strong>App won't launch:</strong>
+- Restart your computer
+- Check Windows Event Viewer for errors
+- Ensure all Windows updates are installed</p>
+<h3 id="linux-issues">Linux Issues</h3>
+<p><strong>"Permission denied" when running AppImage:</strong>
+<div class="highlight"><pre><span></span><code>chmod<span class="w"> </span>+x<span class="w"> </span>Smyles-Station-*.AppImage
+</code></pre></div></p>
+<p><strong>Missing dependencies:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Ubuntu/Debian</span>
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-f
+
+<span class="c1"># Fedora</span>
+sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>missing-package-name
+</code></pre></div></p>
+<p><strong>AppImage won't run:</strong>
+- Install FUSE:
+  <div class="highlight"><pre><span></span><code><span class="c1"># Ubuntu/Debian</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>libfuse2
+
+<span class="c1"># Fedora</span>
+sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>fuse
+</code></pre></div></p>
+<p><strong>Blank screen on launch:</strong>
+- Try disabling GPU acceleration:
+  <div class="highlight"><pre><span></span><code>smyles-station<span class="w"> </span>--disable-gpu
+</code></pre></div></p>
+<h3 id="general-issues">General Issues</h3>
+<p><strong>Sites won't load:</strong>
+- Check internet connection
+- Verify firewall isn't blocking the app
+- Check proxy settings if applicable</p>
+<p><strong>Can't set admin password:</strong>
+- Ensure you have write permissions
+- Try running the app as administrator (Windows) or with sudo (Linux)</p>
+<p><strong>App crashes immediately:</strong>
+- Check system requirements
+- Update graphics drivers
+- Look for error logs:
+  - Windows: <code>%APPDATA%\smyles-station\logs\</code>
+  - Linux: <code>~/.config/smyles-station/logs/</code></p>
+<hr />
+<h2 id="post-installation">Post-Installation</h2>
+<h3 id="recommended-next-steps">Recommended Next Steps</h3>
+<ol>
+<li><strong><a href="../kiosk-mode/">Set Up Kiosk Mode</a></strong></li>
+<li>Lock down the operating system</li>
+<li>Prevent kids from exiting the app</li>
+<li>
+<p>Disable system shortcuts</p>
+</li>
+<li>
+<p><strong><a href="../config/">Customize Configuration</a></strong></p>
+</li>
+<li>Add all your game sites</li>
+<li>Configure session defaults</li>
+<li>
+<p>Set up shutdown schedule</p>
+</li>
+<li>
+<p><strong><a href="../../daily/sessions/">Learn Daily Operations</a></strong></p>
+</li>
+<li>How to start sessions</li>
+<li>Managing time limits</li>
+<li>Viewing usage statistics</li>
+</ol>
+<h3 id="optional-auto-start-on-boot">Optional: Auto-Start on Boot</h3>
+<p><strong>Windows:</strong></p>
+<ol>
+<li>Press <code>Win + R</code></li>
+<li>Type <code>shell:startup</code> and press Enter</li>
+<li>Right-click in the folder -&gt; New -&gt; Shortcut</li>
+<li>Browse to: <code>C:\Program Files\Smyles Station\Smyles Station.exe</code></li>
+<li>Click OK and name it "Smyles Station"</li>
+</ol>
+<p><strong>Linux (systemd):</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create systemd service</span>
+sudo<span class="w"> </span>nano<span class="w"> </span>/etc/systemd/system/smyles-station.service
+
+<span class="c1"># Add this content:</span>
+<span class="o">[</span>Unit<span class="o">]</span>
+<span class="nv">Description</span><span class="o">=</span>Smyles<span class="w"> </span>Station<span class="w"> </span>Kiosk
+<span class="nv">After</span><span class="o">=</span>graphical.target
+
+<span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">Type</span><span class="o">=</span>simple
+<span class="nv">User</span><span class="o">=</span>YOUR_USERNAME
+<span class="nv">Environment</span><span class="o">=</span><span class="nv">DISPLAY</span><span class="o">=</span>:0
+<span class="nv">ExecStart</span><span class="o">=</span>/usr/bin/smyles-station
+<span class="nv">Restart</span><span class="o">=</span>always
+
+<span class="o">[</span>Install<span class="o">]</span>
+<span class="nv">WantedBy</span><span class="o">=</span>graphical.target
+
+<span class="c1"># Enable and start</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>smyles-station
+sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>smyles-station
+</code></pre></div>
+<h3 id="optional-create-limited-user-account">Optional: Create Limited User Account</h3>
+<p>For extra security, run Smyles Station under a limited user account:</p>
+<p><strong>Windows:</strong>
+1. Settings -&gt; Accounts -&gt; Family &amp; other users
+2. Add someone else to this PC
+3. Create account without Microsoft account
+4. Set as Standard user (not Administrator)
+5. Configure auto-login for this account</p>
+<p><strong>Linux:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create kiosk user</span>
+sudo<span class="w"> </span>adduser<span class="w"> </span>kiosk-user
+
+<span class="c1"># Set to auto-login (varies by distribution)</span>
+<span class="c1"># Ubuntu with GDM: Edit /etc/gdm3/custom.conf</span>
+</code></pre></div></p>
+<hr />
+<h2 id="update-policy">Update Policy</h2>
+<p>Smyles Station does NOT include automatic updates by default for security.</p>
+<p>To update:</p>
+<ol>
+<li>Visit the <a href="https://github.com/buff-sudo/smyles-station/releases">releases page</a></li>
+<li>Download the latest version</li>
+<li>Install over existing installation (settings are preserved)</li>
+</ol>
+<hr />
+<h2 id="uninstallation">Uninstallation</h2>
+<p>If you need to remove Smyles Station:</p>
+<p><strong>Windows:</strong>
+1. Settings -&gt; Apps -&gt; Apps &amp; features
+2. Find "Smyles Station"
+3. Click -&gt; Uninstall</p>
+<p><strong>Linux (Debian/Ubuntu):</strong>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>remove<span class="w"> </span>smyles-station
+</code></pre></div></p>
+<p><strong>Linux (Fedora):</strong>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dnf<span class="w"> </span>remove<span class="w"> </span>smyles-station
+</code></pre></div></p>
+<p><strong>AppImage:</strong>
+<div class="highlight"><pre><span></span><code>rm<span class="w"> </span>/opt/smyles-station
+rm<span class="w"> </span>~/.local/share/applications/smyles-station.desktop
+</code></pre></div></p>
+<p><strong>Remove all data and settings:</strong></p>
+<ul>
+<li>Windows: Delete <code>%APPDATA%\smyles-station\</code></li>
+<li>Linux: Delete <code>~/.config/smyles-station/</code></li>
+</ul>
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<p>Now that Smyles Station is installed:</p>
+<ol>
+<li><a href="../kiosk-mode/">Set Up Kiosk Mode</a> - Essential for public use</li>
+<li><a href="../config/">Customize Configuration</a> - Add games and configure settings</li>
+<li><a href="../../daily/sessions/">Daily Operations</a> - Learn how to use Smyles Station</li>
+</ol>
+<h2 id="need-help">Need Help?</h2>
+<ul>
+<li>Check the <a href="../../daily/faq/">FAQ</a> for common questions</li>
+<li>Open an issue on GitHub</li>
+<li>Contact support: smyles-station-safety@proton.me</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

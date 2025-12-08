@@ -1,0 +1,2093 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../contributing/">
+      
+      
+        <link rel="next" href="../setup/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Architecture - Smyles Station Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#architecture-overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Smyles Station Documentation" class="md-header__button md-logo" aria-label="Smyles Station Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Smyles Station Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Architecture
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Smyles Station Documentation" class="md-nav__button md-logo" aria-label="Smyles Station Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Smyles Station Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For Librarians (Setup)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    For Librarians (Setup)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prerequisites (Hardware)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Step 1: Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/kiosk-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Step 2: Kiosk Mode (Locking it down)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Step 3: Customization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Daily Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Daily Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../daily/sessions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing Sessions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../daily/scheduled-shutdown/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setting Up Automatic Shutdowns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../daily/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting & FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For Developers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    For Developers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#high-level-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        High-Level Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#process-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Process Model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Process Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#main-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Main Process
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preload-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preload Scripts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#renderer-processes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Renderer Processes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defense-in-depth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defense in Depth
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#process-isolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Process Isolation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#url-blocking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        URL Blocking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#session-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session Security
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module System
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Module System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Modules
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Flow
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-starting-a-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Starting a Session
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-url-blocking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: URL Blocking
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#admin-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Admin Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#session-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shutdown-scheduler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shutdown Scheduler
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#design-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design Decisions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Design Decisions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-electron" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Electron?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-monorepo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Monorepo?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-ipc-over-direct-imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why IPC over Direct Imports?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-module-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Module Pattern?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration Storage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#memory-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memory Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#startup-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Startup Time
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bundle-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bundle Size
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Future Considerations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Future Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#potential-enhancements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Potential Enhancements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scalability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scalability
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-audit-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Audit Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributing-to-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contributing to Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Local Development
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#high-level-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        High-Level Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#process-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Process Model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Process Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#main-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Main Process
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preload-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preload Scripts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#renderer-processes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Renderer Processes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defense-in-depth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defense in Depth
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#process-isolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Process Isolation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#url-blocking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        URL Blocking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#session-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session Security
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module System
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Module System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Modules
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Flow
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-starting-a-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Starting a Session
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-url-blocking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: URL Blocking
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#admin-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Admin Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#session-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shutdown-scheduler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shutdown Scheduler
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#design-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design Decisions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Design Decisions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-electron" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Electron?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-monorepo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Monorepo?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-ipc-over-direct-imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why IPC over Direct Imports?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-module-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Module Pattern?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration Storage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#memory-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memory Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#startup-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Startup Time
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bundle-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bundle Size
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Future Considerations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Future Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#potential-enhancements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Potential Enhancements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scalability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scalability
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-audit-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Audit Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributing-to-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contributing to Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="architecture-overview">Architecture Overview</h1>
+<p>This document provides a comprehensive overview of Smyles Station's architecture, design decisions, and technical implementation.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#high-level-architecture">High-Level Architecture</a></li>
+<li><a href="#process-model">Process Model</a></li>
+<li><a href="#security-architecture">Security Architecture</a></li>
+<li><a href="#module-system">Module System</a></li>
+<li><a href="#data-flow">Data Flow</a></li>
+<li><a href="#key-components">Key Components</a></li>
+<li><a href="#design-decisions">Design Decisions</a></li>
+</ul>
+<h2 id="high-level-architecture">High-Level Architecture</h2>
+<p>Smyles Station is built on Electron, following a security-first architecture with strict process isolation.</p>
+<pre class="mermaid"><code>graph TB
+    subgraph "Smyles Station"
+        subgraph "Renderer Processes"
+            R1[Renderer&lt;br/&gt;Admin UI]
+            R2[Renderer&lt;br/&gt;Game View]
+            R3[Renderer&lt;br/&gt;Selection UI]
+        end
+
+        P[Preload&lt;br/&gt;Secure Bridge]
+
+        M[Main Process&lt;br/&gt;Node.js Runtime]
+
+        subgraph "Modules"
+            SM[Session&lt;br/&gt;Manager]
+            SEC[Security&lt;br/&gt;Modules]
+            SS[Shutdown&lt;br/&gt;Schedule]
+        end
+    end
+
+    subgraph "System"
+        OS[OS&lt;br/&gt;Services]
+        FS[File System&lt;br/&gt;Config]
+    end
+
+    R1 --&gt; P
+    R2 --&gt; P
+    R3 --&gt; P
+    P --&gt; M
+    M --&gt; SM
+    M --&gt; SEC
+    M --&gt; SS
+    M --&gt; OS
+    M --&gt; FS</code></pre>
+<h2 id="process-model">Process Model</h2>
+<h3 id="main-process">Main Process</h3>
+<p><strong>Location:</strong> <code>packages/main/src/</code></p>
+<p><strong>Responsibilities:</strong>
+- Application lifecycle management
+- Window creation and management
+- IPC communication handling
+- System-level operations (shutdown, notifications)
+- Security enforcement (URL blocking, session limits)
+- Data persistence (config, usage stats)</p>
+<p><strong>Key Files:</strong>
+- <code>index.ts</code> - Application entry point
+- <code>modules/</code> - Feature implementations</p>
+<h3 id="preload-scripts">Preload Scripts</h3>
+<p><strong>Location:</strong> <code>packages/preload/src/</code></p>
+<p><strong>Responsibilities:</strong>
+- Expose safe APIs to renderer
+- Bridge between renderer and main
+- Type-safe IPC wrapper functions
+- Context isolation enforcement</p>
+<p><strong>Key Files:</strong>
+- <code>index.ts</code> - Exported API surface</p>
+<p><strong>Security Guarantees:</strong>
+- Runs in renderer context but has Node.js access
+- Limited to specific Electron APIs
+- Functions auto-exposed via <code>contextBridge</code></p>
+<h3 id="renderer-processes">Renderer Processes</h3>
+<p><strong>Location:</strong> <code>packages/renderer/src/</code></p>
+<p><strong>Responsibilities:</strong>
+- User interface rendering
+- User interaction handling
+- State management (React)
+- Calling preload APIs</p>
+<p><strong>Key Files:</strong>
+- <code>App.tsx</code> - Main application component
+- <code>components/</code> - UI components</p>
+<p><strong>Restrictions:</strong>
+- No Node.js APIs available
+- Sandboxed environment
+- Can only communicate via preload bridge</p>
+<h2 id="security-architecture">Security Architecture</h2>
+<p>Security is paramount since Smyles Station is designed for children.</p>
+<h3 id="defense-in-depth">Defense in Depth</h3>
+<pre class="mermaid"><code>graph TD
+    L1[Layer 1: OS-level kiosk mode&lt;br/&gt;external configuration]
+    L2[Layer 2: Electron process isolation&lt;br/&gt;sandboxed renderer]
+    L3[Layer 3: Context isolation&lt;br/&gt;preload bridge]
+    L4[Layer 4: URL whitelist enforcement&lt;br/&gt;security modules]
+    L5[Layer 5: Session time limits&lt;br/&gt;session module]
+    L6[Layer 6: Admin password protection&lt;br/&gt;admin module]
+
+    L1 --&gt; L2
+    L2 --&gt; L3
+    L3 --&gt; L4
+    L4 --&gt; L5
+    L5 --&gt; L6</code></pre>
+<h3 id="process-isolation">Process Isolation</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Main process configuration (packages/main/src/index.ts)</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">browserWindow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">BrowserWindow</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">webPreferences</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">sandbox</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span><span class="w">              </span><span class="c1">// Renderer is sandboxed</span>
+<span class="w">    </span><span class="nx">contextIsolation</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span><span class="w">     </span><span class="c1">// Separate contexts</span>
+<span class="w">    </span><span class="nx">nodeIntegration</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span><span class="w">     </span><span class="c1">// No Node.js in renderer</span>
+<span class="w">    </span><span class="nx">preload</span><span class="o">:</span><span class="w"> </span><span class="kt">preloadPath</span><span class="p">,</span><span class="w">       </span><span class="c1">// Secure bridge only</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="p">});</span>
+</code></pre></div>
+<h3 id="url-blocking">URL Blocking</h3>
+<p><strong>Module:</strong> <code>BlockNotAllowedOrigins.ts</code></p>
+<pre class="mermaid"><code>graph TD
+    A[User navigates to URL]
+    B{Is URL in whitelist?}
+    C[Block navigation&lt;br/&gt;Show warning]
+    D[Allow navigation]
+
+    A --&gt; B
+    B --&gt;|No| C
+    B --&gt;|Yes| D</code></pre>
+<h3 id="session-security">Session Security</h3>
+<p><strong>Module:</strong> <code>SessionModule.ts</code></p>
+<ul>
+<li>Time-limited access (configurable per session)</li>
+<li>Automatic cleanup on expiry</li>
+<li>Warning alerts before timeout</li>
+<li>Cannot be bypassed from renderer</li>
+</ul>
+<h2 id="module-system">Module System</h2>
+<p>All features are implemented as self-contained modules in the main process.</p>
+<h3 id="module-pattern">Module Pattern</h3>
+<div class="highlight"><pre><span></span><code><span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">MyModule</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="nx">browserWindow</span><span class="o">:</span><span class="w"> </span><span class="kt">BrowserWindow</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Setup IPC handlers</span>
+<span class="w">    </span><span class="nx">ipcMain</span><span class="p">.</span><span class="nx">handle</span><span class="p">(</span><span class="s1">&#39;my-module:action&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">handleAction</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+
+<span class="w">    </span><span class="c1">// Setup event listeners</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">browserWindow</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;event&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">handleEvent</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="nx">handleAction</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Implementation</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="core-modules">Core Modules</h3>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Purpose</th>
+<th>IPC Channels</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AdminModule</code></td>
+<td>Password-protected admin access</td>
+<td><code>admin:verify-password</code><br><code>admin:change-password</code></td>
+</tr>
+<tr>
+<td><code>SessionModule</code></td>
+<td>Time-limited sessions</td>
+<td><code>session:start</code><br><code>session:end</code><br><code>session:get-remaining-time</code></td>
+</tr>
+<tr>
+<td><code>UsageStatsModule</code></td>
+<td>Track usage statistics</td>
+<td><code>stats:record</code><br><code>stats:get</code></td>
+</tr>
+<tr>
+<td><code>ShutdownScheduleModule</code></td>
+<td>Automatic shutdowns</td>
+<td><code>shutdown:get-schedule</code><br><code>shutdown:set-schedule</code></td>
+</tr>
+<tr>
+<td><code>WindowManager</code></td>
+<td>Window lifecycle</td>
+<td><code>window:create</code><br><code>window:close</code></td>
+</tr>
+<tr>
+<td><code>BlockNotAllowedOrigins</code></td>
+<td>URL enforcement</td>
+<td>(event-based, no IPC)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="data-flow">Data Flow</h2>
+<h3 id="example-starting-a-session">Example: Starting a Session</h3>
+<pre class="mermaid"><code>sequenceDiagram
+    participant UI as Renderer&lt;br/&gt;SessionSelector.tsx
+    participant P as Preload&lt;br/&gt;index.ts
+    participant M as Main Process&lt;br/&gt;SessionModule.ts
+    participant G as Game View
+
+    UI-&gt;&gt;UI: User clicks "Start Session"
+    UI-&gt;&gt;P: startSession(siteUrl, duration)
+    P-&gt;&gt;M: ipcRenderer.invoke('session:start', ...)
+    M-&gt;&gt;M: Validate duration
+    M-&gt;&gt;M: Create timer
+    M-&gt;&gt;M: Record start in stats
+    M-&gt;&gt;G: Load site in game view
+    M-&gt;&gt;P: Return session ID
+    P-&gt;&gt;UI: Session ID
+    UI-&gt;&gt;UI: Show session timer
+    G-&gt;&gt;G: Display website</code></pre>
+<h3 id="example-url-blocking">Example: URL Blocking</h3>
+<pre class="mermaid"><code>sequenceDiagram
+    participant W as Website
+    participant E as Electron Event
+    participant B as BlockNotAllowedOrigins.ts
+    participant D as Dialog
+
+    W-&gt;&gt;E: Attempts navigation
+    E-&gt;&gt;B: 'will-navigate' event
+    B-&gt;&gt;B: Check URL against whitelist
+    alt URL allowed
+        B-&gt;&gt;W: Allow navigation
+    else URL not allowed
+        B-&gt;&gt;E: event.preventDefault()
+        B-&gt;&gt;D: Show warning dialog
+    end</code></pre>
+<h2 id="key-components">Key Components</h2>
+<h3 id="admin-dashboard">Admin Dashboard</h3>
+<p><strong>Location:</strong> <code>packages/renderer/src/components/AdminDashboard.tsx</code></p>
+<p><strong>Features:</strong>
+- Password protection
+- Site management (add/edit/remove)
+- Usage statistics display
+- Shutdown schedule configuration
+- Session management</p>
+<p><strong>Access Control:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1">// Password verified in main process</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">isValid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">verifyAdminPassword</span><span class="p">(</span><span class="nx">password</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">isValid</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">setIsAuthenticated</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h3 id="session-manager">Session Manager</h3>
+<p><strong>Location:</strong> <code>packages/main/src/modules/SessionModule.ts</code></p>
+<p><strong>Responsibilities:</strong>
+- Start/end sessions
+- Track remaining time
+- Emit warnings before expiry
+- Clean up on session end</p>
+<p><strong>Implementation:</strong>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nx">SessionModule</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="nx">currentSession</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">startTime</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">duration</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">timer</span><span class="o">:</span><span class="w"> </span><span class="kt">NodeJS.Timeout</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">startSession</span><span class="p">(</span><span class="nx">duration</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">currentSession</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">startTime</span><span class="o">:</span><span class="w"> </span><span class="kt">Date.now</span><span class="p">(),</span>
+<span class="w">      </span><span class="nx">duration</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">timer</span><span class="o">:</span><span class="w"> </span><span class="kt">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">endSession</span><span class="p">(),</span><span class="w"> </span><span class="nx">duration</span><span class="p">),</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h3 id="shutdown-scheduler">Shutdown Scheduler</h3>
+<p><strong>Location:</strong> <code>packages/main/src/modules/ShutdownScheduleModule.ts</code></p>
+<p><strong>Features:</strong>
+- Per-day scheduling
+- 10-minute warning
+- Platform-specific shutdown (Windows/Linux)
+- Cannot be cancelled once triggered</p>
+<p><strong>Shutdown Methods:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1">// Windows</span>
+<span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;shutdown /s /t 0&#39;</span><span class="p">);</span>
+
+<span class="c1">// Linux</span>
+<span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;shutdown -h now&#39;</span><span class="p">);</span>
+</code></pre></div></p>
+<h2 id="design-decisions">Design Decisions</h2>
+<h3 id="why-electron">Why Electron?</h3>
+<p><strong>Pros:</strong>
+- Cross-platform (Windows, Linux, macOS)
+- Sandboxed browser views for untrusted content
+- Mature security model
+- Rich ecosystem</p>
+<p><strong>Cons:</strong>
+- Larger bundle size
+- More memory usage</p>
+<p><strong>Decision:</strong> Security and cross-platform support outweigh resource concerns for a kiosk application.</p>
+<h3 id="why-monorepo">Why Monorepo?</h3>
+<p><strong>Benefits:</strong>
+- Clear separation of concerns
+- Independent testing per package
+- Shared TypeScript configuration
+- Type safety across boundaries</p>
+<h3 id="why-ipc-over-direct-imports">Why IPC over Direct Imports?</h3>
+<p>Renderer cannot import main process code due to security:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Not possible (renderer is sandboxed)</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="nx">startSession</span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;../../main/src/modules/SessionModule&#39;</span><span class="p">;</span>
+
+<span class="c1">// Must use IPC bridge</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="nx">startSession</span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@app/preload&#39;</span><span class="p">;</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">startSession</span><span class="p">(</span><span class="nx">siteUrl</span><span class="p">,</span><span class="w"> </span><span class="nx">duration</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="why-module-pattern">Why Module Pattern?</h3>
+<p><strong>Benefits:</strong>
+- Self-contained features
+- Easy to test in isolation
+- Clear ownership
+- Simple to add/remove features</p>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1">// Adding a new feature is just instantiating a module</span>
+<span class="ow">new</span><span class="w"> </span><span class="nx">MyNewFeatureModule</span><span class="p">(</span><span class="nx">browserWindow</span><span class="p">);</span>
+</code></pre></div></p>
+<h3 id="configuration-storage">Configuration Storage</h3>
+<p><strong>Location:</strong> User data directory
+- Windows: <code>%APPDATA%/smyles-station/</code>
+- Linux: <code>~/.config/smyles-station/</code>
+- macOS: <code>~/Library/Application Support/smyles-station/</code></p>
+<p><strong>Format:</strong> JSON files
+- <code>config.json</code> - App configuration
+- <code>sites.json</code> - Whitelisted sites
+- <code>schedule.json</code> - Shutdown schedule
+- <code>stats.json</code> - Usage statistics</p>
+<p><strong>Why JSON?</strong>
+- Human-readable
+- Easy to backup/restore
+- No database dependencies</p>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<h3 id="memory-management">Memory Management</h3>
+<ul>
+<li>Each game runs in a separate sandboxed renderer</li>
+<li>Game views are destroyed on session end</li>
+<li>Only one game view active at a time</li>
+</ul>
+<h3 id="startup-time">Startup Time</h3>
+<ul>
+<li>Lazy module initialization</li>
+<li>Vite for fast dev builds</li>
+<li>Electron-builder for optimized production builds</li>
+</ul>
+<h3 id="bundle-size">Bundle Size</h3>
+<ul>
+<li>Tree-shaking enabled</li>
+<li>No unnecessary dependencies in renderer</li>
+<li>Native Node.js APIs used where possible</li>
+</ul>
+<h2 id="future-considerations">Future Considerations</h2>
+<h3 id="potential-enhancements">Potential Enhancements</h3>
+<ol>
+<li><strong>Multi-user support</strong> - Different profiles for different kids</li>
+<li><strong>Cloud sync</strong> - Sync settings across multiple kiosks</li>
+<li><strong>Parental reports</strong> - Email usage reports to parents</li>
+<li><strong>Content filtering</strong> - Built-in web content filtering</li>
+<li><strong>Remote management</strong> - Admin panel accessible from another device</li>
+</ol>
+<h3 id="scalability">Scalability</h3>
+<p>Current design supports:
+- Single kiosk installation
+- Hundreds of whitelisted sites
+- Years of usage statistics</p>
+<p>For library systems with multiple kiosks, consider:
+- Centralized configuration management
+- Shared usage statistics database
+- Remote monitoring and updates</p>
+<h2 id="security-audit-checklist">Security Audit Checklist</h2>
+<ul>
+<li>[x] Context isolation enabled</li>
+<li>[x] Sandbox enabled for renderers</li>
+<li>[x] Node integration disabled in renderer</li>
+<li>[x] Remote module disabled</li>
+<li>[x] URL whitelist enforced</li>
+<li>[x] Admin password protected</li>
+<li>[x] No eval() or similar dangerous functions</li>
+<li>[x] Input validation on all IPC handlers</li>
+<li>[x] Safe external URL handling</li>
+</ul>
+<h2 id="contributing-to-architecture">Contributing to Architecture</h2>
+<p>When proposing architectural changes:</p>
+<ol>
+<li>Document the problem</li>
+<li>Propose solution with security analysis</li>
+<li>Consider backward compatibility</li>
+<li>Update this document</li>
+<li>Get review from maintainers</li>
+</ol>
+<hr />
+<p>For implementation details, see the <a href="../contributing/">Contributing Guide</a>.
+For development setup, see <a href="../setup/">Local Development Setup</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>
