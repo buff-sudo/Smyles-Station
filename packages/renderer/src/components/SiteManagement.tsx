@@ -47,7 +47,7 @@ export const SiteManagement: FC = () => {
     }
   };
 
-  const handleDeleteSite = async (siteId: string, siteName: string) => {
+  const handleDeleteSite = async (siteId: string, _siteName: string) => {
     try {
       const success = await window.adminDeleteSite(siteId);
       if (success) {

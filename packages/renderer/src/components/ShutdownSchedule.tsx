@@ -1,5 +1,5 @@
 import {type FC, useState, useEffect} from 'react';
-import type {ShutdownSchedule as ShutdownScheduleType, DaySchedule} from '../electron';
+import type {ShutdownSchedule as ShutdownScheduleType} from '../electron';
 import './ShutdownSchedule.css';
 
 export const ShutdownSchedule: FC = () => {
