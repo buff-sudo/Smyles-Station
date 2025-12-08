@@ -1,3 +1,4 @@
+/* BEGIN CODE FROM https://github.com/cawa-93/vite-electron-builder */
 import {AppModule} from '../AppModule.js';
 import {ModuleContext} from '../ModuleContext.js';
 import installer from 'electron-devtools-installer';
@@ -39,3 +40,4 @@ export class ChromeDevToolsExtension implements AppModule {
 export function chromeDevToolsExtension(...args: ConstructorParameters<typeof ChromeDevToolsExtension>) {
   return new ChromeDevToolsExtension(...args);
 }
+/* END CODE FROM https://github.com/cawa-93/vite-electron-builder */

@@ -1,3 +1,4 @@
+/* BEGIN CODE FROM https://github.com/cawa-93/vite-electron-builder */
 import {AppModule} from '../AppModule.js';
 import * as Electron from 'electron';
 
@@ -15,3 +16,4 @@ class SingleInstanceApp implements AppModule {
 export function disallowMultipleAppInstance(...args: ConstructorParameters<typeof SingleInstanceApp>) {
   return new SingleInstanceApp(...args);
 }
+/* END CODE FROM https://github.com/cawa-93/vite-electron-builder */

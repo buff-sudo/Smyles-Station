@@ -1,3 +1,4 @@
+/* BEGIN CODE FROM https://github.com/cawa-93/vite-electron-builder */
 export interface AppInitConfig {
   preload: {
     path: string;
@@ -9,3 +10,4 @@ export interface AppInitConfig {
       }
     | URL;
 }
+/* END CODE FROM https://github.com/cawa-93/vite-electron-builder */

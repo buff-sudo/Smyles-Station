@@ -129,6 +129,16 @@ npm test
 
 See LICENSE file for details.
 
+## Attributions
+
+This project includes code and resources from various sources:
+- Electron Vite Builder template
+- AI-generated code from Claude AI (Anthropic)
+- Third-party libraries (React, Electron, Vite, TypeScript, etc.)
+- Service icons (PBS Kids, ABC Mouse)
+
+See [ATTRIBUTIONS.md](ATTRIBUTIONS.md) for complete details and license information.
+
 ## Contact
 
 For security issues or questions, contact: smyles-station-safety@proton.me

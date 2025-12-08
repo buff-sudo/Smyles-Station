@@ -1,3 +1,6 @@
+/* BEGIN CODE FROM https://github.com/cawa-93/vite-electron-builder
+ * Modified by Claude AI (Anthropic) - https://claude.ai
+ */
 import {AbstractSecurityRule} from './AbstractSecurityModule.js';
 import * as Electron from 'electron';
 import {URL} from 'node:url';
@@ -18,9 +21,11 @@ export class BlockNotAllowedOrigins extends AbstractSecurityRule {
     this.#allowedOrigins = structuredClone(allowedOrigins)
   }
 
+  // BEGIN CLAUDE AI MODIFICATION
   updateAllowedOrigins(allowedOrigins: Set<string>): void {
     this.#allowedOrigins = structuredClone(allowedOrigins);
   }
+  // END CLAUDE AI MODIFICATION
 
   applyRule(contents: Electron.WebContents): Promise<void> | void {
 
@@ -44,3 +49,4 @@ export class BlockNotAllowedOrigins extends AbstractSecurityRule {
 export function allowInternalOrigins(...args: ConstructorParameters<typeof BlockNotAllowedOrigins>): BlockNotAllowedOrigins {
   return new BlockNotAllowedOrigins(...args);
 }
+/* END CODE FROM https://github.com/cawa-93/vite-electron-builder */

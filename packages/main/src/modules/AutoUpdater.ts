@@ -1,3 +1,4 @@
+/* BEGIN CODE FROM https://github.com/cawa-93/vite-electron-builder */
 import {AppModule} from '../AppModule.js';
 import electronUpdater, {type AppUpdater, type Logger} from 'electron-updater';
 
@@ -60,3 +61,4 @@ export class AutoUpdater implements AppModule {
 export function autoUpdater(...args: ConstructorParameters<typeof AutoUpdater>) {
   return new AutoUpdater(...args);
 }
+/* END CODE FROM https://github.com/cawa-93/vite-electron-builder */

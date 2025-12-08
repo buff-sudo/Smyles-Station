@@ -1,3 +1,4 @@
+/* BEGIN CODE FROM https://github.com/cawa-93/vite-electron-builder */
 import * as exports from './index.js';
 import {contextBridge} from 'electron';
 
@@ -11,3 +12,4 @@ for (const exportsKey in exports) {
 
 // Re-export for tests
 export * from './index.js';
+/* END CODE FROM https://github.com/cawa-93/vite-electron-builder */

@@ -1,3 +1,4 @@
+/* BEGIN CODE FROM https://github.com/cawa-93/vite-electron-builder */
 import {AppModule} from '../AppModule.js';
 import {ModuleContext} from '../ModuleContext.js';
 
@@ -19,3 +20,4 @@ export class HardwareAccelerationModule implements AppModule {
 export function hardwareAccelerationMode(...args: ConstructorParameters<typeof HardwareAccelerationModule>) {
   return new HardwareAccelerationModule(...args);
 }
+/* END CODE FROM https://github.com/cawa-93/vite-electron-builder */

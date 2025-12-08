@@ -1,3 +1,4 @@
+/* BEGIN CODE FROM https://github.com/cawa-93/vite-electron-builder */
 import {AppModule} from '../AppModule.js';
 import {ModuleContext} from '../ModuleContext.js';
 import {shell} from 'electron';
@@ -33,3 +34,4 @@ export class ExternalUrls implements AppModule {
 export function allowExternalUrls(...args: ConstructorParameters<typeof ExternalUrls>) {
   return new ExternalUrls(...args);
 }
+/* END CODE FROM https://github.com/cawa-93/vite-electron-builder */
