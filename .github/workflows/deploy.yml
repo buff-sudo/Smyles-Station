@@ -37,6 +37,13 @@ jobs:
           path: dist
           merge-multiple: true
 
-      - run: gh release create v${{inputs.app-version}} dist/smyles-station-*.* dist/latest*.yml --repo ${{github.repository}}
+      - name: Debug - List dist contents
+        run: |
+          echo "Contents of dist directory:"
+          ls -laR dist/
+          echo "Looking for smyles-station files:"
+          find dist -name "smyles-station-*" -type f || echo "No smyles-station files found"
+
+      - run: gh release create v${{inputs.app-version}} dist/smyles-station-*.* --repo ${{github.repository}}
         env:
           GH_TOKEN: ${{ github.token }}
